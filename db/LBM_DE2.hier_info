@@ -1,0 +1,5 @@
+|LBM_DE2
+CLOCK_50 => ~NO_FANOUT~
+RESET => ~NO_FANOUT~
+
+
