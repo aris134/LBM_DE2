@@ -1,15 +1,15 @@
-C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv
+C:/Users/arism/Desktop/LBM_DE2/tb_distribution_ram.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_distribution_ram.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module tb_moment_ram
+-- Compiling module tb_distribution_ram
 
 Top level modules:
-	tb_moment_ram
+	tb_distribution_ram
 
-} {} {}} C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module moment_ram
+-- Compiling module distribution_ram
 
 Top level modules:
-	moment_ram
+	distribution_ram
 
 } {} {}}

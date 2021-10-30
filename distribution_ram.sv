@@ -1,6 +1,6 @@
-module moment_ram #(DEPTH=16*16,
+module distribution_ram #(DEPTH=16*16,
 		ADDRESS_WIDTH=$clog2(DEPTH),
-		DATA_WIDTH=32) (input logic [ADDRESS_WIDTH-1:0] address,
+		DATA_WIDTH=32*9) (input logic [ADDRESS_WIDTH-1:0] address,
 							 input Clk,
 							 input WE,
 							 input logic signed [DATA_WIDTH-1:0] data_in,
