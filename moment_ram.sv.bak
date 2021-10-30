@@ -1,0 +1,10 @@
+module moment_ram #(DEPTH=16*16,
+		ADDRESS_WIDTH=$clog2(DEPTH),
+		DATA_WIDTH=32) (input logic [ADDRESS_WIDTH-1:0] address,
+							 input Clk,
+							 input Rst,
+							 input WE,
+							 input [DATA_WIDTH-1:0] data_in,
+							 output [DATA_WIDTH-1:0] data_out);
+		
+		

@@ -1,0 +1,49 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\arism\Desktop\LBM_Sim\simulation
+vmoment_ram
+Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z2 I4z`U<^?EMAnoLhL3IgLF=1
+Z3 VW43Db9;li7A^ibkePfbTl3
+Z4 !s105 moment_ram_sv_unit
+S1
+Z5 dC:\Users\arism\Desktop\LBM_DE2\simulation
+Z6 w1635621292
+Z7 8C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv
+Z8 FC:/Users/arism/Desktop/LBM_DE2/moment_ram.sv
+L0 1
+Z9 OV;L;10.1d;51
+r1
+31
+Z10 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv|
+Z11 o-work work -sv -O0
+!i10b 1
+Z12 !s100 Bo=E18?RUE7`eSWzYF>g^1
+!s85 0
+Z13 !s108 1635621325.268000
+Z14 !s107 C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv|
+!s101 -O0
+vtb_moment_ram
+R1
+!i10b 1
+!s100 3LG_F^oL08:O>Ob@79^OD3
+IE7BRN`DefM@H`;9iO7HS43
+Z15 VG903R?K3Q140dY=]bG`Te1
+Z16 !s105 tb_moment_ram_sv_unit
+S1
+R5
+Z17 w1635620880
+8C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv
+FC:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv
+L0 1
+R9
+r1
+!s85 0
+31
+!s108 1635621325.323000
+!s107 C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv|
+!s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv|
+!s101 -O0
+R11
