@@ -1,0 +1,15 @@
+module mux2 #(DATA_WIDTH=32)(input [DATA_WIDTH-1:0]Din0,
+									  input [DATA_WIDTH-1:0] Din1,
+									  input select,
+									  output [DATA_WIDTH-1:0] Dout);
+				 
+logic Dout_wire;
+assign Dout = Dout_wire;
+always @ (Din0 or Din1 or select)		// inputs to mux
+begin
+	case(select)								// select truth table
+	1'b0			:Dout_wire = Din0; 
+	default  	:Dout_wire = Din1; 
+	endcase
+end
+endmodule 
