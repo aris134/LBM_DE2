@@ -20,6 +20,7 @@ module tb_counter_init();
 		Clk = 0;
 		Reset = 1;
 		Enable = 0;
+		// expected sum = 5 = 0x05_000000
 		
 		#10 Reset = 0;
 		

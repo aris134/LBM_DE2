@@ -1,0 +1,20 @@
+module tb_weights_reg();
+
+	timeunit 1ns;
+	timeprecision 1ns;
+	
+	parameter WIDTH = 32*9;
+
+	logic Reset;
+	
+	weights_reg #(.WIDTH(WIDTH)) weights_reg0 (.*);
+	
+	initial begin
+		Reset = 1;
+		
+		#10 Reset = 0;
+		
+		#20 $finish;
+	end
+	
+endmodule

@@ -1,15 +1,15 @@
-C:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv
+C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module tb_counter_init
+-- Compiling module weights_reg
 
 Top level modules:
-	tb_counter_init
+	weights_reg
 
-} {} {}} C:/Users/arism/Desktop/LBM_DE2/counter_init.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/counter_init.sv
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module counter_init
+-- Compiling module tb_weights_reg
 
 Top level modules:
-	counter_init
+	tb_weights_reg
 
 } {} {}}

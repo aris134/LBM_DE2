@@ -1,0 +1,13 @@
+module weights_reg #(WIDTH=32*9) (input logic Clk, Reset, Load,
+              input logic [WIDTH-1:0] Data_In,	
+              output logic [WIDTH-1:0] Data_Out);	
+
+    always_ff @ (negedge Reset)	
+    begin
+	 	 if (~Reset)
+			  Data_Out <= {32'h00_71C71C, 4{32'h00_1C71C7}, 4{32'h071C71}};
+		 else
+			  Data_Out <= Data_Out;
+	 end
+
+endmodule
