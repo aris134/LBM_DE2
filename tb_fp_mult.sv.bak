@@ -1,0 +1,28 @@
+module tb_fp_mult();
+
+	timeunit 1ns;
+	timeprecision 1ns;
+	
+	parameter DATA_WIDTH = 32;
+	parameter FRACTIONAL_BITS = 24;
+	
+	
+	logic signed [DATA_WIDTH-1:0] Din0;
+	logic signed [DATA_WIDTH-1:0] Din1
+	logic signed [DATA_WIDTH-1:0] Dout;
+	
+	fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH)) fp_mult0 (.*);
+	
+	initial begin
+		Din0 = 32'h03_510000; //  (Q8.24)
+		Din1 = 32'h00_000000; 
+		// expected sum = 0
+		
+		#10 Din0 = 32'h03_510000; // 3.31640625
+		Din1 = 32'hFD_B94000; // -2.2763671875
+		// expected sum = 
+
+		#10 $finish;
+	end
+	
+endmodule
