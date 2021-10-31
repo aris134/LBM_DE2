@@ -1,8 +1,15 @@
-C:/Users/arism/Desktop/LBM_DE2/fp_mult.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/fp_mult.sv
+C:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module fp_mult
+-- Compiling module tb_counter_init
 
 Top level modules:
-	fp_mult
+	tb_counter_init
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/counter_init.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/counter_init.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module counter_init
+
+Top level modules:
+	counter_init
 
 } {} {}}

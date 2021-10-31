@@ -1,8 +1,31 @@
-module controller #(DATA_WIDTH=32) (input Clk, Reset,
+module controller #(DATA_WIDTH=32, GRID_DIM = 16*16) (input Clk, Reset, count_init,
 						 output WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem,
-						 output select_p, select_ux, select_uy, select_fin);
-	enum logic [1:0] {INIT, START, CALC_MOMENT} State, Next_state;
+						 output select_p, select_ux, select_uy, select_fin,
+						 output count_init_en);
+	enum logic [1:0] {START, CALC_MOMENT} State, Next_state;
 	
+	// variable declarations
+	
+	 always_ff @ (posedge Clk or negedge Reset)
+    begin 
+        if (~Reset) 
+            State <= START;
+        else 
+            State <= Next_state;
+    end
+	
+	//***** STATE TRANSITIONS ****//
+		
+	always_comb
+	begin
+	Next_state = State;
+	
+	unique case (State)
+		START		:
+			if (count_init == GRID_DIM - 1)
+				Next_state <= CALC_MOMENT;
+		endcase
+	end
 	
 	//**** STATE DEFINITIONS ****//
 	
@@ -18,6 +41,7 @@ module controller #(DATA_WIDTH=32) (input Clk, Reset,
 	select_ux = 1'b0;
 	select_uy = 1'b0;
 	select_fin = 1'b0;
+	count_init_en = 1'b0;
 	
 	case (State)
 	START :
@@ -30,23 +54,8 @@ module controller #(DATA_WIDTH=32) (input Clk, Reset,
 				select_ux = 1'b1;
 				select_uy = 1'b1;
 				select_fin = 1'b1;
+				count_init_en = 1'b1;
 			end
-	endcase
-	
-	//***** STATE TRANSITIONS ****//
-	always_comb
-	begin
-	Next_state = State;
-	
-	unique case (State)
-		INIT		:
-			if (Reset)
-				Next_state <= START;
-		START		:
-			if (count_init == 0)
-				Next_state <= CALC_MOMENT;
-		CALC_MOMENT	:
-				Next_state <= INIT;
 		endcase
 	end
 	
