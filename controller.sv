@@ -1,0 +1,53 @@
+module controller #(DATA_WIDTH=32) (input Clk, Reset,
+						 output WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem,
+						 output select_p, select_ux, select_uy, select_fin);
+	enum logic [1:0] {INIT, START, CALC_MOMENT} State, Next_state;
+	
+	
+	//**** STATE DEFINITIONS ****//
+	
+	always_comb
+	begin
+	WE_p_mem = 1'b0;
+	WE_ux_mem = 1'b0;
+	WE_uy_mem = 1'b0;
+	WE_fin_mem = 1'b0;
+	WE_fout_mem = 1'b0;
+	WE_feq_mem = 1'b0;
+	select_p = 1'b0;
+	select_ux = 1'b0;
+	select_uy = 1'b0;
+	select_fin = 1'b0;
+	
+	case (State)
+	START :
+			begin
+				WE_p_mem = 1'b1;
+				WE_ux_mem = 1'b1;
+				WE_uy_mem = 1'b1;
+				WE_fin_mem = 1'b1;
+				select_p = 1'b1;
+				select_ux = 1'b1;
+				select_uy = 1'b1;
+				select_fin = 1'b1;
+			end
+	endcase
+	
+	//***** STATE TRANSITIONS ****//
+	always_comb
+	begin
+	Next_state = State;
+	
+	unique case (State)
+		INIT		:
+			if (Reset)
+				Next_state <= START;
+		START		:
+			if (count_init == 0)
+				Next_state <= CALC_MOMENT;
+		CALC_MOMENT	:
+				Next_state <= INIT;
+		endcase
+	end
+	
+endmodule
