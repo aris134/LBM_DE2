@@ -1,5 +1,5 @@
 Analysis & Synthesis report for LBM_DE2
-Sat Oct 30 23:21:58 2021
+Sun Oct 31 20:08:26 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -13,11 +13,38 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Parameter Settings for User Entity Instance: Top-level Entity: |LBM_DE2
- 10. Elapsed Time Per Partition
- 11. Analysis & Synthesis Messages
- 12. Analysis & Synthesis Suppressed Messages
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |LBM_DE2|controller:fsm|State
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Registers Added for RAM Pass-Through Logic
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Source assignments for moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_h8d1:auto_generated
+ 15. Source assignments for distribution_ram:fin_ram|altsyncram:mem_rtl_0|altsyncram_hed1:auto_generated
+ 16. Parameter Settings for User Entity Instance: Top-level Entity: |LBM_DE2
+ 17. Parameter Settings for User Entity Instance: counter_init:init_counter
+ 18. Parameter Settings for User Entity Instance: controller:fsm
+ 19. Parameter Settings for User Entity Instance: weights_reg:w_reg
+ 20. Parameter Settings for User Entity Instance: moment_ram:p_ram
+ 21. Parameter Settings for User Entity Instance: moment_ram:ux_ram
+ 22. Parameter Settings for User Entity Instance: moment_ram:uy_ram
+ 23. Parameter Settings for User Entity Instance: distribution_ram:fin_ram
+ 24. Parameter Settings for User Entity Instance: adder9:adder0
+ 25. Parameter Settings for User Entity Instance: reg32:p_reg
+ 26. Parameter Settings for User Entity Instance: cx_reg:reg_cx
+ 27. Parameter Settings for User Entity Instance: cy_reg:reg_cy
+ 28. Parameter Settings for Inferred Entity Instance: moment_ram:p_ram|altsyncram:mem_rtl_0
+ 29. Parameter Settings for Inferred Entity Instance: distribution_ram:fin_ram|altsyncram:mem_rtl_0
+ 30. altsyncram Parameter Settings by Entity Instance
+ 31. Port Connectivity Checks: "cy_reg:reg_cy"
+ 32. Port Connectivity Checks: "cx_reg:reg_cx"
+ 33. Port Connectivity Checks: "reg32:p_reg"
+ 34. Port Connectivity Checks: "moment_ram:ux_ram"
+ 35. Port Connectivity Checks: "moment_ram:p_ram"
+ 36. Port Connectivity Checks: "controller:fsm"
+ 37. Elapsed Time Per Partition
+ 38. Analysis & Synthesis Messages
+ 39. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -43,18 +70,18 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Oct 30 23:21:58 2021      ;
+; Analysis & Synthesis Status        ; Successful - Sun Oct 31 20:08:26 2021      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; LBM_DE2                                    ;
 ; Top-level Entity Name              ; LBM_DE2                                    ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 0                                          ;
-;     Total combinational functions  ; 0                                          ;
-;     Dedicated logic registers      ; 0                                          ;
-; Total registers                    ; 0                                          ;
-; Total pins                         ; 2                                          ;
+; Total logic elements               ; 263                                        ;
+;     Total combinational functions  ; 130                                        ;
+;     Dedicated logic registers      ; 146                                        ;
+; Total registers                    ; 146                                        ;
+; Total pins                         ; 386                                        ;
 ; Total virtual pins                 ; 0                                          ;
-; Total memory bits                  ; 0                                          ;
+; Total memory bits                  ; 25,856                                     ;
 ; Embedded Multiplier 9-bit elements ; 0                                          ;
 ; Total PLLs                         ; 0                                          ;
 +------------------------------------+--------------------------------------------+
@@ -158,52 +185,286 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                  ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path              ; Library ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------+---------+
-; LBM_DE2.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv ;         ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                             ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                         ; Library ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------+---------+
+; LBM_DE2.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv                            ;         ;
+; moment_ram.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv                         ;         ;
+; distribution_ram.sv              ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv                   ;         ;
+; adder9.sv                        ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/adder9.sv                             ;         ;
+; controller.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/controller.sv                         ;         ;
+; counter_init.sv                  ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/counter_init.sv                       ;         ;
+; weights_reg.sv                   ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv                        ;         ;
+; reg32.sv                         ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/reg32.sv                              ;         ;
+; cx_reg.sv                        ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv                             ;         ;
+; cy_reg.sv                        ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv                             ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal131.inc                   ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/aglobal131.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_h8d1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/arism/Desktop/LBM_DE2/db/altsyncram_h8d1.tdf                ;         ;
+; db/altsyncram_hed1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/arism/Desktop/LBM_DE2/db/altsyncram_hed1.tdf                ;         ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary            ;
-+---------------------------------------------+----------+
-; Resource                                    ; Usage    ;
-+---------------------------------------------+----------+
-;                                             ;          ;
-; Total combinational functions               ; 0        ;
-; Logic element usage by number of LUT inputs ;          ;
-;     -- 4 input functions                    ; 0        ;
-;     -- 3 input functions                    ; 0        ;
-;     -- <=2 input functions                  ; 0        ;
-;                                             ;          ;
-; Logic elements by mode                      ;          ;
-;     -- normal mode                          ; 0        ;
-;     -- arithmetic mode                      ; 0        ;
-;                                             ;          ;
-; Total registers                             ; 0        ;
-;     -- Dedicated logic registers            ; 0        ;
-;     -- I/O registers                        ; 0        ;
-;                                             ;          ;
-; I/O pins                                    ; 2        ;
-; Embedded Multiplier 9-bit elements          ; 0        ;
-; Maximum fan-out node                        ; CLOCK_50 ;
-; Maximum fan-out                             ; 1        ;
-; Total fan-out                               ; 2        ;
-; Average fan-out                             ; 0.50     ;
-+---------------------------------------------+----------+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimated Total logic elements              ; 263            ;
+;                                             ;                ;
+; Total combinational functions               ; 130            ;
+; Logic element usage by number of LUT inputs ;                ;
+;     -- 4 input functions                    ; 113            ;
+;     -- 3 input functions                    ; 2              ;
+;     -- <=2 input functions                  ; 15             ;
+;                                             ;                ;
+; Logic elements by mode                      ;                ;
+;     -- normal mode                          ; 124            ;
+;     -- arithmetic mode                      ; 6              ;
+;                                             ;                ;
+; Total registers                             ; 146            ;
+;     -- Dedicated logic registers            ; 146            ;
+;     -- I/O registers                        ; 0              ;
+;                                             ;                ;
+; I/O pins                                    ; 386            ;
+; Total memory bits                           ; 25856          ;
+; Embedded Multiplier 9-bit elements          ; 0              ;
+; Maximum fan-out node                        ; CLOCK_50~input ;
+; Maximum fan-out                             ; 247            ;
+; Total fan-out                               ; 3128           ;
+; Average fan-out                             ; 2.72           ;
++---------------------------------------------+----------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |LBM_DE2                   ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 2    ; 0            ; |LBM_DE2            ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                          ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                   ; Library Name ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------+--------------+
+; |LBM_DE2                                  ; 130 (0)           ; 146 (0)      ; 25856       ; 0            ; 0       ; 0         ; 386  ; 0            ; |LBM_DE2                                                                              ; work         ;
+;    |controller:fsm|                       ; 4 (4)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|controller:fsm                                                               ; work         ;
+;    |counter_init:init_counter|            ; 9 (9)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|counter_init:init_counter                                                    ; work         ;
+;    |distribution_ram:fin_ram|             ; 108 (108)         ; 118 (118)    ; 25600       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|distribution_ram:fin_ram                                                     ; work         ;
+;       |altsyncram:mem_rtl_0|              ; 0 (0)             ; 0 (0)        ; 25600       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|distribution_ram:fin_ram|altsyncram:mem_rtl_0                                ; work         ;
+;          |altsyncram_hed1:auto_generated| ; 0 (0)             ; 0 (0)        ; 25600       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|distribution_ram:fin_ram|altsyncram:mem_rtl_0|altsyncram_hed1:auto_generated ; work         ;
+;    |moment_ram:p_ram|                     ; 9 (9)             ; 19 (19)      ; 256         ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:p_ram                                                             ; work         ;
+;       |altsyncram:mem_rtl_0|              ; 0 (0)             ; 0 (0)        ; 256         ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:p_ram|altsyncram:mem_rtl_0                                        ; work         ;
+;          |altsyncram_h8d1:auto_generated| ; 0 (0)             ; 0 (0)        ; 256         ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_h8d1:auto_generated         ; work         ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                             ;
++-----------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+; Name                                                                                    ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF  ;
++-----------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+; distribution_ram:fin_ram|altsyncram:mem_rtl_0|altsyncram_hed1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 256          ; 100          ; 256          ; 100          ; 25600 ; None ;
+; moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_h8d1:auto_generated|ALTSYNCRAM         ; AUTO ; Simple Dual Port ; 256          ; 1            ; 256          ; 1            ; 256   ; None ;
++-----------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------+
+; State Machine - |LBM_DE2|controller:fsm|State ;
++-------------------+---------------------------+
+; Name              ; State.CALC_MOMENT         ;
++-------------------+---------------------------+
+; State.START       ; 0                         ;
+; State.CALC_MOMENT ; 1                         ;
++-------------------+---------------------------+
+
+
++----------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                               ;
++-----------------------------------------+----------------------------------------+
+; Register name                           ; Reason for Removal                     ;
++-----------------------------------------+----------------------------------------+
+; weights_reg:w_reg|d_out[0]              ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[1..3]           ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[4..6]           ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[7..9]           ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[10..12]         ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[13..15]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[16..18]         ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[19..31]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[32]             ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[33..35]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[36..38]         ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[39..41]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[42..44]         ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[45..47]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[48..50]         ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[51..63]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[64]             ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[65..67]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[68..70]         ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[71..73]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[74..76]         ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[77..79]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[80..82]         ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[83..95]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[96]             ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[97..99]         ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[100..102]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[103..105]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[106..108]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[109..111]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[112..114]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[115..127]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[128..130]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[131..133]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[134..136]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[137..139]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[140..142]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[143..145]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[146..148]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[149..159]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[160..162]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[163..165]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[166..168]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[169..171]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[172..174]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[175..177]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[178..180]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[181..191]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[192..194]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[195..197]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[198..200]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[201..203]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[204..206]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[207..209]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[210..212]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[213..223]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[224..226]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[227..229]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[230..232]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[233..235]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[236..238]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[239..241]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[242..244]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[245..257]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[258..260]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[261..263]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[264..266]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[267..269]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[270..272]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[273..275]       ; Stuck at GND due to stuck port data_in ;
+; weights_reg:w_reg|d_out[276..278]       ; Stuck at VCC due to stuck port data_in ;
+; weights_reg:w_reg|d_out[279..287]       ; Stuck at GND due to stuck port data_in ;
+; controller:fsm|State~5                  ; Lost fanout                            ;
+; moment_ram:p_ram|mem~1                  ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~1          ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~2          ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~3          ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~4          ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~5          ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~6          ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~7          ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~8          ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~9          ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~10         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~11         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~12         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~13         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~14         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~15         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~16         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~17         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~18         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~19         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~20         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~21         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~22         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~23         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~24         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~25         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~26         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~27         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~28         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~29         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~30         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~31         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~32         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~33         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~34         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~35         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~36         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~37         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~38         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~39         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~40         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~41         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~42         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~43         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~44         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~45         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~46         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~47         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~48         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~49         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~50         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~51         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~52         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~53         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~54         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~55         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~56         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~57         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~58         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~59         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~60         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~61         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~62         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~63         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~64         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~65         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~66         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~67         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~68         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~69         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~70         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~71         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~72         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~73         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~74         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~75         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~76         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~77         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~78         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~79         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~80         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~81         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~82         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~83         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~84         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~85         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~86         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~87         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~88         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~89         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~90         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~91         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~92         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~93         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~94         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~95         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~96         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~97         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~98         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~99         ; Stuck at VCC due to stuck port data_in ;
+; distribution_ram:fin_ram|mem~100        ; Stuck at VCC due to stuck port data_in ;
+; Total Number of Removed Registers = 390 ;                                        ;
++-----------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -211,14 +472,184 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
+; Total registers                              ; 146   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 27    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 26    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------+
+; Registers Added for RAM Pass-Through Logic                                          ;
++------------------------------------------------+------------------------------------+
+; Register Name                                  ; RAM Name                           ;
++------------------------------------------------+------------------------------------+
+; moment_ram:p_ram|mem_rtl_0_bypass[0]           ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[1]           ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[2]           ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[3]           ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[4]           ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[5]           ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[6]           ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[7]           ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[8]           ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[9]           ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[10]          ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[11]          ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[12]          ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[13]          ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[14]          ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[15]          ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[16]          ; moment_ram:p_ram|mem_rtl_0         ;
+; moment_ram:p_ram|mem_rtl_0_bypass[17]          ; moment_ram:p_ram|mem_rtl_0         ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[0]   ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[1]   ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[2]   ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[3]   ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[4]   ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[5]   ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[6]   ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[7]   ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[8]   ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[9]   ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[10]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[11]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[12]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[13]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[14]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[15]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[16]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[17]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[18]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[19]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[20]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[21]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[22]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[23]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[24]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[25]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[26]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[27]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[28]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[29]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[30]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[31]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[32]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[33]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[34]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[35]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[36]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[37]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[38]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[39]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[40]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[41]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[42]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[43]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[44]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[45]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[46]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[47]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[48]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[49]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[50]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[51]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[52]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[53]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[54]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[55]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[56]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[57]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[58]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[59]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[60]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[61]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[62]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[63]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[64]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[65]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[66]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[67]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[68]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[69]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[70]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[71]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[72]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[73]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[74]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[75]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[76]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[77]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[78]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[79]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[80]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[81]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[82]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[83]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[84]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[85]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[86]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[87]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[88]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[89]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[90]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[91]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[92]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[93]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[94]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[95]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[96]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[97]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[98]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[99]  ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[100] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[101] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[102] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[103] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[104] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[105] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[106] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[107] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[108] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[109] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[110] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[111] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[112] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[113] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[114] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[115] ; distribution_ram:fin_ram|mem_rtl_0 ;
+; distribution_ram:fin_ram|mem_rtl_0_bypass[116] ; distribution_ram:fin_ram|mem_rtl_0 ;
++------------------------------------------------+------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+; 3:1                ; 100 bits  ; 200 LEs       ; 200 LEs              ; 0 LEs                  ; No         ; |LBM_DE2|distribution_ram:fin_ram|mem ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+
+
++---------------------------------------------------------------------------------------------+
+; Source assignments for moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_h8d1:auto_generated ;
++---------------------------------+--------------------+------+-------------------------------+
+; Assignment                      ; Value              ; From ; To                            ;
++---------------------------------+--------------------+------+-------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                             ;
++---------------------------------+--------------------+------+-------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Source assignments for distribution_ram:fin_ram|altsyncram:mem_rtl_0|altsyncram_hed1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------------------+
+; Assignment                      ; Value              ; From ; To                                    ;
++---------------------------------+--------------------+------+---------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                     ;
++---------------------------------+--------------------+------+---------------------------------------+
 
 
 +-------------------------------------------------------------------------+
@@ -226,10 +657,346 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+-------+------------------------------------------------+
 ; Parameter Name ; Value ; Type                                           ;
 +----------------+-------+------------------------------------------------+
-; GRID_DIM       ; 16    ; Signed Integer                                 ;
+; GRID_DIM       ; 256   ; Signed Integer                                 ;
 ; DATA_WIDTH     ; 32    ; Signed Integer                                 ;
+; ADDRESS_WIDTH  ; 8     ; Signed Integer                                 ;
+; DATA_WIDTH_F   ; 288   ; Signed Integer                                 ;
 +----------------+-------+------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: counter_init:init_counter ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; GRID_DIM       ; 256   ; Signed Integer                                ;
+; ADDRESS_WIDTH  ; 8     ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: controller:fsm ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                     ;
+; GRID_DIM       ; 256   ; Signed Integer                     ;
+; ADDRESS_WIDTH  ; 8     ; Signed Integer                     ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: weights_reg:w_reg ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; WIDTH          ; 288   ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: moment_ram:p_ram ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; DEPTH          ; 256   ; Signed Integer                       ;
+; ADDRESS_WIDTH  ; 8     ; Signed Integer                       ;
+; DATA_WIDTH     ; 32    ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: moment_ram:ux_ram ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; DEPTH          ; 256   ; Signed Integer                        ;
+; ADDRESS_WIDTH  ; 8     ; Signed Integer                        ;
+; DATA_WIDTH     ; 32    ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: moment_ram:uy_ram ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; DEPTH          ; 256   ; Signed Integer                        ;
+; ADDRESS_WIDTH  ; 8     ; Signed Integer                        ;
+; DATA_WIDTH     ; 32    ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: distribution_ram:fin_ram ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; DEPTH          ; 256   ; Signed Integer                               ;
+; ADDRESS_WIDTH  ; 8     ; Signed Integer                               ;
+; DATA_WIDTH     ; 288   ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder9:adder0 ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:p_reg ;
++----------------+-------+---------------------------------+
+; Parameter Name ; Value ; Type                            ;
++----------------+-------+---------------------------------+
+; WIDTH          ; 32    ; Signed Integer                  ;
++----------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: cx_reg:reg_cx ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; WIDTH          ; 288   ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: cy_reg:reg_cy ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; WIDTH          ; 288   ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: moment_ram:p_ram|altsyncram:mem_rtl_0 ;
++------------------------------------+----------------------+----------------------------+
+; Parameter Name                     ; Value                ; Type                       ;
++------------------------------------+----------------------+----------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                    ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                 ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY               ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE               ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE             ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                    ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                    ;
+; WIDTH_A                            ; 1                    ; Untyped                    ;
+; WIDTHAD_A                          ; 8                    ; Untyped                    ;
+; NUMWORDS_A                         ; 256                  ; Untyped                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                    ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                    ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WIDTH_B                            ; 1                    ; Untyped                    ;
+; WIDTHAD_B                          ; 8                    ; Untyped                    ;
+; NUMWORDS_B                         ; 256                  ; Untyped                    ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                    ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                    ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                    ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                    ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                    ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                    ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                    ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                    ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                    ;
+; BYTE_SIZE                          ; 8                    ; Untyped                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; INIT_FILE                          ; UNUSED               ; Untyped                    ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                    ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                    ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                    ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                    ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                    ;
+; CBXI_PARAMETER                     ; altsyncram_h8d1      ; Untyped                    ;
++------------------------------------+----------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: distribution_ram:fin_ram|altsyncram:mem_rtl_0 ;
++------------------------------------+----------------------+------------------------------------+
+; Parameter Name                     ; Value                ; Type                               ;
++------------------------------------+----------------------+------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                            ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                         ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                       ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                       ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                     ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                            ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                            ;
+; WIDTH_A                            ; 100                  ; Untyped                            ;
+; WIDTHAD_A                          ; 8                    ; Untyped                            ;
+; NUMWORDS_A                         ; 256                  ; Untyped                            ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                            ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                            ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                            ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                            ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                            ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                            ;
+; WIDTH_B                            ; 100                  ; Untyped                            ;
+; WIDTHAD_B                          ; 8                    ; Untyped                            ;
+; NUMWORDS_B                         ; 256                  ; Untyped                            ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                            ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                            ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                            ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                            ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                            ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                            ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                            ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                            ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                            ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                            ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                            ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                            ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                            ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                            ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                            ;
+; BYTE_SIZE                          ; 8                    ; Untyped                            ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                            ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                            ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                            ;
+; INIT_FILE                          ; UNUSED               ; Untyped                            ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                            ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                            ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                            ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                            ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                            ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                            ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                            ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                            ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                            ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                            ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                            ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                            ;
+; CBXI_PARAMETER                     ; altsyncram_hed1      ; Untyped                            ;
++------------------------------------+----------------------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                          ;
++-------------------------------------------+-----------------------------------------------+
+; Name                                      ; Value                                         ;
++-------------------------------------------+-----------------------------------------------+
+; Number of entity instances                ; 2                                             ;
+; Entity Instance                           ; moment_ram:p_ram|altsyncram:mem_rtl_0         ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                     ;
+;     -- WIDTH_A                            ; 1                                             ;
+;     -- NUMWORDS_A                         ; 256                                           ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                  ;
+;     -- WIDTH_B                            ; 1                                             ;
+;     -- NUMWORDS_B                         ; 256                                           ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                        ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                  ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                          ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                     ;
+; Entity Instance                           ; distribution_ram:fin_ram|altsyncram:mem_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                     ;
+;     -- WIDTH_A                            ; 100                                           ;
+;     -- NUMWORDS_A                         ; 256                                           ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                  ;
+;     -- WIDTH_B                            ; 100                                           ;
+;     -- NUMWORDS_B                         ; 256                                           ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                        ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                  ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                          ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                     ;
++-------------------------------------------+-----------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "cy_reg:reg_cy"                                                                          ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "cx_reg:reg_cx"                                                                          ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg32:p_reg"                                                                            ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "moment_ram:ux_ram" ;
++---------+-------+----------+------------------+
+; Port    ; Type  ; Severity ; Details          ;
++---------+-------+----------+------------------+
+; data_in ; Input ; Info     ; Stuck at GND     ;
++---------+-------+----------+------------------+
+
+
++--------------------------------------------------+
+; Port Connectivity Checks: "moment_ram:p_ram"     ;
++----------------+-------+----------+--------------+
+; Port           ; Type  ; Severity ; Details      ;
++----------------+-------+----------+--------------+
+; data_in[31..1] ; Input ; Info     ; Stuck at GND ;
+; data_in[0]     ; Input ; Info     ; Stuck at VCC ;
++----------------+-------+----------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "controller:fsm"                                                                            ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; WE_fout_mem ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; WE_feq_mem  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; select_p    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; select_ux   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; select_uy   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; select_fin  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-------------------------------+
@@ -247,7 +1014,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Sat Oct 30 23:21:57 2021
+    Info: Processing started: Sun Oct 31 20:08:24 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LBM_DE2 -c LBM_DE2
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file lbm_de2.sv
@@ -282,21 +1049,397 @@ Info (12021): Found 1 design units, including 1 entities, in source file weights
     Info (12023): Found entity 1: weights_reg
 Info (12021): Found 1 design units, including 1 entities, in source file tb_weights_reg.sv
     Info (12023): Found entity 1: tb_weights_reg
+Info (12021): Found 1 design units, including 1 entities, in source file tb_lbm_de2.sv
+    Info (12023): Found entity 1: tb_LBM_DE2
+Info (12021): Found 1 design units, including 1 entities, in source file tb_controller.sv
+    Info (12023): Found entity 1: tb_controller
+Info (12021): Found 1 design units, including 1 entities, in source file reg32.sv
+    Info (12023): Found entity 1: reg32
+Info (12021): Found 1 design units, including 1 entities, in source file tb_reg32.sv
+    Info (12023): Found entity 1: tb_reg32
+Info (12021): Found 1 design units, including 1 entities, in source file cx_reg.sv
+    Info (12023): Found entity 1: cx_reg
+Info (12021): Found 1 design units, including 1 entities, in source file cy_reg.sv
+    Info (12023): Found entity 1: cy_reg
 Info (12127): Elaborating entity "LBM_DE2" for the top level hierarchy
+Info (12128): Elaborating entity "counter_init" for hierarchy "counter_init:init_counter"
+Info (12128): Elaborating entity "controller" for hierarchy "controller:fsm"
+Warning (10958): SystemVerilog warning at controller.sv(26): unique or priority keyword makes case statement complete
+Info (12128): Elaborating entity "weights_reg" for hierarchy "weights_reg:w_reg"
+Info (12128): Elaborating entity "moment_ram" for hierarchy "moment_ram:p_ram"
+Info (12128): Elaborating entity "distribution_ram" for hierarchy "distribution_ram:fin_ram"
+Info (12128): Elaborating entity "adder9" for hierarchy "adder9:adder0"
+Info (12128): Elaborating entity "reg32" for hierarchy "reg32:p_reg"
+Info (12128): Elaborating entity "cx_reg" for hierarchy "cx_reg:reg_cx"
+Info (12128): Elaborating entity "cy_reg" for hierarchy "cy_reg:reg_cy"
+Warning (276020): Inferred RAM node "moment_ram:p_ram|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Warning (276020): Inferred RAM node "distribution_ram:fin_ram|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Info (19000): Inferred 2 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "moment_ram:p_ram|mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 1
+        Info (286033): Parameter WIDTHAD_A set to 8
+        Info (286033): Parameter NUMWORDS_A set to 256
+        Info (286033): Parameter WIDTH_B set to 1
+        Info (286033): Parameter WIDTHAD_B set to 8
+        Info (286033): Parameter NUMWORDS_B set to 256
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "distribution_ram:fin_ram|mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 100
+        Info (286033): Parameter WIDTHAD_A set to 8
+        Info (286033): Parameter NUMWORDS_A set to 256
+        Info (286033): Parameter WIDTH_B set to 100
+        Info (286033): Parameter WIDTHAD_B set to 8
+        Info (286033): Parameter NUMWORDS_B set to 256
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+Info (12130): Elaborated megafunction instantiation "moment_ram:p_ram|altsyncram:mem_rtl_0"
+Info (12133): Instantiated megafunction "moment_ram:p_ram|altsyncram:mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "1"
+    Info (12134): Parameter "WIDTHAD_A" = "8"
+    Info (12134): Parameter "NUMWORDS_A" = "256"
+    Info (12134): Parameter "WIDTH_B" = "1"
+    Info (12134): Parameter "WIDTHAD_B" = "8"
+    Info (12134): Parameter "NUMWORDS_B" = "256"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_h8d1.tdf
+    Info (12023): Found entity 1: altsyncram_h8d1
+Info (12130): Elaborated megafunction instantiation "distribution_ram:fin_ram|altsyncram:mem_rtl_0"
+Info (12133): Instantiated megafunction "distribution_ram:fin_ram|altsyncram:mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "100"
+    Info (12134): Parameter "WIDTHAD_A" = "8"
+    Info (12134): Parameter "NUMWORDS_A" = "256"
+    Info (12134): Parameter "WIDTH_B" = "100"
+    Info (12134): Parameter "WIDTHAD_B" = "8"
+    Info (12134): Parameter "NUMWORDS_B" = "256"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_hed1.tdf
+    Info (12023): Found entity 1: altsyncram_hed1
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "p_mem_data_out[1]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[2]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[3]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[4]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[5]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[6]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[7]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[8]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[9]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[10]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[11]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[12]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[13]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[14]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[15]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[16]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[17]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[18]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[19]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[20]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[21]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[22]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[23]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[24]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[25]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[26]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[27]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[28]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[29]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[30]" is stuck at GND
+    Warning (13410): Pin "p_mem_data_out[31]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[0]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[1]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[2]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[3]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[4]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[5]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[6]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[7]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[8]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[9]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[10]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[11]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[12]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[13]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[14]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[15]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[16]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[17]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[18]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[19]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[20]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[21]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[22]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[23]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[24]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[25]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[26]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[27]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[28]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[29]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[30]" is stuck at GND
+    Warning (13410): Pin "ux_mem_data_out[31]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[0]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[1]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[2]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[3]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[4]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[5]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[6]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[7]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[8]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[9]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[10]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[11]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[12]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[13]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[14]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[15]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[16]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[17]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[18]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[19]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[20]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[21]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[22]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[23]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[24]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[25]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[26]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[27]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[28]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[29]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[30]" is stuck at GND
+    Warning (13410): Pin "uy_mem_data_out[31]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[1]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[2]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[3]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[7]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[8]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[9]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[13]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[14]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[15]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[19]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[20]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[21]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[22]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[23]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[24]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[25]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[26]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[27]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[28]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[29]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[30]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[31]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[33]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[34]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[35]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[39]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[40]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[41]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[45]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[46]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[47]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[51]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[52]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[53]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[54]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[55]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[56]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[57]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[58]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[59]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[60]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[61]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[62]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[63]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[65]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[66]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[67]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[71]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[72]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[73]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[77]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[78]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[79]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[83]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[84]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[85]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[86]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[87]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[88]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[89]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[90]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[91]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[92]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[93]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[94]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[95]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[97]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[98]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[99]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[103]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[104]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[105]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[109]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[110]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[111]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[115]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[116]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[117]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[118]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[119]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[120]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[121]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[122]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[123]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[124]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[125]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[126]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[127]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[131]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[132]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[133]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[137]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[138]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[139]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[143]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[144]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[145]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[149]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[150]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[151]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[152]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[153]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[154]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[155]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[156]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[157]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[158]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[159]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[163]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[164]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[165]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[169]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[170]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[171]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[175]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[176]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[177]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[181]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[182]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[183]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[184]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[185]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[186]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[187]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[188]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[189]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[190]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[191]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[195]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[196]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[197]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[201]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[202]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[203]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[207]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[208]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[209]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[213]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[214]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[215]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[216]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[217]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[218]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[219]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[220]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[221]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[222]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[223]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[227]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[228]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[229]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[233]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[234]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[235]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[239]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[240]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[241]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[245]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[246]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[247]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[248]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[249]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[250]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[251]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[252]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[253]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[254]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[255]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[256]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[257]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[261]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[262]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[263]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[267]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[268]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[269]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[273]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[274]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[275]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[279]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[280]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[281]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[282]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[283]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[284]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[285]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[286]" is stuck at GND
+    Warning (13410): Pin "fin_mem_data_out[287]" is stuck at GND
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 1 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/Users/arism/Desktop/LBM_DE2/output_files/LBM_DE2.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "CLOCK_50"
-    Warning (15610): No output dependent on input pin "RESET"
-Info (21057): Implemented 2 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 757 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
-    Info (21059): Implemented 0 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 4620 megabytes
-    Info: Processing ended: Sat Oct 30 23:21:58 2021
-    Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:01
+    Info (21059): Implemented 384 output pins
+    Info (21061): Implemented 270 logic cells
+    Info (21064): Implemented 101 RAM segments
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 288 warnings
+    Info: Peak virtual memory: 4656 megabytes
+    Info: Processing ended: Sun Oct 31 20:08:26 2021
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
 
 
 +------------------------------------------+

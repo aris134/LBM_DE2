@@ -1,5 +1,5 @@
 module weights_reg #(WIDTH=32*9) (input logic Reset,	
-              output logic [WIDTH-1:0] Data_Out);	
+              output logic signed [WIDTH-1:0] Data_Out);	
 
 	 logic [WIDTH-1:0] d_out;
 	 assign Data_Out = d_out;

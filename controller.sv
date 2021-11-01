@@ -1,7 +1,10 @@
-module controller #(DATA_WIDTH=32, GRID_DIM = 16*16) (input Clk, Reset, count_init,
-						 output WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem,
-						 output select_p, select_ux, select_uy, select_fin,
-						 output count_init_en);
+module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_DIM)) (input Clk, Reset,
+						 input logic [ADDRESS_WIDTH-1:0] count_init,
+						 output logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem,
+						 output logic select_p, select_ux, select_uy, select_fin,
+						 output logic count_init_en,
+						 output logic LD_EN_P);
+						 
 	enum logic [1:0] {START, CALC_MOMENT} State, Next_state;
 	
 	// variable declarations
@@ -42,6 +45,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16) (input Clk, Reset, count_in
 	select_uy = 1'b0;
 	select_fin = 1'b0;
 	count_init_en = 1'b0;
+	LD_EN_P = 1'b0;
 	
 	case (State)
 	START :
@@ -55,6 +59,19 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16) (input Clk, Reset, count_in
 				select_uy = 1'b1;
 				select_fin = 1'b1;
 				count_init_en = 1'b1;
+			end
+	CALC_MOMENT:
+			begin
+				WE_p_mem = 1'b0;
+				WE_ux_mem = 1'b0;
+				WE_uy_mem = 1'b0;
+				WE_fin_mem = 1'b0;
+				select_p = 1'b0;
+				select_ux = 1'b0;
+				select_uy = 1'b0;
+				select_fin = 1'b0;
+				count_init_en = 1'b0;
+				LD_EN_P = 1'b1;
 			end
 		endcase
 	end

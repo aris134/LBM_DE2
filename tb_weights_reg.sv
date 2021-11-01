@@ -6,7 +6,7 @@ module tb_weights_reg();
 	parameter WIDTH = 32*9;
 
 	logic Reset;
-	logic [WIDTH-1:0] Data_Out;
+	logic signed [WIDTH-1:0] Data_Out;
 	
 	weights_reg #(.WIDTH(WIDTH)) weights_reg0 (.*);
 	
