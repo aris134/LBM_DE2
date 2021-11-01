@@ -23,6 +23,23 @@ logic select_uy;
 logic select_fin;
 logic count_init_en;
 
+// divider signals
+logic div_start;
+logic div_busy0;
+logic div_busy1;
+logic div_valid0;
+logic div_valid1;
+logic div_valid;
+
+assign div_valid = div_valid0 & div_valid1;
+
+logic dbz0;
+logic dbz1;
+logic ovf0;
+logic ovf1;
+logic remainder0;
+logic remainder1;
+
 logic [ADDRESS_WIDTH-1:0] count_init;
 
 logic signed [DATA_WIDTH-1:0] pwr;
@@ -92,6 +109,14 @@ logic signed [DATA_WIDTH-1:0] pux_in;
 logic signed [DATA_WIDTH-1:0] pux_out;
 logic signed [DATA_WIDTH-1:0] puy_in;
 logic signed [DATA_WIDTH-1:0] puy_out;
+logic signed [DATA_WIDTH-1:0] ux_in;
+logic signed [DATA_WIDTH-1:0] ux_out;
+logic signed [DATA_WIDTH-1:0] uy_in;
+logic signed [DATA_WIDTH-1:0] uy_out;
+
+logic signed [DATA_WIDTH-1:0] p_mem_data_in;
+logic signed [DATA_WIDTH-1:0] ux_mem_data_in;
+logic signed [DATA_WIDTH-1:0] uy_mem_data_in;
 
 logic LD_EN_P;
 logic LD_EN_PUX;
@@ -143,6 +168,7 @@ counter_init #(.GRID_DIM(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH)) init_counter 
 controller fsm (.Clk(CLOCK_50),
 																															  .Reset(RESET),
 																															  .count_init(count_init),
+																															  .div_valid(div_valid),
 																															  .WE_p_mem(WE_p_mem),
 																															  .WE_ux_mem(WE_ux_mem),
 																															  .WE_uy_mem(WE_uy_mem),
@@ -154,9 +180,12 @@ controller fsm (.Clk(CLOCK_50),
 																															  .select_uy(select_uy),
 																															  .select_fin(select_fin),
 																															  .count_init_en(count_init_en),
+																															  .div_start(div_start),
 																															  .LD_EN_P(LD_EN_P),
 																															  .LD_EN_PUX(LD_EN_PUX),
-																															  .LD_EN_PUY(LD_EN_PUY));
+																															  .LD_EN_PUY(LD_EN_PUY),
+																															  .LD_EN_UX(LD_EN_UX),
+																															  .LD_EN_UY(LD_EN_UY));
 
 																					  
 // weights register
@@ -168,19 +197,19 @@ weights_reg #(.WIDTH(DATA_WIDTH_F)) w_reg (.Reset(RESET),
 moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) p_ram (.address(count_init),
 																															 .Clk(CLOCK_50),
 																															 .WE(WE_p_mem),
-																															 .data_in(pwr),
+																															 .data_in(p_mem_data_in),
 																															 .data_out(p_mem_data_out));
 																															 
 moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) ux_ram (.address(count_init),
 																															  .Clk(CLOCK_50),
 																															  .WE(WE_ux_mem),
-																															  .data_in(gnd),
+																															  .data_in(ux_mem_data_in),
 																															  .data_out(ux_mem_data_out));
 																															  
 moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) uy_ram (.address(count_init),
 																															  .Clk(CLOCK_50),
 																															  .WE(WE_uy_mem),
-																															  .data_in(gnd),
+																															  .data_in(uy_mem_data_in),
 																															  .data_out(uy_mem_data_out));
 																															  
 distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) fin_ram (.address(count_init),
@@ -188,6 +217,23 @@ distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(
 																																		  .WE(WE_fin_mem),
 																																		  .data_in(weights),
 																																		  .data_out(fin_out));
+																																		  
+// memory data bus multiplexers
+
+mux2 #(.DATA_WIDTH(DATA_WIDTH)) p_mem_mux (.Din0(pwr),
+														 .Din1(p_out),
+														 .select(select_p),
+														 .Dout(p_mem_data_in));
+														 
+mux2 #(.DATA_WIDTH(DATA_WIDTH)) ux_mem_mux (.Din0(gnd),
+														 .Din1(ux_out),
+														 .select(select_ux),
+														 .Dout(ux_mem_data_in));
+
+mux2 #(.DATA_WIDTH(DATA_WIDTH)) uy_mem_mux (.Din0(gnd),
+														 .Din1(uy_out),
+														 .select(select_uy),
+														 .Dout(uy_mem_data_in));														 
 
 // moment calculation hardware
 adder9 #(.DATA_WIDTH(DATA_WIDTH)) adder0 (.Din0(fin_0),
@@ -219,6 +265,17 @@ reg32 #(.WIDTH(DATA_WIDTH)) puy_reg (.Clk(CLOCK_50),
 													 .Data_In(puy_in),
 													 .Data_Out(puy_out));														 
 													 
+reg32 #(.WIDTH(DATA_WIDTH)) ux_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_UX),
+													 .Data_In(ux_in),
+													 .Data_Out(ux_out));
+													 
+reg32 #(.WIDTH(DATA_WIDTH)) uy_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_UY),
+													 .Data_In(uy_in),
+													 .Data_Out(uy_out));
 													 
 cx_reg #(.WIDTH(DATA_WIDTH_F)) reg_cx (.Reset(RESET),
 											  .Data_Out(cx));
@@ -319,5 +376,29 @@ adder9 #(.DATA_WIDTH(DATA_WIDTH)) adder2 (.Din0(cy0fin0),
 														.Din6(cy6fin6),
 														.Din7(cy7fin7),
 														.Din8(cy8fin8),
-														.Dout(puy_in));														
+														.Dout(puy_in));
+
+fp_div #(.WIDTH(DATA_WIDTH), .FBITS(FRACTIONAL_BITS)) div_ux (.clk(CLOCK_50),
+																				  .start(div_start),
+																				  .busy(div_busy0),
+																				  .valid(div_valid0),
+																				  .dbz(dbz0),
+																				  .ovf(ovf0),
+																				  .x(pux_out),
+																				  .y(p_out),
+																				  .q(ux_in),
+																				  .r(remainder0));
+
+fp_div #(.WIDTH(DATA_WIDTH), .FBITS(FRACTIONAL_BITS)) div_uy (.clk(CLOCK_50),
+																			     .start(div_start),
+																				  .busy(div_busy1),
+																				  .valid(div_valid1),
+																				  .dbz(dbz1),
+																				  .ovf(ovf1),
+																				  .x(puy_out),
+																				  .y(p_out),
+																				  .q(uy_in),
+																				  .r(remainder1));
+													
+													
 endmodule

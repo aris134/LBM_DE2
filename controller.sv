@@ -1,11 +1,14 @@
 module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_DIM)) (input Clk, Reset,
 						 input logic [ADDRESS_WIDTH-1:0] count_init,
+						 input logic div_valid,
 						 output logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem,
 						 output logic select_p, select_ux, select_uy, select_fin,
 						 output logic count_init_en,
-						 output logic LD_EN_P, LD_EN_PUX, LD_EN_PUY);
+						 output logic div_start,
+						 output logic LD_EN_P, LD_EN_PUX, LD_EN_PUY, LD_EN_UX, LD_EN_UY);
 						 
-	enum logic [1:0] {START, CALC_MOMENT} State, Next_state;
+	enum logic [2:0] {START, CALC_MOMENT_1, CALC_MOMENT_2, CALC_MOMENT_3,
+							CALC_MOMENT_4, CALC_MOMENT_5, CALC_MOMENT_6} State, Next_state;
 	
 	// variable declarations
 	
@@ -26,7 +29,18 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	unique case (State)
 		START		:
 			if (count_init == GRID_DIM - 1)
-				Next_state <= CALC_MOMENT;
+				Next_state <= CALC_MOMENT_1;
+		CALC_MOMENT_1	:
+			Next_state <= CALC_MOMENT_2;
+		CALC_MOMENT_2	:
+			Next_state <= CALC_MOMENT_3;
+		CALC_MOMENT_3	:
+			Next_state <= CALC_MOMENT_4;
+		CALC_MOMENT_4	:
+			if (div_valid)
+				Next_state <= CALC_MOMENT_5;
+		CALC_MOMENT_5	:
+				Next_state <= CALC_MOMENT_6;
 		endcase
 	end
 	
@@ -48,6 +62,9 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	LD_EN_P = 1'b0;
 	LD_EN_PUX = 1'b0;
 	LD_EN_PUY = 1'b0;
+	LD_EN_UX = 1'b0;
+	LD_EN_UY = 1'b0;
+	div_start = 1'b0;
 	
 	case (State)
 	START :
@@ -62,7 +79,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				select_fin = 1'b1;
 				count_init_en = 1'b1;
 			end
-	CALC_MOMENT:
+	CALC_MOMENT_1:
 			begin
 				WE_p_mem = 1'b0;
 				WE_ux_mem = 1'b0;
@@ -76,6 +93,32 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				LD_EN_P = 1'b1;
 				LD_EN_PUX = 1'b1;
 				LD_EN_PUY = 1'b1;
+			end
+	CALC_MOMENT_2:
+			begin
+			// filler state for allowing p, pux, puy registers time to load data
+			select_p = 1'b1;
+			WE_p_mem = 1'b1;
+			end
+	CALC_MOMENT_3:
+			begin
+				div_start = 1'b1;
+			end
+	CALC_MOMENT_4:
+			begin
+				div_start = 1'b0;
+			end
+	CALC_MOMENT_5:
+			begin
+				LD_EN_UX = 1'b1;
+				LD_EN_UY = 1'b1;
+			end
+	CALC_MOMENT_6:
+			begin
+				select_ux = 1'b1;
+				select_uy = 1'b1;
+				WE_ux_mem = 1'b1;
+				WE_uy_mem = 1'b1;
 			end
 		endcase
 	end

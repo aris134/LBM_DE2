@@ -32,7 +32,7 @@ module tb_LBM_DE2();
 		
 		#15 RESET = 1;
 		
-		#6000 $finish;
+		#9000 $finish;
 	end
 	
 endmodule

@@ -12,6 +12,13 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	cx_reg
 
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/fp_div.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/fp_div.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module fp_div
+
+Top level modules:
+	fp_div
+
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module LBM_DE2
@@ -25,6 +32,13 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 
 Top level modules:
 	cy_reg
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_fp_div
+
+Top level modules:
+	tb_fp_div
 
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012

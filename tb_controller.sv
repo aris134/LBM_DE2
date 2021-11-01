@@ -11,12 +11,16 @@ module tb_controller();
 	// inputs and outputs
 	logic Clk, Reset;
 	logic [7:0] count_init;
+	logic div_valid;
 	logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem;
 	logic select_p, select_ux, select_uy, select_fin;
 	logic count_init_en;
+	logic div_start;
 	logic LD_EN_P;
 	logic LD_EN_PUX;
 	logic LD_EN_PUY;
+	logic LD_EN_UX;
+	logic LD_EN_UY;
 	
 	controller #(.GRID_DIM(GRID_DIM), .DATA_WIDTH(DATA_WIDTH)) controller0 (.*);
 	
