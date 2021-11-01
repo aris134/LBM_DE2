@@ -1,5 +1,5 @@
 Analysis & Synthesis report for LBM_DE2
-Sun Oct 31 20:08:26 2021
+Mon Nov 01 09:26:22 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -31,20 +31,42 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
  23. Parameter Settings for User Entity Instance: distribution_ram:fin_ram
  24. Parameter Settings for User Entity Instance: adder9:adder0
  25. Parameter Settings for User Entity Instance: reg32:p_reg
- 26. Parameter Settings for User Entity Instance: cx_reg:reg_cx
- 27. Parameter Settings for User Entity Instance: cy_reg:reg_cy
- 28. Parameter Settings for Inferred Entity Instance: moment_ram:p_ram|altsyncram:mem_rtl_0
- 29. Parameter Settings for Inferred Entity Instance: distribution_ram:fin_ram|altsyncram:mem_rtl_0
- 30. altsyncram Parameter Settings by Entity Instance
- 31. Port Connectivity Checks: "cy_reg:reg_cy"
- 32. Port Connectivity Checks: "cx_reg:reg_cx"
- 33. Port Connectivity Checks: "reg32:p_reg"
- 34. Port Connectivity Checks: "moment_ram:ux_ram"
- 35. Port Connectivity Checks: "moment_ram:p_ram"
- 36. Port Connectivity Checks: "controller:fsm"
- 37. Elapsed Time Per Partition
- 38. Analysis & Synthesis Messages
- 39. Analysis & Synthesis Suppressed Messages
+ 26. Parameter Settings for User Entity Instance: reg32:pux_reg
+ 27. Parameter Settings for User Entity Instance: reg32:puy_reg
+ 28. Parameter Settings for User Entity Instance: cx_reg:reg_cx
+ 29. Parameter Settings for User Entity Instance: cy_reg:reg_cy
+ 30. Parameter Settings for User Entity Instance: fp_mult:prod_cx0fin0
+ 31. Parameter Settings for User Entity Instance: fp_mult:prod_cx1fin1
+ 32. Parameter Settings for User Entity Instance: fp_mult:prod_cx2fin2
+ 33. Parameter Settings for User Entity Instance: fp_mult:prod_cx3fin3
+ 34. Parameter Settings for User Entity Instance: fp_mult:prod_cx4fin4
+ 35. Parameter Settings for User Entity Instance: fp_mult:prod_cx5fin5
+ 36. Parameter Settings for User Entity Instance: fp_mult:prod_cx6fin6
+ 37. Parameter Settings for User Entity Instance: fp_mult:prod_cx7fin7
+ 38. Parameter Settings for User Entity Instance: fp_mult:prod_cx8fin8
+ 39. Parameter Settings for User Entity Instance: adder9:adder1
+ 40. Parameter Settings for User Entity Instance: fp_mult:prod_cy0fin0
+ 41. Parameter Settings for User Entity Instance: fp_mult:prod_cy1fin1
+ 42. Parameter Settings for User Entity Instance: fp_mult:prod_cy2fin2
+ 43. Parameter Settings for User Entity Instance: fp_mult:prod_cy3fin3
+ 44. Parameter Settings for User Entity Instance: fp_mult:prod_cy4fin4
+ 45. Parameter Settings for User Entity Instance: fp_mult:prod_cy5fin5
+ 46. Parameter Settings for User Entity Instance: fp_mult:prod_cy6fin6
+ 47. Parameter Settings for User Entity Instance: fp_mult:prod_cy7fin7
+ 48. Parameter Settings for User Entity Instance: fp_mult:prod_cy8fin8
+ 49. Parameter Settings for User Entity Instance: adder9:adder2
+ 50. Parameter Settings for Inferred Entity Instance: moment_ram:p_ram|altsyncram:mem_rtl_0
+ 51. Parameter Settings for Inferred Entity Instance: distribution_ram:fin_ram|altsyncram:mem_rtl_0
+ 52. altsyncram Parameter Settings by Entity Instance
+ 53. Port Connectivity Checks: "reg32:puy_reg"
+ 54. Port Connectivity Checks: "reg32:pux_reg"
+ 55. Port Connectivity Checks: "reg32:p_reg"
+ 56. Port Connectivity Checks: "moment_ram:ux_ram"
+ 57. Port Connectivity Checks: "moment_ram:p_ram"
+ 58. Port Connectivity Checks: "controller:fsm"
+ 59. Elapsed Time Per Partition
+ 60. Analysis & Synthesis Messages
+ 61. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -70,7 +92,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Oct 31 20:08:26 2021      ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 01 09:26:22 2021      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; LBM_DE2                                    ;
 ; Top-level Entity Name              ; LBM_DE2                                    ;
@@ -194,6 +216,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; moment_ram.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv                         ;         ;
 ; distribution_ram.sv              ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv                   ;         ;
 ; adder9.sv                        ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/adder9.sv                             ;         ;
+; fp_mult.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/fp_mult.sv                            ;         ;
 ; controller.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/controller.sv                         ;         ;
 ; counter_init.sv                  ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/counter_init.sv                       ;         ;
 ; weights_reg.sv                   ; yes             ; User SystemVerilog HDL File  ; C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv                        ;         ;
@@ -654,14 +677,16 @@ Encoding Type:  One-Hot
 
 +-------------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: Top-level Entity: |LBM_DE2 ;
-+----------------+-------+------------------------------------------------+
-; Parameter Name ; Value ; Type                                           ;
-+----------------+-------+------------------------------------------------+
-; GRID_DIM       ; 256   ; Signed Integer                                 ;
-; DATA_WIDTH     ; 32    ; Signed Integer                                 ;
-; ADDRESS_WIDTH  ; 8     ; Signed Integer                                 ;
-; DATA_WIDTH_F   ; 288   ; Signed Integer                                 ;
-+----------------+-------+------------------------------------------------+
++-----------------+-------+-----------------------------------------------+
+; Parameter Name  ; Value ; Type                                          ;
++-----------------+-------+-----------------------------------------------+
+; GRID_DIM        ; 256   ; Signed Integer                                ;
+; DATA_WIDTH      ; 32    ; Signed Integer                                ;
+; ADDRESS_WIDTH   ; 8     ; Signed Integer                                ;
+; DATA_WIDTH_F    ; 288   ; Signed Integer                                ;
+; FRACTIONAL_BITS ; 24    ; Signed Integer                                ;
+; INTEGER_BITS    ; 8     ; Signed Integer                                ;
++-----------------+-------+-----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -767,6 +792,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:pux_reg ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; WIDTH          ; 32    ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:puy_reg ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; WIDTH          ; 32    ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: cx_reg:reg_cx ;
 +----------------+-------+-----------------------------------+
 ; Parameter Name ; Value ; Type                              ;
@@ -782,6 +827,242 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Parameter Name ; Value ; Type                              ;
 +----------------+-------+-----------------------------------+
 ; WIDTH          ; 288   ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cx0fin0 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cx1fin1 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cx2fin2 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cx3fin3 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cx4fin4 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cx5fin5 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cx6fin6 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cx7fin7 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cx8fin8 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder9:adder1 ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cy0fin0 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cy1fin1 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cy2fin2 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cy3fin3 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cy4fin4 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cy5fin5 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cy6fin6 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cy7fin7 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_cy8fin8 ;
++-----------------+-------+-----------------------------------------+
+; Parameter Name  ; Value ; Type                                    ;
++-----------------+-------+-----------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                          ;
+; DATA_WIDTH      ; 32    ; Signed Integer                          ;
+; INTEGER_BITS    ; 8     ; Signed Integer                          ;
++-----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder9:adder2 ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                    ;
 +----------------+-------+-----------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -940,7 +1221,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "cy_reg:reg_cy"                                                                          ;
+; Port Connectivity Checks: "reg32:puy_reg"                                                                          ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port     ; Type   ; Severity ; Details                                                                             ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
@@ -949,7 +1230,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "cx_reg:reg_cx"                                                                          ;
+; Port Connectivity Checks: "reg32:pux_reg"                                                                          ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port     ; Type   ; Severity ; Details                                                                             ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
@@ -1004,7 +1285,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -1014,7 +1295,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Sun Oct 31 20:08:24 2021
+    Info: Processing started: Mon Nov 01 09:26:17 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LBM_DE2 -c LBM_DE2
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file lbm_de2.sv
@@ -1072,6 +1353,7 @@ Info (12128): Elaborating entity "adder9" for hierarchy "adder9:adder0"
 Info (12128): Elaborating entity "reg32" for hierarchy "reg32:p_reg"
 Info (12128): Elaborating entity "cx_reg" for hierarchy "cx_reg:reg_cx"
 Info (12128): Elaborating entity "cy_reg" for hierarchy "cy_reg:reg_cy"
+Info (12128): Elaborating entity "fp_mult" for hierarchy "fp_mult:prod_cx0fin0"
 Warning (276020): Inferred RAM node "moment_ram:p_ram|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
 Warning (276020): Inferred RAM node "distribution_ram:fin_ram|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
 Info (19000): Inferred 2 megafunctions from design logic
@@ -1436,10 +1718,10 @@ Info (21057): Implemented 757 device resources after synthesis - the final resou
     Info (21061): Implemented 270 logic cells
     Info (21064): Implemented 101 RAM segments
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 288 warnings
-    Info: Peak virtual memory: 4656 megabytes
-    Info: Processing ended: Sun Oct 31 20:08:26 2021
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Peak virtual memory: 4637 megabytes
+    Info: Processing ended: Mon Nov 01 09:26:22 2021
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:04
 
 
 +------------------------------------------+

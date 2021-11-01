@@ -16,7 +16,7 @@
 // PROGRAM "Quartus II 64-Bit"
 // VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
 
-// DATE "10/31/2021 20:09:04"
+// DATE "11/01/2021 09:27:15"
 
 // 
 // Device: Altera EP4CE115F29C7 Package FBGA780
@@ -1193,9 +1193,9 @@ wire \fin_ram|mem~205_combout ;
 wire \fin_ram|mem_rtl_0_bypass[116]~feeder_combout ;
 wire \fin_ram|mem_rtl_0|auto_generated|ram_block1a99 ;
 wire \fin_ram|mem~206_combout ;
-wire [0:17] \p_ram|mem_rtl_0_bypass ;
 wire [0:116] \fin_ram|mem_rtl_0_bypass ;
 wire [7:0] \init_counter|count ;
+wire [0:17] \p_ram|mem_rtl_0_bypass ;
 
 wire [35:0] \fin_ram|mem_rtl_0|auto_generated|ram_block1a0_PORTBDATAOUT_bus ;
 wire [35:0] \fin_ram|mem_rtl_0|auto_generated|ram_block1a35_PORTBDATAOUT_bus ;

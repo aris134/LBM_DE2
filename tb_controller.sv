@@ -15,6 +15,8 @@ module tb_controller();
 	logic select_p, select_ux, select_uy, select_fin;
 	logic count_init_en;
 	logic LD_EN_P;
+	logic LD_EN_PUX;
+	logic LD_EN_PUY;
 	
 	controller #(.GRID_DIM(GRID_DIM), .DATA_WIDTH(DATA_WIDTH)) controller0 (.*);
 	
