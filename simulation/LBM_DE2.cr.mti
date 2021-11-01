@@ -1,15 +1,36 @@
-C:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv
+C:/Users/arism/Desktop/LBM_DE2/controller.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/controller.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module tb_reg32
+-- Compiling module controller
 
 Top level modules:
-	tb_reg32
+	controller
 
-} {} {}} C:/Users/arism/Desktop/LBM_DE2/reg32.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/reg32.sv
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module reg32
+-- Compiling module cx_reg
 
 Top level modules:
-	reg32
+	cx_reg
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module LBM_DE2
+
+Top level modules:
+	LBM_DE2
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module cy_reg
+
+Top level modules:
+	cy_reg
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_LBM_DE2
+
+Top level modules:
+	tb_LBM_DE2
 
 } {} {}}

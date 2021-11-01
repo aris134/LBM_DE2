@@ -3,7 +3,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 output logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem,
 						 output logic select_p, select_ux, select_uy, select_fin,
 						 output logic count_init_en,
-						 output logic LD_EN_P);
+						 output logic LD_EN_P, LD_EN_PUX, LD_EN_PUY);
 						 
 	enum logic [1:0] {START, CALC_MOMENT} State, Next_state;
 	
@@ -46,6 +46,8 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	select_fin = 1'b0;
 	count_init_en = 1'b0;
 	LD_EN_P = 1'b0;
+	LD_EN_PUX = 1'b0;
+	LD_EN_PUY = 1'b0;
 	
 	case (State)
 	START :
@@ -72,6 +74,8 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				select_fin = 1'b0;
 				count_init_en = 1'b0;
 				LD_EN_P = 1'b1;
+				LD_EN_PUX = 1'b1;
+				LD_EN_PUY = 1'b1;
 			end
 		endcase
 	end
