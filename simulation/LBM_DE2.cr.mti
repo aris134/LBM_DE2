@@ -1,15 +1,15 @@
-C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv
+C:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module weights_reg
+-- Compiling module tb_reg32
 
 Top level modules:
-	weights_reg
+	tb_reg32
 
-} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/reg32.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/reg32.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module tb_weights_reg
+-- Compiling module reg32
 
 Top level modules:
-	tb_weights_reg
+	reg32
 
 } {} {}}

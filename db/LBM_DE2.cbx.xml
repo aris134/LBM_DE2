@@ -1,5 +1,7 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="LBM_DE2">
+		<CBX_INST_ENTRY INSTANCE_NAME="|LBM_DE2|distribution_ram:fin_ram|altsyncram:mem_rtl_0" CBX_FILE_NAME="altsyncram_hed1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|LBM_DE2|moment_ram:p_ram|altsyncram:mem_rtl_0" CBX_FILE_NAME="altsyncram_h8d1.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

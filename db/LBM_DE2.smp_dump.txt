@@ -1,0 +1,5 @@
+
+State Machine - |LBM_DE2|controller:fsm|State
+Name State.CALC_MOMENT 
+State.START 0 
+State.CALC_MOMENT 1 

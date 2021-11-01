@@ -1,7 +1,7 @@
-module counter_init #(GRID_SIZE=16*16, COUNT_SIZE=$clog2(GRID_SIZE)) (input Clk, Reset, Enable,
-					  output [COUNT_SIZE-1:0] Data_out);
+module counter_init #(GRID_DIM=16*16, ADDRESS_WIDTH=$clog2(GRID_DIM)) (input Clk, Reset, Enable,
+					  output [ADDRESS_WIDTH-1:0] Data_out);
 					  
-logic [COUNT_SIZE-1:0] count;
+logic [ADDRESS_WIDTH-1:0] count;
 assign Data_out = count;
 
 always_ff @ (posedge Clk or negedge Reset)

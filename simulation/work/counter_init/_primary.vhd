@@ -2,8 +2,8 @@ library verilog;
 use verilog.vl_types.all;
 entity counter_init is
     generic(
-        GRID_SIZE       : integer := 256;
-        COUNT_SIZE      : vl_notype
+        GRID_DIM        : integer := 256;
+        ADDRESS_WIDTH   : vl_notype
     );
     port(
         Clk             : in     vl_logic;
@@ -12,6 +12,6 @@ entity counter_init is
         Data_out        : out    vl_logic_vector
     );
     attribute mti_svvh_generic_type : integer;
-    attribute mti_svvh_generic_type of GRID_SIZE : constant is 1;
-    attribute mti_svvh_generic_type of COUNT_SIZE : constant is 3;
+    attribute mti_svvh_generic_type of GRID_DIM : constant is 1;
+    attribute mti_svvh_generic_type of ADDRESS_WIDTH : constant is 3;
 end counter_init;
