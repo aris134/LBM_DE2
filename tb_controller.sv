@@ -21,6 +21,15 @@ module tb_controller();
 	logic LD_EN_PUY;
 	logic LD_EN_UX;
 	logic LD_EN_UY;
+	logic LD_EN_FEQ0;
+	logic LD_EN_FEQ1;
+	logic LD_EN_FEQ2;
+	logic LD_EN_FEQ3;
+	logic LD_EN_FEQ4;
+	logic LD_EN_FEQ5;
+	logic LD_EN_FEQ6;
+	logic LD_EN_FEQ7;
+	logic LD_EN_FEQ8;
 	
 	controller #(.GRID_DIM(GRID_DIM), .DATA_WIDTH(DATA_WIDTH)) controller0 (.*);
 	

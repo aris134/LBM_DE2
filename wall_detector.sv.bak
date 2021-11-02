@@ -1,0 +1,19 @@
+module wall_detector #(GRID_DIM = 16*16, INIT_COUNT_WIDTH = $clog2(GRID_DIM), COUNT_WIDTH=$clog2(GRID_DIM/16)) (
+							  input logic Reset,
+							  input logic [INIT_COUNT_WIDTH-1:0] x,
+							  input logic [COUNT_WIDTH-1:0] y,
+							  output logic LID, BOTTOM_WALL, LEFT_WALL, RIGHT_WALL);
+
+
+always_ff @ (negedge Reset)	
+    begin
+	 	 if (~Reset)
+			  LID <= 1'b0;
+			  BOTTOM_WALL <= 1'b0;
+			  LEFT_WALL <= 1'b0;
+			  RIGHT_WALL <= 1'b0;
+		 else
+			  d_out <= d_out;
+	 end
+ 
+endmodule
