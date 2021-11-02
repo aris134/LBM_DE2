@@ -27,7 +27,16 @@ entity controller is
         LD_EN_PUX       : out    vl_logic;
         LD_EN_PUY       : out    vl_logic;
         LD_EN_UX        : out    vl_logic;
-        LD_EN_UY        : out    vl_logic
+        LD_EN_UY        : out    vl_logic;
+        LD_EN_FEQ0      : out    vl_logic;
+        LD_EN_FEQ1      : out    vl_logic;
+        LD_EN_FEQ2      : out    vl_logic;
+        LD_EN_FEQ3      : out    vl_logic;
+        LD_EN_FEQ4      : out    vl_logic;
+        LD_EN_FEQ5      : out    vl_logic;
+        LD_EN_FEQ6      : out    vl_logic;
+        LD_EN_FEQ7      : out    vl_logic;
+        LD_EN_FEQ8      : out    vl_logic
     );
     attribute mti_svvh_generic_type : integer;
     attribute mti_svvh_generic_type of DATA_WIDTH : constant is 1;

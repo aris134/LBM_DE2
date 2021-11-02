@@ -6,6 +6,7 @@ module tb_LBM_DE2();
 	parameter GRID_DIM = 16*16;
 	parameter DATA_WIDTH = 32;
 	parameter ADDRESS_WIDTH = $clog2(GRID_DIM);
+	parameter COUNT_WIDTH = $clog2(GRID_DIM/16);
 	parameter DATA_WIDTH_F=9*DATA_WIDTH;
 	parameter FRACTIONAL_BITS = 24;
 	parameter INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS;
