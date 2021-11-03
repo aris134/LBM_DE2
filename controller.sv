@@ -10,11 +10,13 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 output logic div_start,
 						 output logic LD_EN_P, LD_EN_PUX, LD_EN_PUY, LD_EN_UX, LD_EN_UY,
 						 output logic LD_EN_FEQ0, LD_EN_FEQ1, LD_EN_FEQ2, LD_EN_FEQ3, LD_EN_FEQ4,
-						 output logic LD_EN_FEQ5, LD_EN_FEQ6, LD_EN_FEQ7, LD_EN_FEQ8);
+						 output logic LD_EN_FEQ5, LD_EN_FEQ6, LD_EN_FEQ7, LD_EN_FEQ8,
+						 output logic LD_EN_FOUT0, LD_EN_FOUT1, LD_EN_FOUT2, LD_EN_FOUT3, LD_EN_FOUT4,
+						 output logic LD_EN_FOUT5, LD_EN_FOUT6, LD_EN_FOUT7, LD_EN_FOUT8);
 						 
 	enum logic [3:0] {START, CALC_MOMENT_1, CALC_MOMENT_2, CALC_MOMENT_3,
 							CALC_MOMENT_4, CALC_MOMENT_5, CALC_MOMENT_6, CALC_EQUIL_1,
-							CALC_EQUIL_2, CALC_COLL_1} State, Next_state;
+							CALC_EQUIL_2, CALC_COLL_1, CALC_COLL_2} State, Next_state;
 	
 	// variable declarations
 	
@@ -51,7 +53,11 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				Next_state <= CALC_EQUIL_1;
 		CALC_EQUIL_1:
 				Next_state <= CALC_EQUIL_2;
+		CALC_EQUIL_2:
+				Next_state <= CALC_COLL_1;
 		CALC_COLL_1:
+				Next_state <= CALC_COLL_2;
+		CALC_COLL_2:
 				;
 		endcase
 	end
@@ -89,6 +95,15 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	LD_EN_FEQ7 = 1'b0;
 	LD_EN_FEQ8 = 1'b0;
 	div_start = 1'b0;
+	LD_EN_FOUT0 = 1'b0;
+	LD_EN_FOUT1 = 1'b0;
+	LD_EN_FOUT2 = 1'b0;
+	LD_EN_FOUT3 = 1'b0;
+	LD_EN_FOUT4 = 1'b0;
+	LD_EN_FOUT5 = 1'b0;
+	LD_EN_FOUT6 = 1'b0;
+	LD_EN_FOUT7 = 1'b0;
+	LD_EN_FOUT8 = 1'b0;
 	
 	case (State)
 	START :
@@ -176,6 +191,19 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 			end
 	CALC_COLL_1:
 			begin
+				LD_EN_FOUT0 = 1'b1;
+				LD_EN_FOUT1 = 1'b1;
+				LD_EN_FOUT2 = 1'b1;
+				LD_EN_FOUT3 = 1'b1;
+				LD_EN_FOUT4 = 1'b1;
+				LD_EN_FOUT5 = 1'b1;
+				LD_EN_FOUT6 = 1'b1;
+				LD_EN_FOUT7 = 1'b1;
+				LD_EN_FOUT8 = 1'b1;
+			end
+	CALC_COLL_2:
+			begin
+				WE_fout_mem = 1'b1;
 			end
 		endcase
 	end

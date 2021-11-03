@@ -1,5 +1,5 @@
 Analysis & Synthesis report for LBM_DE2
-Tue Nov 02 21:05:22 2021
+Tue Nov 02 23:12:59 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -17,193 +17,250 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   9. Analysis & Synthesis DSP Block Usage Summary
  10. State Machine - |LBM_DE2|controller:fsm|State
  11. Registers Removed During Synthesis
- 12. General Register Statistics
- 13. Registers Added for RAM Pass-Through Logic
- 14. Multiplexer Restructuring Statistics (Restructuring Performed)
- 15. Source assignments for moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated
- 16. Source assignments for moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated
- 17. Source assignments for moment_ram:uy_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated
- 18. Source assignments for distribution_ram:fin_ram|altsyncram:mem_rtl_0|altsyncram_d3e1:auto_generated
- 19. Parameter Settings for User Entity Instance: Top-level Entity: |LBM_DE2
- 20. Parameter Settings for User Entity Instance: counter_init:init_counter
- 21. Parameter Settings for User Entity Instance: row_counter:row_cnter
- 22. Parameter Settings for User Entity Instance: controller:fsm
- 23. Parameter Settings for User Entity Instance: wall_detector:wall_det
- 24. Parameter Settings for User Entity Instance: weights_reg:w_reg
- 25. Parameter Settings for User Entity Instance: moment_ram:p_ram
- 26. Parameter Settings for User Entity Instance: moment_ram:ux_ram
- 27. Parameter Settings for User Entity Instance: moment_ram:uy_ram
- 28. Parameter Settings for User Entity Instance: distribution_ram:fin_ram
- 29. Parameter Settings for User Entity Instance: distribution_ram:feq_ram
- 30. Parameter Settings for User Entity Instance: mux2:fin_mem_mux
- 31. Parameter Settings for User Entity Instance: mux2:p_in_mux
- 32. Parameter Settings for User Entity Instance: mux3:ux_in_mux
- 33. Parameter Settings for User Entity Instance: mux2:uy_in_mux
- 34. Parameter Settings for User Entity Instance: mux2:p_mem_mux
- 35. Parameter Settings for User Entity Instance: mux2:ux_mem_mux
- 36. Parameter Settings for User Entity Instance: mux2:uy_mem_mux
- 37. Parameter Settings for User Entity Instance: adder9:fin_sum
- 38. Parameter Settings for User Entity Instance: reg32:p_reg
- 39. Parameter Settings for User Entity Instance: reg32:pux_reg
- 40. Parameter Settings for User Entity Instance: reg32:puy_reg
- 41. Parameter Settings for User Entity Instance: reg32:ux_reg
- 42. Parameter Settings for User Entity Instance: reg32:uy_reg
- 43. Parameter Settings for User Entity Instance: cx_reg:reg_cx
- 44. Parameter Settings for User Entity Instance: cy_reg:reg_cy
- 45. Parameter Settings for User Entity Instance: fp_mult:prod_cx0fin0
- 46. Parameter Settings for User Entity Instance: fp_mult:prod_cx1fin1
- 47. Parameter Settings for User Entity Instance: fp_mult:prod_cx2fin2
- 48. Parameter Settings for User Entity Instance: fp_mult:prod_cx3fin3
- 49. Parameter Settings for User Entity Instance: fp_mult:prod_cx4fin4
- 50. Parameter Settings for User Entity Instance: fp_mult:prod_cx5fin5
- 51. Parameter Settings for User Entity Instance: fp_mult:prod_cx6fin6
- 52. Parameter Settings for User Entity Instance: fp_mult:prod_cx7fin7
- 53. Parameter Settings for User Entity Instance: fp_mult:prod_cx8fin8
- 54. Parameter Settings for User Entity Instance: adder9:cxfin_sum
- 55. Parameter Settings for User Entity Instance: fp_mult:prod_cy0fin0
- 56. Parameter Settings for User Entity Instance: fp_mult:prod_cy1fin1
- 57. Parameter Settings for User Entity Instance: fp_mult:prod_cy2fin2
- 58. Parameter Settings for User Entity Instance: fp_mult:prod_cy3fin3
- 59. Parameter Settings for User Entity Instance: fp_mult:prod_cy4fin4
- 60. Parameter Settings for User Entity Instance: fp_mult:prod_cy5fin5
- 61. Parameter Settings for User Entity Instance: fp_mult:prod_cy6fin6
- 62. Parameter Settings for User Entity Instance: fp_mult:prod_cy7fin7
- 63. Parameter Settings for User Entity Instance: fp_mult:prod_cy8fin8
- 64. Parameter Settings for User Entity Instance: adder9:cyfin_sum
- 65. Parameter Settings for User Entity Instance: fp_div:div_ux
- 66. Parameter Settings for User Entity Instance: fp_div:div_uy
- 67. Parameter Settings for User Entity Instance: fp_mult:prod_ux2
- 68. Parameter Settings for User Entity Instance: fp_mult:prod_uy2
- 69. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy
- 70. Parameter Settings for User Entity Instance: fp_mult:prod_6ux
- 71. Parameter Settings for User Entity Instance: fp_mult:prod_neg6ux
- 72. Parameter Settings for User Entity Instance: fp_mult:prod_6uy
- 73. Parameter Settings for User Entity Instance: fp_mult:prod_neg6uy
- 74. Parameter Settings for User Entity Instance: adder2:sum_ux_uy
- 75. Parameter Settings for User Entity Instance: adder2:diff_ux_uy
- 76. Parameter Settings for User Entity Instance: fp_mult:prod_3_ux_minus_uy
- 77. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_ux_minus_uy
- 78. Parameter Settings for User Entity Instance: fp_mult:prod_3_ux_plus_uy
- 79. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_ux_plus_uy
- 80. Parameter Settings for User Entity Instance: adder2:sum_u2
- 81. Parameter Settings for User Entity Instance: fp_mult:prod_9_ux2
- 82. Parameter Settings for User Entity Instance: fp_mult:prod_9_uy2
- 83. Parameter Settings for User Entity Instance: fp_mult:prod_3_u2
- 84. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_u2
- 85. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy_9
- 86. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy_neg9
- 87. Parameter Settings for User Entity Instance: adder2:add0
- 88. Parameter Settings for User Entity Instance: adder2:add1
- 89. Parameter Settings for User Entity Instance: adder2:add2
- 90. Parameter Settings for User Entity Instance: adder2:add3
- 91. Parameter Settings for User Entity Instance: adder2:add4
- 92. Parameter Settings for User Entity Instance: adder2:add5
- 93. Parameter Settings for User Entity Instance: adder2:add6
- 94. Parameter Settings for User Entity Instance: adder2:add7
- 95. Parameter Settings for User Entity Instance: adder2:add8
- 96. Parameter Settings for User Entity Instance: adder2:add9
- 97. Parameter Settings for User Entity Instance: adder2:add10
- 98. Parameter Settings for User Entity Instance: adder2:ad11
- 99. Parameter Settings for User Entity Instance: fp_mult:prod_p29
-100. Parameter Settings for User Entity Instance: fp_mult:prod_p118
-101. Parameter Settings for User Entity Instance: fp_mult:prod_p136
-102. Parameter Settings for User Entity Instance: reg32:feq0_reg
-103. Parameter Settings for User Entity Instance: reg32:feq1_reg
-104. Parameter Settings for User Entity Instance: reg32:feq2_reg
-105. Parameter Settings for User Entity Instance: reg32:feq3_reg
-106. Parameter Settings for User Entity Instance: reg32:feq4_reg
-107. Parameter Settings for User Entity Instance: reg32:feq5_reg
-108. Parameter Settings for User Entity Instance: reg32:feq6_reg
-109. Parameter Settings for User Entity Instance: reg32:feq7_reg
-110. Parameter Settings for User Entity Instance: reg32:feq8_reg
-111. Parameter Settings for User Entity Instance: fp_mult:prod_feq8
-112. Parameter Settings for User Entity Instance: fp_mult:prod_feq6
-113. Parameter Settings for User Entity Instance: fp_mult:prod_feq5
-114. Parameter Settings for User Entity Instance: fp_mult:prod_feq7
-115. Parameter Settings for User Entity Instance: fp_mult:prod_feq0
-116. Parameter Settings for User Entity Instance: fp_mult:prod_feq1
-117. Parameter Settings for User Entity Instance: fp_mult:prod_feq3
-118. Parameter Settings for User Entity Instance: fp_mult:prod_feq2
-119. Parameter Settings for User Entity Instance: fp_mult:prod_feq4
-120. Parameter Settings for User Entity Instance: adder2:add12
-121. Parameter Settings for User Entity Instance: adder2:add13
-122. Parameter Settings for User Entity Instance: adder2:add14
-123. Parameter Settings for User Entity Instance: adder2:add15
-124. Parameter Settings for User Entity Instance: adder2:add16
-125. Parameter Settings for User Entity Instance: adder2:add17
-126. Parameter Settings for User Entity Instance: adder2:add18
-127. Parameter Settings for User Entity Instance: adder2:add19
-128. Parameter Settings for User Entity Instance: adder2:add20
-129. Parameter Settings for User Entity Instance: adder2:add21
-130. Parameter Settings for User Entity Instance: adder2:add22
-131. Parameter Settings for User Entity Instance: adder2:add23
-132. Parameter Settings for User Entity Instance: adder2:add24
-133. Parameter Settings for Inferred Entity Instance: moment_ram:p_ram|altsyncram:mem_rtl_0
-134. Parameter Settings for Inferred Entity Instance: moment_ram:ux_ram|altsyncram:mem_rtl_0
-135. Parameter Settings for Inferred Entity Instance: moment_ram:uy_ram|altsyncram:mem_rtl_0
-136. Parameter Settings for Inferred Entity Instance: distribution_ram:fin_ram|altsyncram:mem_rtl_0
-137. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p136|lpm_mult:Mult0
-138. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq8|lpm_mult:Mult0
-139. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq7|lpm_mult:Mult0
-140. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq6|lpm_mult:Mult0
-141. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq5|lpm_mult:Mult0
-142. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p118|lpm_mult:Mult0
-143. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq4|lpm_mult:Mult0
-144. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq3|lpm_mult:Mult0
-145. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq2|lpm_mult:Mult0
-146. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq1|lpm_mult:Mult0
-147. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_u2|lpm_mult:Mult0
-148. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p29|lpm_mult:Mult0
-149. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq0|lpm_mult:Mult0
-150. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_u2|lpm_mult:Mult0
-151. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uy2|lpm_mult:Mult0
-152. Parameter Settings for Inferred Entity Instance: fp_mult:prod_ux2|lpm_mult:Mult0
-153. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx8fin8|lpm_mult:Mult0
-154. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy8fin8|lpm_mult:Mult0
-155. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_ux_minus_uy|lpm_mult:Mult0
-156. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy|lpm_mult:Mult0
-157. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy_neg9|lpm_mult:Mult0
-158. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_ux_plus_uy|lpm_mult:Mult0
-159. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy_9|lpm_mult:Mult0
-160. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_ux_minus_uy|lpm_mult:Mult0
-161. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_ux_plus_uy|lpm_mult:Mult0
-162. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg6uy|lpm_mult:Mult0
-163. Parameter Settings for Inferred Entity Instance: fp_mult:prod_9_uy2|lpm_mult:Mult0
-164. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg6ux|lpm_mult:Mult0
-165. Parameter Settings for Inferred Entity Instance: fp_mult:prod_9_ux2|lpm_mult:Mult0
-166. Parameter Settings for Inferred Entity Instance: fp_mult:prod_6uy|lpm_mult:Mult0
-167. Parameter Settings for Inferred Entity Instance: fp_mult:prod_6ux|lpm_mult:Mult0
-168. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx6fin6|lpm_mult:Mult0
-169. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx7fin7|lpm_mult:Mult0
-170. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx5fin5|lpm_mult:Mult0
-171. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy6fin6|lpm_mult:Mult0
-172. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy2fin2|lpm_mult:Mult0
-173. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx1fin1|lpm_mult:Mult0
-174. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx3fin3|lpm_mult:Mult0
-175. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy4fin4|lpm_mult:Mult0
-176. altsyncram Parameter Settings by Entity Instance
-177. lpm_mult Parameter Settings by Entity Instance
-178. Port Connectivity Checks: "adder2:add12"
-179. Port Connectivity Checks: "fp_mult:prod_p136"
-180. Port Connectivity Checks: "fp_mult:prod_p118"
-181. Port Connectivity Checks: "fp_mult:prod_p29"
-182. Port Connectivity Checks: "fp_mult:prod_uxuy_neg9"
-183. Port Connectivity Checks: "fp_mult:prod_9_ux2"
-184. Port Connectivity Checks: "fp_mult:prod_neg3_ux_minus_uy"
-185. Port Connectivity Checks: "fp_mult:prod_3_ux_minus_uy"
-186. Port Connectivity Checks: "fp_mult:prod_neg6ux"
-187. Port Connectivity Checks: "fp_mult:prod_6ux"
-188. Port Connectivity Checks: "fp_div:div_uy"
-189. Port Connectivity Checks: "fp_div:div_ux"
-190. Port Connectivity Checks: "mux2:p_mem_mux"
-191. Port Connectivity Checks: "mux3:ux_in_mux"
-192. Port Connectivity Checks: "mux2:p_in_mux"
-193. Port Connectivity Checks: "distribution_ram:feq_ram"
-194. Port Connectivity Checks: "wall_detector:wall_det"
-195. Port Connectivity Checks: "controller:fsm"
-196. Elapsed Time Per Partition
-197. Analysis & Synthesis Messages
-198. Analysis & Synthesis Suppressed Messages
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Registers Added for RAM Pass-Through Logic
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated
+ 17. Source assignments for moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated
+ 18. Source assignments for moment_ram:uy_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated
+ 19. Source assignments for distribution_ram:fin_ram|altsyncram:mem_rtl_0|altsyncram_d3e1:auto_generated
+ 20. Parameter Settings for User Entity Instance: Top-level Entity: |LBM_DE2
+ 21. Parameter Settings for User Entity Instance: counter_init:init_counter
+ 22. Parameter Settings for User Entity Instance: row_counter:row_cnter
+ 23. Parameter Settings for User Entity Instance: controller:fsm
+ 24. Parameter Settings for User Entity Instance: wall_detector:wall_det
+ 25. Parameter Settings for User Entity Instance: weights_reg:w_reg
+ 26. Parameter Settings for User Entity Instance: moment_ram:p_ram
+ 27. Parameter Settings for User Entity Instance: moment_ram:ux_ram
+ 28. Parameter Settings for User Entity Instance: moment_ram:uy_ram
+ 29. Parameter Settings for User Entity Instance: distribution_ram:fin_ram
+ 30. Parameter Settings for User Entity Instance: distribution_ram:feq_ram
+ 31. Parameter Settings for User Entity Instance: distribution_ram:fout_ram
+ 32. Parameter Settings for User Entity Instance: mux2:fin_mem_mux
+ 33. Parameter Settings for User Entity Instance: mux2:p_in_mux
+ 34. Parameter Settings for User Entity Instance: mux3:ux_in_mux
+ 35. Parameter Settings for User Entity Instance: mux2:uy_in_mux
+ 36. Parameter Settings for User Entity Instance: mux2:p_mem_mux
+ 37. Parameter Settings for User Entity Instance: mux2:ux_mem_mux
+ 38. Parameter Settings for User Entity Instance: mux2:uy_mem_mux
+ 39. Parameter Settings for User Entity Instance: adder9:fin_sum
+ 40. Parameter Settings for User Entity Instance: reg32:p_reg
+ 41. Parameter Settings for User Entity Instance: reg32:pux_reg
+ 42. Parameter Settings for User Entity Instance: reg32:puy_reg
+ 43. Parameter Settings for User Entity Instance: reg32:ux_reg
+ 44. Parameter Settings for User Entity Instance: reg32:uy_reg
+ 45. Parameter Settings for User Entity Instance: cx_reg:reg_cx
+ 46. Parameter Settings for User Entity Instance: cy_reg:reg_cy
+ 47. Parameter Settings for User Entity Instance: fp_mult:prod_cx0fin0
+ 48. Parameter Settings for User Entity Instance: fp_mult:prod_cx1fin1
+ 49. Parameter Settings for User Entity Instance: fp_mult:prod_cx2fin2
+ 50. Parameter Settings for User Entity Instance: fp_mult:prod_cx3fin3
+ 51. Parameter Settings for User Entity Instance: fp_mult:prod_cx4fin4
+ 52. Parameter Settings for User Entity Instance: fp_mult:prod_cx5fin5
+ 53. Parameter Settings for User Entity Instance: fp_mult:prod_cx6fin6
+ 54. Parameter Settings for User Entity Instance: fp_mult:prod_cx7fin7
+ 55. Parameter Settings for User Entity Instance: fp_mult:prod_cx8fin8
+ 56. Parameter Settings for User Entity Instance: adder9:cxfin_sum
+ 57. Parameter Settings for User Entity Instance: fp_mult:prod_cy0fin0
+ 58. Parameter Settings for User Entity Instance: fp_mult:prod_cy1fin1
+ 59. Parameter Settings for User Entity Instance: fp_mult:prod_cy2fin2
+ 60. Parameter Settings for User Entity Instance: fp_mult:prod_cy3fin3
+ 61. Parameter Settings for User Entity Instance: fp_mult:prod_cy4fin4
+ 62. Parameter Settings for User Entity Instance: fp_mult:prod_cy5fin5
+ 63. Parameter Settings for User Entity Instance: fp_mult:prod_cy6fin6
+ 64. Parameter Settings for User Entity Instance: fp_mult:prod_cy7fin7
+ 65. Parameter Settings for User Entity Instance: fp_mult:prod_cy8fin8
+ 66. Parameter Settings for User Entity Instance: adder9:cyfin_sum
+ 67. Parameter Settings for User Entity Instance: fp_div:div_ux
+ 68. Parameter Settings for User Entity Instance: fp_div:div_uy
+ 69. Parameter Settings for User Entity Instance: fp_mult:prod_ux2
+ 70. Parameter Settings for User Entity Instance: fp_mult:prod_uy2
+ 71. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy
+ 72. Parameter Settings for User Entity Instance: fp_mult:prod_6ux
+ 73. Parameter Settings for User Entity Instance: fp_mult:prod_neg6ux
+ 74. Parameter Settings for User Entity Instance: fp_mult:prod_6uy
+ 75. Parameter Settings for User Entity Instance: fp_mult:prod_neg6uy
+ 76. Parameter Settings for User Entity Instance: adder2:sum_ux_uy
+ 77. Parameter Settings for User Entity Instance: adder2:diff_ux_uy
+ 78. Parameter Settings for User Entity Instance: fp_mult:prod_3_ux_minus_uy
+ 79. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_ux_minus_uy
+ 80. Parameter Settings for User Entity Instance: fp_mult:prod_3_ux_plus_uy
+ 81. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_ux_plus_uy
+ 82. Parameter Settings for User Entity Instance: adder2:sum_u2
+ 83. Parameter Settings for User Entity Instance: fp_mult:prod_9_ux2
+ 84. Parameter Settings for User Entity Instance: fp_mult:prod_9_uy2
+ 85. Parameter Settings for User Entity Instance: fp_mult:prod_3_u2
+ 86. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_u2
+ 87. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy_9
+ 88. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy_neg9
+ 89. Parameter Settings for User Entity Instance: adder2:add0
+ 90. Parameter Settings for User Entity Instance: adder2:add1
+ 91. Parameter Settings for User Entity Instance: adder2:add2
+ 92. Parameter Settings for User Entity Instance: adder2:add3
+ 93. Parameter Settings for User Entity Instance: adder2:add4
+ 94. Parameter Settings for User Entity Instance: adder2:add5
+ 95. Parameter Settings for User Entity Instance: adder2:add6
+ 96. Parameter Settings for User Entity Instance: adder2:add7
+ 97. Parameter Settings for User Entity Instance: adder2:add8
+ 98. Parameter Settings for User Entity Instance: adder2:add9
+ 99. Parameter Settings for User Entity Instance: adder2:add10
+100. Parameter Settings for User Entity Instance: adder2:ad11
+101. Parameter Settings for User Entity Instance: fp_mult:prod_p29
+102. Parameter Settings for User Entity Instance: fp_mult:prod_p118
+103. Parameter Settings for User Entity Instance: fp_mult:prod_p136
+104. Parameter Settings for User Entity Instance: reg32:feq0_reg
+105. Parameter Settings for User Entity Instance: reg32:feq1_reg
+106. Parameter Settings for User Entity Instance: reg32:feq2_reg
+107. Parameter Settings for User Entity Instance: reg32:feq3_reg
+108. Parameter Settings for User Entity Instance: reg32:feq4_reg
+109. Parameter Settings for User Entity Instance: reg32:feq5_reg
+110. Parameter Settings for User Entity Instance: reg32:feq6_reg
+111. Parameter Settings for User Entity Instance: reg32:feq7_reg
+112. Parameter Settings for User Entity Instance: reg32:feq8_reg
+113. Parameter Settings for User Entity Instance: fp_mult:prod_feq8
+114. Parameter Settings for User Entity Instance: fp_mult:prod_feq6
+115. Parameter Settings for User Entity Instance: fp_mult:prod_feq5
+116. Parameter Settings for User Entity Instance: fp_mult:prod_feq7
+117. Parameter Settings for User Entity Instance: fp_mult:prod_feq0
+118. Parameter Settings for User Entity Instance: fp_mult:prod_feq1
+119. Parameter Settings for User Entity Instance: fp_mult:prod_feq3
+120. Parameter Settings for User Entity Instance: fp_mult:prod_feq2
+121. Parameter Settings for User Entity Instance: fp_mult:prod_feq4
+122. Parameter Settings for User Entity Instance: adder2:add12
+123. Parameter Settings for User Entity Instance: adder2:add13
+124. Parameter Settings for User Entity Instance: adder2:add14
+125. Parameter Settings for User Entity Instance: adder2:add15
+126. Parameter Settings for User Entity Instance: adder2:add16
+127. Parameter Settings for User Entity Instance: adder2:add17
+128. Parameter Settings for User Entity Instance: adder2:add18
+129. Parameter Settings for User Entity Instance: adder2:add19
+130. Parameter Settings for User Entity Instance: adder2:add20
+131. Parameter Settings for User Entity Instance: adder2:add21
+132. Parameter Settings for User Entity Instance: adder2:add22
+133. Parameter Settings for User Entity Instance: adder2:add23
+134. Parameter Settings for User Entity Instance: adder2:add24
+135. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq0
+136. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq1
+137. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq2
+138. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq3
+139. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq4
+140. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq5
+141. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq6
+142. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq7
+143. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq8
+144. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin0
+145. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin1
+146. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin2
+147. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin3
+148. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin4
+149. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin5
+150. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin6
+151. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin7
+152. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin8
+153. Parameter Settings for User Entity Instance: adder2:add25
+154. Parameter Settings for User Entity Instance: adder2:add26
+155. Parameter Settings for User Entity Instance: adder2:add27
+156. Parameter Settings for User Entity Instance: adder2:add28
+157. Parameter Settings for User Entity Instance: adder2:add29
+158. Parameter Settings for User Entity Instance: adder2:add30
+159. Parameter Settings for User Entity Instance: adder2:add31
+160. Parameter Settings for User Entity Instance: adder2:add32
+161. Parameter Settings for User Entity Instance: adder2:add33
+162. Parameter Settings for User Entity Instance: reg32:fout0_reg
+163. Parameter Settings for User Entity Instance: reg32:fout1_reg
+164. Parameter Settings for User Entity Instance: reg32:fout2_reg
+165. Parameter Settings for User Entity Instance: reg32:fout3_reg
+166. Parameter Settings for User Entity Instance: reg32:fout4_reg
+167. Parameter Settings for User Entity Instance: reg32:fout5_reg
+168. Parameter Settings for User Entity Instance: reg32:fout6_reg
+169. Parameter Settings for User Entity Instance: reg32:fout7_reg
+170. Parameter Settings for User Entity Instance: reg32:fout8_reg
+171. Parameter Settings for Inferred Entity Instance: moment_ram:p_ram|altsyncram:mem_rtl_0
+172. Parameter Settings for Inferred Entity Instance: moment_ram:ux_ram|altsyncram:mem_rtl_0
+173. Parameter Settings for Inferred Entity Instance: moment_ram:uy_ram|altsyncram:mem_rtl_0
+174. Parameter Settings for Inferred Entity Instance: distribution_ram:fin_ram|altsyncram:mem_rtl_0
+175. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p136|lpm_mult:Mult0
+176. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq8|lpm_mult:Mult0
+177. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq7|lpm_mult:Mult0
+178. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq6|lpm_mult:Mult0
+179. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq5|lpm_mult:Mult0
+180. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p118|lpm_mult:Mult0
+181. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq4|lpm_mult:Mult0
+182. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq3|lpm_mult:Mult0
+183. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq2|lpm_mult:Mult0
+184. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq1|lpm_mult:Mult0
+185. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_u2|lpm_mult:Mult0
+186. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p29|lpm_mult:Mult0
+187. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq0|lpm_mult:Mult0
+188. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_u2|lpm_mult:Mult0
+189. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uy2|lpm_mult:Mult0
+190. Parameter Settings for Inferred Entity Instance: fp_mult:prod_ux2|lpm_mult:Mult0
+191. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx8fin8|lpm_mult:Mult0
+192. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy8fin8|lpm_mult:Mult0
+193. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_ux_minus_uy|lpm_mult:Mult0
+194. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy|lpm_mult:Mult0
+195. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy_neg9|lpm_mult:Mult0
+196. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_ux_plus_uy|lpm_mult:Mult0
+197. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy_9|lpm_mult:Mult0
+198. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_ux_minus_uy|lpm_mult:Mult0
+199. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_ux_plus_uy|lpm_mult:Mult0
+200. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg6uy|lpm_mult:Mult0
+201. Parameter Settings for Inferred Entity Instance: fp_mult:prod_9_uy2|lpm_mult:Mult0
+202. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg6ux|lpm_mult:Mult0
+203. Parameter Settings for Inferred Entity Instance: fp_mult:prod_9_ux2|lpm_mult:Mult0
+204. Parameter Settings for Inferred Entity Instance: fp_mult:prod_6uy|lpm_mult:Mult0
+205. Parameter Settings for Inferred Entity Instance: fp_mult:prod_6ux|lpm_mult:Mult0
+206. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx6fin6|lpm_mult:Mult0
+207. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx7fin7|lpm_mult:Mult0
+208. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx5fin5|lpm_mult:Mult0
+209. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy6fin6|lpm_mult:Mult0
+210. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy2fin2|lpm_mult:Mult0
+211. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx1fin1|lpm_mult:Mult0
+212. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx3fin3|lpm_mult:Mult0
+213. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy4fin4|lpm_mult:Mult0
+214. altsyncram Parameter Settings by Entity Instance
+215. lpm_mult Parameter Settings by Entity Instance
+216. Port Connectivity Checks: "reg32:fout8_reg"
+217. Port Connectivity Checks: "reg32:fout7_reg"
+218. Port Connectivity Checks: "reg32:fout6_reg"
+219. Port Connectivity Checks: "reg32:fout5_reg"
+220. Port Connectivity Checks: "reg32:fout4_reg"
+221. Port Connectivity Checks: "reg32:fout3_reg"
+222. Port Connectivity Checks: "reg32:fout2_reg"
+223. Port Connectivity Checks: "reg32:fout1_reg"
+224. Port Connectivity Checks: "reg32:fout0_reg"
+225. Port Connectivity Checks: "fp_mult:prod_coll_fin8"
+226. Port Connectivity Checks: "fp_mult:prod_coll_fin7"
+227. Port Connectivity Checks: "fp_mult:prod_coll_fin6"
+228. Port Connectivity Checks: "fp_mult:prod_coll_fin5"
+229. Port Connectivity Checks: "fp_mult:prod_coll_fin4"
+230. Port Connectivity Checks: "fp_mult:prod_coll_fin3"
+231. Port Connectivity Checks: "fp_mult:prod_coll_fin2"
+232. Port Connectivity Checks: "fp_mult:prod_coll_fin1"
+233. Port Connectivity Checks: "fp_mult:prod_coll_fin0"
+234. Port Connectivity Checks: "fp_mult:prod_coll_feq0"
+235. Port Connectivity Checks: "adder2:add12"
+236. Port Connectivity Checks: "fp_mult:prod_p136"
+237. Port Connectivity Checks: "fp_mult:prod_p118"
+238. Port Connectivity Checks: "fp_mult:prod_p29"
+239. Port Connectivity Checks: "fp_mult:prod_uxuy_neg9"
+240. Port Connectivity Checks: "fp_mult:prod_9_ux2"
+241. Port Connectivity Checks: "fp_mult:prod_neg3_ux_minus_uy"
+242. Port Connectivity Checks: "fp_mult:prod_3_ux_minus_uy"
+243. Port Connectivity Checks: "fp_mult:prod_neg6ux"
+244. Port Connectivity Checks: "fp_mult:prod_6ux"
+245. Port Connectivity Checks: "fp_div:div_uy"
+246. Port Connectivity Checks: "fp_div:div_ux"
+247. Port Connectivity Checks: "mux2:p_mem_mux"
+248. Port Connectivity Checks: "mux3:ux_in_mux"
+249. Port Connectivity Checks: "mux2:p_in_mux"
+250. Port Connectivity Checks: "distribution_ram:fout_ram"
+251. Port Connectivity Checks: "distribution_ram:feq_ram"
+252. Port Connectivity Checks: "wall_detector:wall_det"
+253. Elapsed Time Per Partition
+254. Analysis & Synthesis Messages
+255. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -229,7 +286,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Nov 02 21:05:22 2021      ;
+; Analysis & Synthesis Status        ; Successful - Tue Nov 02 23:12:59 2021      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; LBM_DE2                                    ;
 ; Top-level Entity Name              ; LBM_DE2                                    ;
@@ -654,22 +711,23 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 
 
 Encoding Type:  One-Hot
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |LBM_DE2|controller:fsm|State                                                                                                                                                                                       ;
-+---------------------+-------------------+--------------------+--------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+-------------+
-; Name                ; State.CALC_COLL_1 ; State.CALC_EQUIL_2 ; State.CALC_EQUIL_1 ; State.CALC_MOMENT_6 ; State.CALC_MOMENT_5 ; State.CALC_MOMENT_4 ; State.CALC_MOMENT_3 ; State.CALC_MOMENT_2 ; State.CALC_MOMENT_1 ; State.START ;
-+---------------------+-------------------+--------------------+--------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+-------------+
-; State.START         ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0           ;
-; State.CALC_MOMENT_1 ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 1           ;
-; State.CALC_MOMENT_2 ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 1           ;
-; State.CALC_MOMENT_3 ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 1           ;
-; State.CALC_MOMENT_4 ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 1           ;
-; State.CALC_MOMENT_5 ; 0                 ; 0                  ; 0                  ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
-; State.CALC_MOMENT_6 ; 0                 ; 0                  ; 0                  ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
-; State.CALC_EQUIL_1  ; 0                 ; 0                  ; 1                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
-; State.CALC_EQUIL_2  ; 0                 ; 1                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
-; State.CALC_COLL_1   ; 1                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
-+---------------------+-------------------+--------------------+--------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+-------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |LBM_DE2|controller:fsm|State                                                                                                                                                                                                           ;
++---------------------+-------------------+-------------------+--------------------+--------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+-------------+
+; Name                ; State.CALC_COLL_2 ; State.CALC_COLL_1 ; State.CALC_EQUIL_2 ; State.CALC_EQUIL_1 ; State.CALC_MOMENT_6 ; State.CALC_MOMENT_5 ; State.CALC_MOMENT_4 ; State.CALC_MOMENT_3 ; State.CALC_MOMENT_2 ; State.CALC_MOMENT_1 ; State.START ;
++---------------------+-------------------+-------------------+--------------------+--------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+-------------+
+; State.START         ; 0                 ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0           ;
+; State.CALC_MOMENT_1 ; 0                 ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 1           ;
+; State.CALC_MOMENT_2 ; 0                 ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 1           ;
+; State.CALC_MOMENT_3 ; 0                 ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 1           ;
+; State.CALC_MOMENT_4 ; 0                 ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 1           ;
+; State.CALC_MOMENT_5 ; 0                 ; 0                 ; 0                  ; 0                  ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
+; State.CALC_MOMENT_6 ; 0                 ; 0                 ; 0                  ; 0                  ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
+; State.CALC_EQUIL_1  ; 0                 ; 0                 ; 0                  ; 1                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
+; State.CALC_EQUIL_2  ; 0                 ; 0                 ; 1                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
+; State.CALC_COLL_1   ; 0                 ; 1                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
+; State.CALC_COLL_2   ; 1                 ; 0                 ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1           ;
++---------------------+-------------------+-------------------+--------------------+--------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+-------------+
 
 
 +----------------------------------------------------------------------------------+
@@ -780,8 +838,19 @@ Encoding Type:  One-Hot
 ; controller:fsm|State~6                  ; Lost fanout                            ;
 ; controller:fsm|State~7                  ; Lost fanout                            ;
 ; controller:fsm|State.CALC_COLL_1        ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 869 ;                                        ;
+; controller:fsm|State.CALC_COLL_2        ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 870 ;                                        ;
 +-----------------------------------------+----------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                           ;
++----------------------------------+---------------------------+----------------------------------------+
+; Register name                    ; Reason for Removal        ; Registers Removed due to This Register ;
++----------------------------------+---------------------------+----------------------------------------+
+; controller:fsm|State.CALC_COLL_1 ; Stuck at GND              ; controller:fsm|State.CALC_COLL_2       ;
+;                                  ; due to stuck port data_in ;                                        ;
++----------------------------------+---------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -1265,12 +1334,12 @@ Encoding Type:  One-Hot
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output               ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LBM_DE2|row_counter:row_cnter|count[3]  ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_ux|q[5]              ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_uy|q[0]              ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|i[1]              ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_ux|q[4]              ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_uy|q[12]             ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|i[0]              ;
 ; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|i[0]              ;
 ; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|q1[19]            ;
-; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|q1[10]            ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|q1[26]            ;
 ; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|ac[7]             ;
 ; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|ac[16]            ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |LBM_DE2|controller:fsm|select_ux_reg[1] ;
@@ -1448,6 +1517,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ADDRESS_WIDTH  ; 8     ; Signed Integer                               ;
 ; DATA_WIDTH     ; 288   ; Signed Integer                               ;
 +----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: distribution_ram:fout_ram ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; DEPTH          ; 256   ; Signed Integer                                ;
+; ADDRESS_WIDTH  ; 8     ; Signed Integer                                ;
+; DATA_WIDTH     ; 288   ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -2574,6 +2655,402 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+----------------------------------+
 ; DATA_WIDTH     ; 32    ; Signed Integer                   ;
 +----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq0 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq1 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq2 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq3 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq4 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq5 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq6 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq7 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq8 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin0 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin1 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin2 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin3 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin4 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin5 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin6 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin7 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin8 ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; FRACTIONAL_BITS ; 24    ; Signed Integer                            ;
+; DATA_WIDTH      ; 32    ; Signed Integer                            ;
+; INTEGER_BITS    ; 8     ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder2:add25 ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                   ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder2:add26 ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                   ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder2:add27 ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                   ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder2:add28 ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                   ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder2:add29 ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                   ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder2:add30 ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                   ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder2:add31 ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                   ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder2:add32 ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                   ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adder2:add33 ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                   ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:fout0_reg ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:fout1_reg ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:fout2_reg ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:fout3_reg ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:fout4_reg ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:fout5_reg ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:fout6_reg ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:fout7_reg ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reg32:fout8_reg ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -4677,6 +5154,205 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+----------------------------------------------+
 
 
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg32:fout8_reg"                                                                                                                  ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "Data_Out[31..1]" have no fanouts ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg32:fout7_reg"                                                                                                                  ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "Data_Out[31..1]" have no fanouts ;
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                           ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg32:fout6_reg"                                                                                                                  ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "Data_Out[31..1]" have no fanouts ;
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                           ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg32:fout5_reg"                                                                                                                  ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "Data_Out[31..1]" have no fanouts ;
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                           ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg32:fout4_reg"                                                                                                                  ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "Data_Out[31..1]" have no fanouts ;
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                           ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg32:fout3_reg"                                                                                                                  ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "Data_Out[31..1]" have no fanouts ;
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                           ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg32:fout2_reg"                                                                                                                  ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "Data_Out[31..1]" have no fanouts ;
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                           ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg32:fout1_reg"                                                                                                                  ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "Data_Out[31..1]" have no fanouts ;
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                           ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg32:fout0_reg"                                                                                                                  ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Data_Out ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "Data_Out[31..1]" have no fanouts ;
+; Data_Out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                           ;
++----------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_mult:prod_coll_fin8"                                                                                                                       ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                        ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Din1 ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Din1[31..1]" will be connected to GND. ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_mult:prod_coll_fin7"                                                                                                                       ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                        ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Din1 ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Din1[31..1]" will be connected to GND. ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_mult:prod_coll_fin6"                                                                                                                       ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                        ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Din1 ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Din1[31..1]" will be connected to GND. ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_mult:prod_coll_fin5"                                                                                                                       ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                        ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Din1 ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Din1[31..1]" will be connected to GND. ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_mult:prod_coll_fin4"                                                                                                                       ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                        ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Din1 ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Din1[31..1]" will be connected to GND. ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_mult:prod_coll_fin3"                                                                                                                       ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                        ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Din1 ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Din1[31..1]" will be connected to GND. ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_mult:prod_coll_fin2"                                                                                                                       ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                        ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Din1 ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Din1[31..1]" will be connected to GND. ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_mult:prod_coll_fin1"                                                                                                                       ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                        ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Din1 ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Din1[31..1]" will be connected to GND. ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_mult:prod_coll_fin0"                                                                                                                               ;
++--------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port         ; Type  ; Severity ; Details                                                                                                                                        ;
++--------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+; Din0[31..23] ; Input ; Info     ; Stuck at VCC                                                                                                                                   ;
+; Din0[19..17] ; Input ; Info     ; Stuck at VCC                                                                                                                                   ;
+; Din0[11..9]  ; Input ; Info     ; Stuck at VCC                                                                                                                                   ;
+; Din0[7..6]   ; Input ; Info     ; Stuck at VCC                                                                                                                                   ;
+; Din0[3..2]   ; Input ; Info     ; Stuck at VCC                                                                                                                                   ;
+; Din0[22..20] ; Input ; Info     ; Stuck at GND                                                                                                                                   ;
+; Din0[16..12] ; Input ; Info     ; Stuck at GND                                                                                                                                   ;
+; Din0[5..4]   ; Input ; Info     ; Stuck at GND                                                                                                                                   ;
+; Din0[8]      ; Input ; Info     ; Stuck at GND                                                                                                                                   ;
+; Din0[1]      ; Input ; Info     ; Stuck at GND                                                                                                                                   ;
+; Din0[0]      ; Input ; Info     ; Stuck at VCC                                                                                                                                   ;
+; Din1         ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Din1[31..1]" will be connected to GND. ;
++--------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "fp_mult:prod_coll_feq0" ;
++--------------+-------+----------+------------------+
+; Port         ; Type  ; Severity ; Details          ;
++--------------+-------+----------+------------------+
+; Din0[22..20] ; Input ; Info     ; Stuck at VCC     ;
+; Din0[16..12] ; Input ; Info     ; Stuck at VCC     ;
+; Din0[5..4]   ; Input ; Info     ; Stuck at VCC     ;
+; Din0[1..0]   ; Input ; Info     ; Stuck at VCC     ;
+; Din0[31..23] ; Input ; Info     ; Stuck at GND     ;
+; Din0[19..17] ; Input ; Info     ; Stuck at GND     ;
+; Din0[11..9]  ; Input ; Info     ; Stuck at GND     ;
+; Din0[7..6]   ; Input ; Info     ; Stuck at GND     ;
+; Din0[3..2]   ; Input ; Info     ; Stuck at GND     ;
+; Din0[8]      ; Input ; Info     ; Stuck at VCC     ;
++--------------+-------+----------+------------------+
+
+
 +------------------------------------------------+
 ; Port Connectivity Checks: "adder2:add12"       ;
 +--------------+-------+----------+--------------+
@@ -4875,6 +5551,17 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------------+-------+----------+--------------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "distribution_ram:fout_ram"                                                                                                                              ;
++----------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                                             ;
++----------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; data_in  ; Input  ; Warning  ; Input port expression (1 bits) is smaller than the input port (288 bits) it drives.  Extra input bit(s) "data_in[287..1]" will be connected to GND. ;
+; data_out ; Output ; Warning  ; Output or bidir port (288 bits) is wider than the port expression (1 bits) it drives; bit(s) "data_out[287..1]" have no fanouts                     ;
+; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                 ;
++----------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
 +--------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "distribution_ram:feq_ram"                                                               ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
@@ -4893,21 +5580,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------+-------+----------+-----------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "controller:fsm"                                                                            ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; WE_fout_mem ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
 +-------------------------------+
 ; Elapsed Time Per Partition    ;
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:11     ;
+; Top            ; 00:00:12     ;
 +----------------+--------------+
 
 
@@ -4917,7 +5595,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Tue Nov 02 21:05:07 2021
+    Info: Processing started: Tue Nov 02 23:12:43 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LBM_DE2 -c LBM_DE2
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file lbm_de2.sv
@@ -4980,14 +5658,35 @@ Info (12021): Found 1 design units, including 1 entities, in source file tb_wall
     Info (12023): Found entity 1: tb_wall_detector
 Info (12021): Found 1 design units, including 1 entities, in source file mux3.sv
     Info (12023): Found entity 1: mux3
-Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(347): created implicit net for "LD_EN_UX"
-Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(348): created implicit net for "LD_EN_UY"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(329): created implicit net for "fout_mem_in"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(395): created implicit net for "LD_EN_UX"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(396): created implicit net for "LD_EN_UY"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(465): created implicit net for "fout_mem_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1006): created implicit net for "fin0_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1010): created implicit net for "fin1_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1014): created implicit net for "fin2_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1018): created implicit net for "fin3_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1022): created implicit net for "fin4_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1026): created implicit net for "fin5_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1030): created implicit net for "fin6_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1034): created implicit net for "fin7_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1038): created implicit net for "fin8_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1083): created implicit net for "fout0_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1089): created implicit net for "fout1_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1095): created implicit net for "fout2_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1101): created implicit net for "fout3_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1107): created implicit net for "fout4_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1113): created implicit net for "fout5_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1119): created implicit net for "fout6_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1125): created implicit net for "fout7_out"
+Warning (10236): Verilog HDL Implicit Net warning at LBM_DE2.sv(1131): created implicit net for "fout8_out"
 Info (12127): Elaborating entity "LBM_DE2" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at LBM_DE2.sv(297): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at LBM_DE2.sv(329): truncated value with size 9 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at LBM_DE2.sv(345): truncated value with size 32 to match size of target (8)
 Info (12128): Elaborating entity "counter_init" for hierarchy "counter_init:init_counter"
 Info (12128): Elaborating entity "row_counter" for hierarchy "row_counter:row_cnter"
 Info (12128): Elaborating entity "controller" for hierarchy "controller:fsm"
-Warning (10958): SystemVerilog warning at controller.sv(35): unique or priority keyword makes case statement complete
+Warning (10958): SystemVerilog warning at controller.sv(37): unique or priority keyword makes case statement complete
 Info (12128): Elaborating entity "wall_detector" for hierarchy "wall_detector:wall_det"
 Info (12128): Elaborating entity "weights_reg" for hierarchy "weights_reg:w_reg"
 Info (12128): Elaborating entity "moment_ram" for hierarchy "moment_ram:p_ram"
@@ -5333,7 +6032,7 @@ Info (12133): Instantiated megafunction "fp_mult:prod_6uy|lpm_mult:Mult0" with t
     Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
     Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
     Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
-Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (12241): 21 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (13014): Ignored 8123 buffer(s)
     Info (13019): Ignored 8123 SOFT buffer(s)
 Info (286030): Timing-Driven Synthesis is running
@@ -5347,11 +6046,11 @@ Info (21057): Implemented 8110 device resources after synthesis - the final reso
     Info (21061): Implemented 7028 logic cells
     Info (21064): Implemented 384 RAM segments
     Info (21062): Implemented 312 DSP elements
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 11 warnings
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 32 warnings
     Info: Peak virtual memory: 4721 megabytes
-    Info: Processing ended: Tue Nov 02 21:05:22 2021
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:15
+    Info: Processing ended: Tue Nov 02 23:12:59 2021
+    Info: Elapsed time: 00:00:16
+    Info: Total CPU time (on all processors): 00:00:16
 
 
 +------------------------------------------+

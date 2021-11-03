@@ -154,6 +154,16 @@ logic LD_EN_FEQ6;
 logic LD_EN_FEQ7;
 logic LD_EN_FEQ8;
 
+logic LD_EN_FOUT0;
+logic LD_EN_FOUT1;
+logic LD_EN_FOUT2;
+logic LD_EN_FOUT3;
+logic LD_EN_FOUT4;
+logic LD_EN_FOUT5;
+logic LD_EN_FOUT6;
+logic LD_EN_FOUT7;
+logic LD_EN_FOUT8;
+
 assign fin_mem_data_out = fin_out;
 assign fin_8 = fin_out[DATA_WIDTH-1:0];
 assign fin_7 = fin_out[2*DATA_WIDTH-1:DATA_WIDTH];
@@ -167,6 +177,8 @@ assign fin_0 = fin_out[9*DATA_WIDTH-1:8*DATA_WIDTH];
 
 logic signed [DATA_WIDTH_F-1:0] feq_in;
 logic signed [DATA_WIDTH_F-1:0] feq_out;
+logic signed [DATA_WIDTH_F-1:0] fout_mem_in;
+logic signed [DATA_WIDTH_F-1:0] fout_mem_out;
 
 logic signed [DATA_WIDTH_F-1:0] fin_mem_in;
 
@@ -286,6 +298,48 @@ logic signed [DATA_WIDTH-1:0] feq6_out;
 logic signed [DATA_WIDTH-1:0] feq7_out;
 logic signed [DATA_WIDTH-1:0] feq8_out;
 
+logic signed [DATA_WIDTH-1:0] coll_prod_feq0;
+logic signed [DATA_WIDTH-1:0] coll_prod_feq1;
+logic signed [DATA_WIDTH-1:0] coll_prod_feq2;
+logic signed [DATA_WIDTH-1:0] coll_prod_feq3;
+logic signed [DATA_WIDTH-1:0] coll_prod_feq4;
+logic signed [DATA_WIDTH-1:0] coll_prod_feq5;
+logic signed [DATA_WIDTH-1:0] coll_prod_feq6;
+logic signed [DATA_WIDTH-1:0] coll_prod_feq7;
+logic signed [DATA_WIDTH-1:0] coll_prod_feq8;
+
+logic signed [DATA_WIDTH-1:0] coll_prod_fin0;
+logic signed [DATA_WIDTH-1:0] coll_prod_fin1;
+logic signed [DATA_WIDTH-1:0] coll_prod_fin2;
+logic signed [DATA_WIDTH-1:0] coll_prod_fin3;
+logic signed [DATA_WIDTH-1:0] coll_prod_fin4;
+logic signed [DATA_WIDTH-1:0] coll_prod_fin5;
+logic signed [DATA_WIDTH-1:0] coll_prod_fin6;
+logic signed [DATA_WIDTH-1:0] coll_prod_fin7;
+logic signed [DATA_WIDTH-1:0] coll_prod_fin8;
+
+logic signed [DATA_WIDTH-1:0] fout0_in;
+logic signed [DATA_WIDTH-1:0] fout1_in;
+logic signed [DATA_WIDTH-1:0] fout2_in;
+logic signed [DATA_WIDTH-1:0] fout3_in;
+logic signed [DATA_WIDTH-1:0] fout4_in;
+logic signed [DATA_WIDTH-1:0] fout5_in;
+logic signed [DATA_WIDTH-1:0] fout6_in;
+logic signed [DATA_WIDTH-1:0] fout7_in;
+logic signed [DATA_WIDTH-1:0] fout8_in;
+
+logic signed [DATA_WIDTH-1:0] fout0_out;
+logic signed [DATA_WIDTH-1:0] fout1_out;
+logic signed [DATA_WIDTH-1:0] fout2_out;
+logic signed [DATA_WIDTH-1:0] fout3_out;
+logic signed [DATA_WIDTH-1:0] fout4_out;
+logic signed [DATA_WIDTH-1:0] fout5_out;
+logic signed [DATA_WIDTH-1:0] fout6_out;
+logic signed [DATA_WIDTH-1:0] fout7_out;
+logic signed [DATA_WIDTH-1:0] fout8_out;
+
+assign fout_mem_in = {fout0_out,fout1_out,fout2_out,fout3_out,fout4_out,fout5_out,fout6_out,fout7_out,fout8_out};
+
 logic [COUNT_WIDTH-1:0] y_pos; // rows
 logic [ADDRESS_WIDTH-1:0] x_pos; // columns
 
@@ -293,6 +347,12 @@ logic LID;
 logic BOTTOM_WALL;
 logic LEFT_WALL;
 logic RIGHT_WALL;
+
+logic signed [DATA_WIDTH-1:0] omega; // delta(t)/tau
+logic signed [DATA_WIDTH-1:0] omega_prime; // 1-delta(t)/tau
+
+assign omega = 32'h01_71F133; // w (relaxation parameter)
+assign omega_prime = 32'hFF_8E0ECD; // 1 - w
 
 assign x_pos = count_init % 16;
 
@@ -354,7 +414,16 @@ controller fsm (.Clk(CLOCK_50),
 																															  .LD_EN_FEQ5(LD_EN_FEQ5),
 																															  .LD_EN_FEQ6(LD_EN_FEQ6),
 																															  .LD_EN_FEQ7(LD_EN_FEQ7),
-																															  .LD_EN_FEQ8(LD_EN_FEQ8));
+																															  .LD_EN_FEQ8(LD_EN_FEQ8),
+																															  .LD_EN_FOUT0(LD_EN_FOUT0),
+																															  .LD_EN_FOUT1(LD_EN_FOUT1),
+																															  .LD_EN_FOUT2(LD_EN_FOUT2),
+																															  .LD_EN_FOUT3(LD_EN_FOUT3),
+																															  .LD_EN_FOUT4(LD_EN_FOUT4),
+																															  .LD_EN_FOUT5(LD_EN_FOUT5),
+																															  .LD_EN_FOUT6(LD_EN_FOUT6),
+																															  .LD_EN_FOUT7(LD_EN_FOUT7),
+																															  .LD_EN_FOUT8(LD_EN_FOUT8));
 
 
 // wall detector
@@ -400,6 +469,12 @@ distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(
 																																		  .WE(WE_feq_mem),
 																																		  .data_in(feq_in),
 																																		  .data_out(feq_out));
+																																		  
+distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) fout_ram (.address(count_init),
+                                                                                                        .Clk(CLOCK_50),
+																																		  .WE(WE_fout_mem),
+																																		  .data_in(fout_mem_in),
+																																		  .data_out(fout_mem_out));
 
 // fin_mem multiplexer
 
@@ -895,5 +970,175 @@ adder2 #(.DATA_WIDTH(DATA_WIDTH)) add23 (.Din0(u2_neg3),
 			
 adder2 #(.DATA_WIDTH(DATA_WIDTH)) add24 (.Din0(two),
                                          .Din1(u2_neg3),
-													  .Dout(add24_out));		
+													  .Dout(add24_out));
+													
+
+// COLLISION
+													
+// feq0_out * w, feq1_out * w,  ...
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_feq0 (.Din0(omega),
+																																				 .Din1(feq0_out),
+																																				 .Dout(coll_prod_feq0));
+																																				
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_feq1 (.Din0(omega),
+																																				 .Din1(feq1_out),
+																																				 .Dout(coll_prod_feq1));																																				
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_feq2 (.Din0(omega),
+																																				 .Din1(feq2_out),
+																																				 .Dout(coll_prod_feq2));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_feq3 (.Din0(omega),
+																																				 .Din1(feq3_out),
+																																				 .Dout(coll_prod_feq3));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_feq4 (.Din0(omega),
+																																				 .Din1(feq4_out),
+																																				 .Dout(coll_prod_feq4));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_feq5 (.Din0(omega),
+																																				 .Din1(feq5_out),
+																																				 .Dout(coll_prod_feq5));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_feq6 (.Din0(omega),
+																																				 .Din1(feq6_out),
+																																				 .Dout(coll_prod_feq6));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_feq7 (.Din0(omega),
+																																				 .Din1(feq7_out),
+																																				 .Dout(coll_prod_feq7));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_feq8 (.Din0(omega),
+																																				 .Din1(feq8_out),
+																																				 .Dout(coll_prod_feq8));																																				 
+// fin_0 * w_prime, fin_1 * w_prime, ...	
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_fin0 (.Din0(omega_prime),
+																																				 .Din1(fin_0),
+																																				 .Dout(coll_prod_fin0));
+																																				
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_fin1 (.Din0(omega_prime),
+																																				 .Din1(fin_1),
+																																				 .Dout(coll_prod_fin1));																																				
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_fin2 (.Din0(omega_prime),
+																																				 .Din1(fin_2),
+																																				 .Dout(coll_prod_fin2));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_fin3 (.Din0(omega_prime),
+																																				 .Din1(fin_3),
+																																				 .Dout(coll_prod_fin3));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_fin4 (.Din0(omega_prime),
+																																				 .Din1(fin_4),
+																																				 .Dout(coll_prod_fin4));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_fin5 (.Din0(omega_prime),
+																																				 .Din1(fin_5),
+																																				 .Dout(coll_prod_fin5));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_fin6 (.Din0(omega_prime),
+																																				 .Din1(fin_6),
+																																				 .Dout(coll_prod_fin6));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_fin7 (.Din0(omega_prime),
+																																				 .Din1(fin_7),
+																																				 .Dout(coll_prod_fin7));
+
+fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_coll_fin8 (.Din0(omega_prime),
+																																				 .Din1(fin_8),
+																																				 .Dout(coll_prod_fin8));
+
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add25 (.Din0(coll_prod_feq0),
+                                         .Din1(coll_prod_fin0),
+													  .Dout(fout0_in));
+
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add26 (.Din0(coll_prod_feq1),
+                                         .Din1(coll_prod_fin1),
+													  .Dout(fout1_in));
+
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add27 (.Din0(coll_prod_feq2),
+                                         .Din1(coll_prod_fin2),
+													  .Dout(fout2_in));
+
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add28 (.Din0(coll_prod_feq3),
+                                         .Din1(coll_prod_fin3),
+													  .Dout(fout3_in));
+
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add29 (.Din0(coll_prod_feq4),
+                                         .Din1(coll_prod_fin4),
+													  .Dout(fout4_in));
+
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add30 (.Din0(coll_prod_feq5),
+                                         .Din1(coll_prod_fin5),
+													  .Dout(fout5_in));
+
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add31 (.Din0(coll_prod_feq6),
+                                         .Din1(coll_prod_fin6),
+													  .Dout(fout6_in));
+
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add32 (.Din0(coll_prod_feq7),
+                                         .Din1(coll_prod_fin7),
+													  .Dout(fout7_in));
+
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add33 (.Din0(coll_prod_feq8),
+                                         .Din1(coll_prod_fin8),
+													  .Dout(fout8_in));
+
+// fout registers
+
+reg32 #(.WIDTH(DATA_WIDTH)) fout0_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_FOUT0),
+													 .Data_In(fout0_in),
+													 .Data_Out(fout0_out));	
+
+reg32 #(.WIDTH(DATA_WIDTH)) fout1_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_FOUT1),
+													 .Data_In(fout1_in),
+													 .Data_Out(fout1_out));
+
+reg32 #(.WIDTH(DATA_WIDTH)) fout2_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_FOUT2),
+													 .Data_In(fout2_in),
+													 .Data_Out(fout2_out));
+
+reg32 #(.WIDTH(DATA_WIDTH)) fout3_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_FOUT3),
+													 .Data_In(fout3_in),
+													 .Data_Out(fout3_out));	
+	
+reg32 #(.WIDTH(DATA_WIDTH)) fout4_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_FOUT4),
+													 .Data_In(fout4_in),
+													 .Data_Out(fout4_out));
+													
+reg32 #(.WIDTH(DATA_WIDTH)) fout5_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_FOUT5),
+													 .Data_In(fout5_in),
+													 .Data_Out(fout5_out));
+	
+reg32 #(.WIDTH(DATA_WIDTH)) fout6_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_FOUT6),
+													 .Data_In(fout6_in),
+													 .Data_Out(fout6_out));
+													
+reg32 #(.WIDTH(DATA_WIDTH)) fout7_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_FOUT7),
+													 .Data_In(fout7_in),
+													 .Data_Out(fout7_out));
+	
+reg32 #(.WIDTH(DATA_WIDTH)) fout8_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_FOUT8),
+													 .Data_In(fout8_in),
+													 .Data_Out(fout8_out));													  
 endmodule
