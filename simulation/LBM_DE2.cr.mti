@@ -12,6 +12,13 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	tb_row_counter
 
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_convert_to_fp.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_convert_to_fp.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_convert_to_fp
+
+Top level modules:
+	tb_convert_to_fp
+
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module LBM_DE2
@@ -25,6 +32,13 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 
 Top level modules:
 	row_counter
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/convert_to_fp.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/convert_to_fp.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module convert_to_fp
+
+Top level modules:
+	convert_to_fp
 
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/fp_div.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/fp_div.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
