@@ -1,5 +1,5 @@
 Flow report for LBM_DE2
-Tue Nov 02 16:35:33 2021
+Tue Nov 02 20:37:39 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -40,20 +40,20 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Successful - Tue Nov 02 16:35:33 2021      ;
+; Flow Status                        ; Successful - Tue Nov 02 20:37:39 2021      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; LBM_DE2                                    ;
 ; Top-level Entity Name              ; LBM_DE2                                    ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE115F29C7                              ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; 1,802 / 114,480 ( 2 % )                    ;
-;     Total combinational functions  ; 1,718 / 114,480 ( 2 % )                    ;
-;     Dedicated logic registers      ; 717 / 114,480 ( < 1 % )                    ;
-; Total registers                    ; 717                                        ;
+; Total logic elements               ; 1,860 / 114,480 ( 2 % )                    ;
+;     Total combinational functions  ; 1,803 / 114,480 ( 2 % )                    ;
+;     Dedicated logic registers      ; 724 / 114,480 ( < 1 % )                    ;
+; Total registers                    ; 724                                        ;
 ; Total pins                         ; 386 / 529 ( 73 % )                         ;
 ; Total virtual pins                 ; 0                                          ;
-; Total memory bits                  ; 48,128 / 3,981,312 ( 1 % )                 ;
+; Total memory bits                  ; 48,384 / 3,981,312 ( 1 % )                 ;
 ; Embedded Multiplier 9-bit elements ; 35 / 532 ( 7 % )                           ;
 ; Total PLLs                         ; 0 / 4 ( 0 % )                              ;
 +------------------------------------+--------------------------------------------+
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/02/2021 16:34:31 ;
+; Start date & time ; 11/02/2021 20:36:34 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; LBM_DE2             ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                           ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+---------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 211898707314421.163588527115016 ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 211898707314421.163589979410512 ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl               ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog) ; <None>        ; --          ; --             ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                              ; --            ; --          ; --             ;
@@ -93,12 +93,12 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:06     ; 1.0                     ; 4662 MB             ; 00:00:06                           ;
-; Fitter                    ; 00:00:39     ; 1.0                     ; 5165 MB             ; 00:00:37                           ;
-; Assembler                 ; 00:00:04     ; 1.0                     ; 4610 MB             ; 00:00:04                           ;
-; TimeQuest Timing Analyzer ; 00:00:05     ; 1.0                     ; 4718 MB             ; 00:00:05                           ;
-; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 4575 MB             ; 00:00:02                           ;
-; Total                     ; 00:00:56     ; --                      ; --                  ; 00:00:54                           ;
+; Analysis & Synthesis      ; 00:00:06     ; 1.0                     ; 4669 MB             ; 00:00:06                           ;
+; Fitter                    ; 00:00:39     ; 1.0                     ; 5196 MB             ; 00:00:38                           ;
+; Assembler                 ; 00:00:05     ; 1.0                     ; 4606 MB             ; 00:00:04                           ;
+; TimeQuest Timing Analyzer ; 00:00:05     ; 1.0                     ; 4719 MB             ; 00:00:05                           ;
+; EDA Netlist Writer        ; 00:00:03     ; 1.0                     ; 4582 MB             ; 00:00:03                           ;
+; Total                     ; 00:00:58     ; --                      ; --                  ; 00:00:56                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

@@ -17,9 +17,12 @@ logic WE_uy_mem;
 logic WE_fin_mem;
 logic WE_fout_mem;
 logic WE_feq_mem;
-logic select_p;
-logic select_ux;
-logic select_uy;
+logic select_p_mem;
+logic select_ux_mem;
+logic select_uy_mem;
+logic [1:0] select_ux_reg;
+logic select_uy_reg;
+logic select_p_reg;
 logic select_fin;
 logic count_init_en;
 
@@ -51,6 +54,9 @@ assign gnd = {{DATA_WIDTH{1'b0}}};
 logic signed [DATA_WIDTH_F-1:0] weights;
 logic signed [DATA_WIDTH_F-1:0] cx;
 logic signed [DATA_WIDTH_F-1:0] cy;
+
+logic signed [DATA_WIDTH-1:0] uLid;
+assign uLid = 32'h00_0CCCCC;
 
 logic signed [DATA_WIDTH-1:0] cx_0;
 logic signed [DATA_WIDTH-1:0] cx_1;
@@ -102,6 +108,11 @@ logic signed [DATA_WIDTH-1:0] fin_5;
 logic signed [DATA_WIDTH-1:0] fin_6;
 logic signed [DATA_WIDTH-1:0] fin_7;
 logic signed [DATA_WIDTH-1:0] fin_8;
+
+
+logic signed [DATA_WIDTH-1:0] pmux_in;
+logic signed [DATA_WIDTH-1:0] uxmux_in;
+logic signed [DATA_WIDTH-1:0] uymux_in;
 
 logic signed [DATA_WIDTH-1:0] p_in;
 logic signed [DATA_WIDTH-1:0] p_out;
@@ -278,6 +289,11 @@ logic signed [DATA_WIDTH-1:0] feq8_out;
 logic [COUNT_WIDTH-1:0] y_pos; // rows
 logic [ADDRESS_WIDTH-1:0] x_pos; // columns
 
+logic LID;
+logic BOTTOM_WALL;
+logic LEFT_WALL;
+logic RIGHT_WALL;
+
 assign x_pos = count_init % 16;
 
 
@@ -306,15 +322,22 @@ controller fsm (.Clk(CLOCK_50),
 																															  .Reset(RESET),
 																															  .count_init(count_init),
 																															  .div_valid(div_valid),
+																															  .LID(LID),
+																															  .BOTTOM_WALL(BOTTOM_WALL),
+																															  .LEFT_WALL(LEFT_WALL),
+																															  .RIGHT_WALL(RIGHT_WALL),
 																															  .WE_p_mem(WE_p_mem),
 																															  .WE_ux_mem(WE_ux_mem),
 																															  .WE_uy_mem(WE_uy_mem),
 																															  .WE_fin_mem(WE_fin_mem),
 																															  .WE_fout_mem(WE_fout_mem),
 																															  .WE_feq_mem(WE_feq_mem),
-																															  .select_p(select_p),
-																															  .select_ux(select_ux),
-																															  .select_uy(select_uy),
+																															  .select_p_mem(select_p_mem),
+																															  .select_ux_mem(select_ux_mem),
+																															  .select_uy_mem(select_uy_mem),
+																															  .select_ux_reg(select_ux_reg),
+																															  .select_uy_reg(select_uy_reg),
+																															  .select_p_reg(select_p_reg),
 																															  .select_fin(select_fin),
 																															  .count_init_en(count_init_en),
 																															  .div_start(div_start),
@@ -333,7 +356,15 @@ controller fsm (.Clk(CLOCK_50),
 																															  .LD_EN_FEQ7(LD_EN_FEQ7),
 																															  .LD_EN_FEQ8(LD_EN_FEQ8));
 
-																					  
+
+// wall detector
+wall_detector #(.GRID_DIM(GRID_DIM), .INIT_COUNT_WIDTH(ADDRESS_WIDTH), .COUNT_WIDTH(COUNT_WIDTH)) wall_det (.x(x_pos),
+																																			   .y(y_pos),
+																																				.LID(LID),
+																																				.BOTTOM_WALL(BOTTOM_WALL),
+																																				.LEFT_WALL(LEFT_WALL),
+																																				.RIGHT_WALL(RIGHT_WALL));										
+										
 // weights register
 weights_reg #(.WIDTH(DATA_WIDTH_F)) w_reg (.Reset(RESET),
 													    .Data_Out(weights));
@@ -368,22 +399,40 @@ distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(
                                                                                                         .Clk(CLOCK_50),
 																																		  .WE(WE_feq_mem),
 																																		  .data_in(feq_in),
-																																		  .data_out(feq_out));																																  
+																																		  .data_out(feq_out));
+
+// moment reg multiplexers
+
+mux2 #(.DATA_WIDTH(DATA_WIDTH)) p_in_mux (.Din0(pmux_in),
+														.Din1(one),
+														.select(select_p_reg),
+														.Dout(p_in));
+
+mux3 #(.DATA_WIDTH(DATA_WIDTH)) ux_in_mux (.Din0(uxmux_in),
+														 .Din1(uLid),
+														 .Din2(gnd),
+														 .select(select_ux_reg),
+														 .Dout(ux_in));
+
+mux2 #(.DATA_WIDTH(DATA_WIDTH)) uy_in_mux (.Din0(uymux_in),
+														 .Din1(gnd),
+														 .select(select_uy_reg),
+														 .Dout(uy_in));																																		  																																  
 // memory data bus multiplexers
 
 mux2 #(.DATA_WIDTH(DATA_WIDTH)) p_mem_mux (.Din0(pwr),
 														 .Din1(p_out),
-														 .select(select_p),
+														 .select(select_p_mem),
 														 .Dout(p_mem_data_in));
 														 
 mux2 #(.DATA_WIDTH(DATA_WIDTH)) ux_mem_mux (.Din0(gnd),
 														 .Din1(ux_out),
-														 .select(select_ux),
+														 .select(select_ux_mem),
 														 .Dout(ux_mem_data_in));
 
 mux2 #(.DATA_WIDTH(DATA_WIDTH)) uy_mem_mux (.Din0(gnd),
 														 .Din1(uy_out),
-														 .select(select_uy),
+														 .select(select_uy_mem),
 														 .Dout(uy_mem_data_in));														 
 
 // moment calculation hardware
@@ -396,7 +445,7 @@ adder9 #(.DATA_WIDTH(DATA_WIDTH)) fin_sum (.Din0(fin_0),
 														.Din6(fin_6),
 														.Din7(fin_7),
 														.Din8(fin_8),
-														.Dout(p_in));
+														.Dout(pmux_in));
 
 reg32 #(.WIDTH(DATA_WIDTH)) p_reg (.Clk(CLOCK_50),
 													 .Reset(RESET),
@@ -537,7 +586,7 @@ fp_div #(.WIDTH(DATA_WIDTH), .FBITS(FRACTIONAL_BITS)) div_ux (.clk(CLOCK_50),
 																				  .ovf(ovf0),
 																				  .x(pux_out),
 																				  .y(p_out),
-																				  .q(ux_in),
+																				  .q(uxmux_in),
 																				  .r(remainder0));
 
 fp_div #(.WIDTH(DATA_WIDTH), .FBITS(FRACTIONAL_BITS)) div_uy (.clk(CLOCK_50),
@@ -548,7 +597,7 @@ fp_div #(.WIDTH(DATA_WIDTH), .FBITS(FRACTIONAL_BITS)) div_uy (.clk(CLOCK_50),
 																				  .ovf(ovf1),
 																				  .x(puy_out),
 																				  .y(p_out),
-																				  .q(uy_in),
+																				  .q(uymux_in),
 																				  .r(remainder1));
 													
 fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_ux2 (.Din0(ux_out),
