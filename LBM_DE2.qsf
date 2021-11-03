@@ -83,3 +83,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE wall_detector.sv
 set_global_assignment -name SYSTEMVERILOG_FILE tb_wall_detector.sv
 set_global_assignment -name SYSTEMVERILOG_FILE mux3.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SYSTEMVERILOG_FILE streaming_unit.sv
+set_global_assignment -name SYSTEMVERILOG_FILE convert_to_fp.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_convert_to_fp.sv
