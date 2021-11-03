@@ -47,6 +47,13 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	adder2
 
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/mux3.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/mux3.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module mux3
+
+Top level modules:
+	mux3
+
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module tb_fp_div

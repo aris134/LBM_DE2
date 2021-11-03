@@ -3,7 +3,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 input logic div_valid,
 						 input logic LID, BOTTOM_WALL, LEFT_WALL, RIGHT_WALL,
 						 output logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem,
-						 output logic select_p_mem, select_ux_mem, select_uy_mem, select_fin,
+						 output logic select_p_mem, select_ux_mem, select_uy_mem, select_fin_mem,
 						 output logic select_p_reg, select_uy_reg,
 						 output logic [1:0] select_ux_reg,
 						 output logic count_init_en,
@@ -72,7 +72,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	select_p_reg = 1'b0;
 	select_ux_reg = 2'b00;
 	select_uy_reg = 1'b0;
-	select_fin = 1'b0;
+	select_fin_mem = 1'b0;
 	count_init_en = 1'b0;
 	LD_EN_P = 1'b0;
 	LD_EN_PUX = 1'b0;
@@ -100,7 +100,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				select_p_mem = 1'b1;
 				select_ux_mem = 1'b1;
 				select_uy_mem = 1'b1;
-				select_fin = 1'b1;
+				select_fin_mem = 1'b1;
 				count_init_en = 1'b1;
 			end
 	CALC_MOMENT_1:
@@ -112,7 +112,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				select_p_mem = 1'b0;
 				select_ux_mem = 1'b0;
 				select_uy_mem = 1'b0;
-				select_fin = 1'b0;
+				select_fin_mem = 1'b0;
 				count_init_en = 1'b0;
 				if (LID | BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
 					select_p_reg = 1'b1;
@@ -169,6 +169,10 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	CALC_EQUIL_2:
 			begin
 				WE_feq_mem = 1'b1;
+				if (LID | BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
+					select_fin_mem = 1'b1;
+					WE_fin_mem = 1'b1;
+				end
 			end
 	CALC_COLL_1:
 			begin

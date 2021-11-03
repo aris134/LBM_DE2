@@ -20,7 +20,7 @@ r1
 31
 Z11 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/adder2.sv|
 Z12 o-work work -sv -O0
-Z13 !s108 1635896387.462000
+Z13 !s108 1635901635.176000
 Z14 !s107 C:/Users/arism/Desktop/LBM_DE2/adder2.sv|
 !i10b 1
 !s85 0
@@ -71,13 +71,12 @@ Z34 !s107 C:/Users/arism/Desktop/LBM_DE2/column_generator.sv|
 !s101 -O0
 vcontroller
 R1
-Z35 !s100 iR]=ZDBefMjVE9kCLG=E_3
-Z36 IeGOoRDNE4kDdCXO>oE6C53
-Z37 V3nRZGR9cF1j:;4fJ]l2d:3
-Z38 !s105 controller_sv_unit
+Z35 I@PjQXmKRLY6nZ2?8Voj_d0
+Z36 VdSOWz[ho;KgeU[?cM2mCJ0
+Z37 !s105 controller_sv_unit
 S1
 R6
-R7
+Z38 w1635901491
 Z39 8C:/Users/arism/Desktop/LBM_DE2/controller.sv
 Z40 FC:/Users/arism/Desktop/LBM_DE2/controller.sv
 L0 1
@@ -86,604 +85,627 @@ r1
 31
 Z41 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/controller.sv|
 R12
-Z42 !s108 1635896387.244000
-Z43 !s107 C:/Users/arism/Desktop/LBM_DE2/controller.sv|
+Z42 !s100 A?2RKZSCjHH9:`SjFME_f0
+Z43 !s108 1635901634.931000
+Z44 !s107 C:/Users/arism/Desktop/LBM_DE2/controller.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vcounter_init
 R1
-Z44 !s100 l6m3O2UhQo:13[5=zPca>2
-Z45 I5GZ@mk>gT=KnaMMTgLQF51
-Z46 VQFMo4`6cjU4dPS>KBz=D41
-Z47 !s105 counter_init_sv_unit
+Z45 !s100 l6m3O2UhQo:13[5=zPca>2
+Z46 I5GZ@mk>gT=KnaMMTgLQF51
+Z47 VQFMo4`6cjU4dPS>KBz=D41
+Z48 !s105 counter_init_sv_unit
 S1
 R6
-Z48 w1635715446
-Z49 8C:/Users/arism/Desktop/LBM_DE2/counter_init.sv
-Z50 FC:/Users/arism/Desktop/LBM_DE2/counter_init.sv
+Z49 w1635715446
+Z50 8C:/Users/arism/Desktop/LBM_DE2/counter_init.sv
+Z51 FC:/Users/arism/Desktop/LBM_DE2/counter_init.sv
 L0 1
 R10
 r1
 31
-Z51 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/counter_init.sv|
+Z52 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/counter_init.sv|
 R12
-Z52 !s108 1635717303.929000
-Z53 !s107 C:/Users/arism/Desktop/LBM_DE2/counter_init.sv|
+Z53 !s108 1635717303.929000
+Z54 !s107 C:/Users/arism/Desktop/LBM_DE2/counter_init.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vcx_reg
 R1
-Z54 !s100 :P51;91nE;KVPKj@KgMo90
-Z55 Idzk5gH^3IhjZA=8XNa=0Q3
-Z56 VB@[5R_23V9?lgE5=TTJ4f1
-Z57 !s105 cx_reg_sv_unit
+Z55 !s100 :P51;91nE;KVPKj@KgMo90
+Z56 Idzk5gH^3IhjZA=8XNa=0Q3
+Z57 VB@[5R_23V9?lgE5=TTJ4f1
+Z58 !s105 cx_reg_sv_unit
 S1
 R6
-Z58 w1635727658
-Z59 8C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv
-Z60 FC:/Users/arism/Desktop/LBM_DE2/cx_reg.sv
+Z59 w1635727658
+Z60 8C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv
+Z61 FC:/Users/arism/Desktop/LBM_DE2/cx_reg.sv
 L0 1
 R10
 r1
 31
-Z61 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv|
+Z62 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv|
 R12
-Z62 !s108 1635896386.995000
-Z63 !s107 C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv|
+Z63 !s108 1635901634.629000
+Z64 !s107 C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vcy_reg
 R1
-Z64 !s100 `@[C3`Zk??^TBH[Mf`JfD3
-Z65 IA>d4`OMR<A0S348^9>U;:3
-Z66 V5zN6oNlnN]gmQcjF@>8Wd3
-Z67 !s105 cy_reg_sv_unit
+Z65 !s100 `@[C3`Zk??^TBH[Mf`JfD3
+Z66 IA>d4`OMR<A0S348^9>U;:3
+Z67 V5zN6oNlnN]gmQcjF@>8Wd3
+Z68 !s105 cy_reg_sv_unit
 S1
 R6
-R58
-Z68 8C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv
-Z69 FC:/Users/arism/Desktop/LBM_DE2/cy_reg.sv
+R59
+Z69 8C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv
+Z70 FC:/Users/arism/Desktop/LBM_DE2/cy_reg.sv
 L0 1
 R10
 r1
 31
-Z70 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv|
+Z71 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv|
 R12
-Z71 !s108 1635896387.056000
-Z72 !s107 C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv|
+Z72 !s108 1635901634.704000
+Z73 !s107 C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vdistribution_ram
 R1
-Z73 !s100 IBI_Xf>:fD0`^e5j=87QT2
-Z74 I3i3OaB_XO5S@1BECD`n9<3
-Z75 VaGd[Sn^cM:SzUlJz<JU:Y2
-Z76 !s105 distribution_ram_sv_unit
+Z74 !s100 IBI_Xf>:fD0`^e5j=87QT2
+Z75 I3i3OaB_XO5S@1BECD`n9<3
+Z76 VaGd[Sn^cM:SzUlJz<JU:Y2
+Z77 !s105 distribution_ram_sv_unit
 S1
 R6
-Z77 w1635624687
-Z78 8C:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv
-Z79 FC:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv
+Z78 w1635624687
+Z79 8C:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv
+Z80 FC:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv
 L0 1
 R10
 r1
 31
-Z80 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv|
+Z81 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv|
 R12
-Z81 !s108 1635625703.694000
-Z82 !s107 C:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv|
+Z82 !s108 1635625703.694000
+Z83 !s107 C:/Users/arism/Desktop/LBM_DE2/distribution_ram.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vfp_div
 R1
-Z83 !s100 [TcH_J6o>@^@PkmOkHbOY1
-Z84 I9mNO=`ESjU38UXUKKJgAH1
-Z85 VKi]D[Na70bIiYP3XMM3UK2
-Z86 !s105 fp_div_sv_unit
+Z84 !s100 [TcH_J6o>@^@PkmOkHbOY1
+Z85 I9mNO=`ESjU38UXUKKJgAH1
+Z86 VKi]D[Na70bIiYP3XMM3UK2
+Z87 !s105 fp_div_sv_unit
 S1
 R6
-Z87 w1635794209
-Z88 8C:/Users/arism/Desktop/LBM_DE2/fp_div.sv
-Z89 FC:/Users/arism/Desktop/LBM_DE2/fp_div.sv
+Z88 w1635794209
+Z89 8C:/Users/arism/Desktop/LBM_DE2/fp_div.sv
+Z90 FC:/Users/arism/Desktop/LBM_DE2/fp_div.sv
 L0 1
 R10
 r1
 31
-Z90 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/fp_div.sv|
+Z91 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/fp_div.sv|
 R12
-Z91 !s108 1635896387.322000
-Z92 !s107 C:/Users/arism/Desktop/LBM_DE2/fp_div.sv|
+Z92 !s108 1635901635.008000
+Z93 !s107 C:/Users/arism/Desktop/LBM_DE2/fp_div.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vfp_mult
 R1
-Z93 !s100 Yh?3lgg^RBOjhDlSUV>O23
-Z94 I_CG94E3UaR]Wf4:8JAmVc1
-Z95 VbUaa4jcE]knn]0T3[WZ6K3
-Z96 !s105 fp_mult_sv_unit
+Z94 !s100 Yh?3lgg^RBOjhDlSUV>O23
+Z95 I_CG94E3UaR]Wf4:8JAmVc1
+Z96 VbUaa4jcE]knn]0T3[WZ6K3
+Z97 !s105 fp_mult_sv_unit
 S1
 R6
-Z97 w1635643621
-Z98 8C:/Users/arism/Desktop/LBM_DE2/fp_mult.sv
-Z99 FC:/Users/arism/Desktop/LBM_DE2/fp_mult.sv
+Z98 w1635643621
+Z99 8C:/Users/arism/Desktop/LBM_DE2/fp_mult.sv
+Z100 FC:/Users/arism/Desktop/LBM_DE2/fp_mult.sv
 L0 1
 R10
 r1
 31
-Z100 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/fp_mult.sv|
+Z101 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/fp_mult.sv|
 R12
-Z101 !s108 1635773058.870000
-Z102 !s107 C:/Users/arism/Desktop/LBM_DE2/fp_mult.sv|
+Z102 !s108 1635773058.870000
+Z103 !s107 C:/Users/arism/Desktop/LBM_DE2/fp_mult.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vLBM_DE2
 R1
-Z103 !s100 3>N^=AG3J1X<=d^UWDKHc2
-Z104 I2JH=b>I_iAofT;gfekOML1
+Z104 IcHS6fa^om0lRbn=6i?nG@3
 Z105 V;`I2Uk?^m3ib0a:JcgJam3
 Z106 !s105 LBM_DE2_sv_unit
 S1
 R6
-R7
-Z107 8C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
-Z108 FC:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
+Z107 w1635901296
+Z108 8C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
+Z109 FC:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
 L0 1
 R10
 r1
 31
-Z109 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv|
+Z110 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv|
 R12
-Z110 n@l@b@m_@d@e2
-Z111 !s108 1635896387.118000
-Z112 !s107 C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv|
+Z111 n@l@b@m_@d@e2
+Z112 !s100 @_RfzCmC:DZ]700902XKV0
+Z113 !s108 1635901634.771000
+Z114 !s107 C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vmoment_ram
 R1
-Z113 !s100 I2`RIn?Dc=7V=Nn@4DM8b2
-Z114 IUFbG`G6m9nS65cAYh3Xc<0
-Z115 VW43Db9;li7A^ibkePfbTl3
-Z116 !s105 moment_ram_sv_unit
+Z115 !s100 I2`RIn?Dc=7V=Nn@4DM8b2
+Z116 IUFbG`G6m9nS65cAYh3Xc<0
+Z117 VW43Db9;li7A^ibkePfbTl3
+Z118 !s105 moment_ram_sv_unit
 S1
 R6
-Z117 w1635625934
-Z118 8C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv
-Z119 FC:/Users/arism/Desktop/LBM_DE2/moment_ram.sv
+Z119 w1635625934
+Z120 8C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv
+Z121 FC:/Users/arism/Desktop/LBM_DE2/moment_ram.sv
 L0 1
 R10
 r1
 31
-Z120 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv|
+Z122 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv|
 R12
-Z121 !s108 1635720640.788000
-Z122 !s107 C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv|
+Z123 !s108 1635720640.788000
+Z124 !s107 C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vmux2
 R1
-Z123 IR@@2BEm_KlNBd7]>MazI21
-Z124 Vj95f5Ib`?=_4`Wd`9j4YZ2
-Z125 !s105 mux2_sv_unit
+Z125 IR@@2BEm_KlNBd7]>MazI21
+Z126 Vj95f5Ib`?=_4`Wd`9j4YZ2
+Z127 !s105 mux2_sv_unit
 S1
 R6
-Z126 w1635627147
-Z127 8C:/Users/arism/Desktop/LBM_DE2/mux2.sv
-Z128 FC:/Users/arism/Desktop/LBM_DE2/mux2.sv
+Z128 w1635627147
+Z129 8C:/Users/arism/Desktop/LBM_DE2/mux2.sv
+Z130 FC:/Users/arism/Desktop/LBM_DE2/mux2.sv
 L0 1
 R10
 r1
 31
-Z129 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/mux2.sv|
+Z131 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/mux2.sv|
 R12
-Z130 !s100 zD;9>J`_E_4[13k=c]=691
-Z131 !s108 1635627188.744000
-Z132 !s107 C:/Users/arism/Desktop/LBM_DE2/mux2.sv|
+Z132 !s100 zD;9>J`_E_4[13k=c]=691
+Z133 !s108 1635627188.744000
+Z134 !s107 C:/Users/arism/Desktop/LBM_DE2/mux2.sv|
 !i10b 1
 !s85 0
 !s101 -O0
-vreg32
+vmux3
 R1
-Z133 IaP5zH>9XeZNQQjWV:MWX>1
-Z134 VRU0<H]ChoK@CGF4nTHZ><1
+!i10b 1
+!s100 :5J7iLTAd]nQfa?f?OECG3
+IYF27MNm9@?YVVmXQzD`]20
+VoiejK09f_90:@CX>llccB3
+!s105 mux3_sv_unit
 S1
 R6
-Z135 w1635724009
-Z136 8C:/Users/arism/Desktop/LBM_DE2/reg32.sv
-Z137 FC:/Users/arism/Desktop/LBM_DE2/reg32.sv
+w1635897729
+8C:/Users/arism/Desktop/LBM_DE2/mux3.sv
+FC:/Users/arism/Desktop/LBM_DE2/mux3.sv
+L0 1
+R10
+r1
+!s85 0
+31
+!s108 1635901635.597000
+!s107 C:/Users/arism/Desktop/LBM_DE2/mux3.sv|
+!s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/mux3.sv|
+!s101 -O0
+R12
+vreg32
+R1
+Z135 IaP5zH>9XeZNQQjWV:MWX>1
+Z136 VRU0<H]ChoK@CGF4nTHZ><1
+S1
+R6
+Z137 w1635724009
+Z138 8C:/Users/arism/Desktop/LBM_DE2/reg32.sv
+Z139 FC:/Users/arism/Desktop/LBM_DE2/reg32.sv
 L0 1
 R10
 r1
 31
 R12
-Z138 !s100 ICn@Mda6[9kHL:53i8cHm3
-Z139 !s105 reg32_sv_unit
-Z140 !s108 1635724081.835000
-Z141 !s107 C:/Users/arism/Desktop/LBM_DE2/reg32.sv|
-Z142 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/reg32.sv|
+Z140 !s100 ICn@Mda6[9kHL:53i8cHm3
+Z141 !s105 reg32_sv_unit
+Z142 !s108 1635724081.835000
+Z143 !s107 C:/Users/arism/Desktop/LBM_DE2/reg32.sv|
+Z144 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/reg32.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vrow_counter
 R1
-Z143 !s100 Y;LL]7P9XU3g>^]0OK^k>1
-Z144 Ia;4PU?W2O1clm18`0ZYZz0
-Z145 VVP16n5YU6I6nK?;8e_V=i0
-Z146 !s105 row_counter_sv_unit
+Z145 !s100 Y;LL]7P9XU3g>^]0OK^k>1
+Z146 Ia;4PU?W2O1clm18`0ZYZz0
+Z147 VVP16n5YU6I6nK?;8e_V=i0
+Z148 !s105 row_counter_sv_unit
 S1
 R6
 R7
-Z147 8C:/Users/arism/Desktop/LBM_DE2/row_counter.sv
-Z148 FC:/Users/arism/Desktop/LBM_DE2/row_counter.sv
+Z149 8C:/Users/arism/Desktop/LBM_DE2/row_counter.sv
+Z150 FC:/Users/arism/Desktop/LBM_DE2/row_counter.sv
 L0 1
 R10
 r1
 31
-Z149 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/row_counter.sv|
+Z151 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/row_counter.sv|
 R12
-Z150 !s108 1635896387.533000
-Z151 !s107 C:/Users/arism/Desktop/LBM_DE2/row_counter.sv|
+Z152 !s108 1635901635.257000
+Z153 !s107 C:/Users/arism/Desktop/LBM_DE2/row_counter.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_adder9
 R1
-Z152 !s100 8doiWf=ec720;fh2^DOA;3
-Z153 I^EHl_<Pl5_A>hMJ2T6ILh2
-Z154 VCg;aA>k>[eF^L>]NY8XS51
-Z155 !s105 tb_adder9_sv_unit
+Z154 !s100 8doiWf=ec720;fh2^DOA;3
+Z155 I^EHl_<Pl5_A>hMJ2T6ILh2
+Z156 VCg;aA>k>[eF^L>]NY8XS51
+Z157 !s105 tb_adder9_sv_unit
 S1
 R6
 R19
-Z156 8C:/Users/arism/Desktop/LBM_DE2/tb_adder9.sv
-Z157 FC:/Users/arism/Desktop/LBM_DE2/tb_adder9.sv
+Z158 8C:/Users/arism/Desktop/LBM_DE2/tb_adder9.sv
+Z159 FC:/Users/arism/Desktop/LBM_DE2/tb_adder9.sv
 L0 1
 R10
 r1
 31
-Z158 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_adder9.sv|
+Z160 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_adder9.sv|
 R12
-Z159 !s108 1635634262.250000
-Z160 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_adder9.sv|
+Z161 !s108 1635634262.250000
+Z162 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_adder9.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_column_generator
 R1
-Z161 IzR`giD<m:5To718<g>iFR3
-Z162 V5bVn007U?6aO=n4fnWNN;1
+Z163 IzR`giD<m:5To718<g>iFR3
+Z164 V5bVn007U?6aO=n4fnWNN;1
 S1
 R6
-Z163 w1635878477
-Z164 8C:/Users/arism/Desktop/LBM_DE2/tb_column_generator.sv
-Z165 FC:/Users/arism/Desktop/LBM_DE2/tb_column_generator.sv
+Z165 w1635878477
+Z166 8C:/Users/arism/Desktop/LBM_DE2/tb_column_generator.sv
+Z167 FC:/Users/arism/Desktop/LBM_DE2/tb_column_generator.sv
 L0 1
 R10
 r1
 31
 R12
-Z166 !s100 7hJl<25^kXX?QZjSQY3[41
-Z167 !s105 tb_column_generator_sv_unit
-Z168 !s108 1635878576.449000
-Z169 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_column_generator.sv|
-Z170 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_column_generator.sv|
+Z168 !s100 7hJl<25^kXX?QZjSQY3[41
+Z169 !s105 tb_column_generator_sv_unit
+Z170 !s108 1635878576.449000
+Z171 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_column_generator.sv|
+Z172 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_column_generator.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_controller
 R1
-Z171 I@^]j>5oYLHDf`j`03dmi<3
-Z172 VWd>NU5fhbZINn9;>@U:`M3
-Z173 !s105 tb_controller_sv_unit
+Z173 I@^]j>5oYLHDf`j`03dmi<3
+Z174 VWd>NU5fhbZINn9;>@U:`M3
+Z175 !s105 tb_controller_sv_unit
 S1
 R6
-Z174 w1635717385
-Z175 8C:/Users/arism/Desktop/LBM_DE2/tb_controller.sv
-Z176 FC:/Users/arism/Desktop/LBM_DE2/tb_controller.sv
+Z176 w1635717385
+Z177 8C:/Users/arism/Desktop/LBM_DE2/tb_controller.sv
+Z178 FC:/Users/arism/Desktop/LBM_DE2/tb_controller.sv
 L0 1
 R10
 r1
 31
-Z177 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_controller.sv|
+Z179 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_controller.sv|
 R12
-Z178 !s100 =TD]4dfCJ[aJMBhAALX<H2
-Z179 !s108 1635717421.058000
-Z180 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_controller.sv|
+Z180 !s100 =TD]4dfCJ[aJMBhAALX<H2
+Z181 !s108 1635717421.058000
+Z182 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_controller.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_counter_init
 R1
-Z181 IdfP7P1KgO:okYER;K]96R0
-Z182 V=0:UPEV6PT<`2G:gUBD3A3
-Z183 !s105 tb_counter_init_sv_unit
+Z183 IdfP7P1KgO:okYER;K]96R0
+Z184 V=0:UPEV6PT<`2G:gUBD3A3
+Z185 !s105 tb_counter_init_sv_unit
 S1
 R6
-Z184 w1635717297
-Z185 8C:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv
-Z186 FC:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv
+Z186 w1635717297
+Z187 8C:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv
+Z188 FC:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv
 L0 1
 R10
 r1
 31
-Z187 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv|
+Z189 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv|
 R12
-Z188 !s100 5]?m91m_:QJ=04ShYnJ<_2
-Z189 !s108 1635717304.007000
-Z190 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv|
+Z190 !s100 5]?m91m_:QJ=04ShYnJ<_2
+Z191 !s108 1635717304.007000
+Z192 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_counter_init.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_distribution_ram
 R1
-Z191 IPoPKlgm=07?4D6;geda6j1
-Z192 V0[:I5]>AZ2ZPLnfBRz3@f0
-Z193 !s105 tb_distribution_ram_sv_unit
+Z193 IPoPKlgm=07?4D6;geda6j1
+Z194 V0[:I5]>AZ2ZPLnfBRz3@f0
+Z195 !s105 tb_distribution_ram_sv_unit
 S1
 R6
-Z194 w1635625674
-Z195 8C:/Users/arism/Desktop/LBM_DE2/tb_distribution_ram.sv
-Z196 FC:/Users/arism/Desktop/LBM_DE2/tb_distribution_ram.sv
+Z196 w1635625674
+Z197 8C:/Users/arism/Desktop/LBM_DE2/tb_distribution_ram.sv
+Z198 FC:/Users/arism/Desktop/LBM_DE2/tb_distribution_ram.sv
 L0 1
 R10
 r1
 31
-Z197 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_distribution_ram.sv|
+Z199 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_distribution_ram.sv|
 R12
-Z198 !s100 :05eEa<OK3J;QO=VUJan31
-Z199 !s108 1635625703.769000
-Z200 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_distribution_ram.sv|
+Z200 !s100 :05eEa<OK3J;QO=VUJan31
+Z201 !s108 1635625703.769000
+Z202 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_distribution_ram.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_fp_div
 R1
-Z201 !s100 @75W6NeR0n`UOkTObL[[k1
-Z202 IBHWN4BN_KI<eV6O^C:NkO0
-Z203 Vc<:1O912Wzdf^jE:EEkh]1
-Z204 !s105 tb_fp_div_sv_unit
+Z203 !s100 @75W6NeR0n`UOkTObL[[k1
+Z204 IBHWN4BN_KI<eV6O^C:NkO0
+Z205 Vc<:1O912Wzdf^jE:EEkh]1
+Z206 !s105 tb_fp_div_sv_unit
 S1
 R6
-Z205 w1635798945
-Z206 8C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv
-Z207 FC:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv
+Z207 w1635798945
+Z208 8C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv
+Z209 FC:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv
 L0 1
 R10
 r1
 31
-Z208 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv|
+Z210 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv|
 R12
-Z209 !s108 1635896387.384000
-Z210 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv|
+Z211 !s108 1635901635.094000
+Z212 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_fp_mult
 R1
-Z211 !s100 A2>eAMd6^8[k_Fc;A7N7A0
-Z212 I@HiAlkdjoB^jm_2UC[hQS0
-Z213 VZoJ?RZZK8U_]zR=RHaQzH0
-Z214 !s105 tb_fp_mult_sv_unit
+Z213 !s100 A2>eAMd6^8[k_Fc;A7N7A0
+Z214 I@HiAlkdjoB^jm_2UC[hQS0
+Z215 VZoJ?RZZK8U_]zR=RHaQzH0
+Z216 !s105 tb_fp_mult_sv_unit
 S1
 R6
-R97
-Z215 8C:/Users/arism/Desktop/LBM_DE2/tb_fp_mult.sv
-Z216 FC:/Users/arism/Desktop/LBM_DE2/tb_fp_mult.sv
+R98
+Z217 8C:/Users/arism/Desktop/LBM_DE2/tb_fp_mult.sv
+Z218 FC:/Users/arism/Desktop/LBM_DE2/tb_fp_mult.sv
 L0 1
 R10
 r1
 31
-Z217 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_fp_mult.sv|
+Z219 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_fp_mult.sv|
 R12
-Z218 !s108 1635773058.956000
-Z219 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_fp_mult.sv|
+Z220 !s108 1635773058.956000
+Z221 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_fp_mult.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_LBM_DE2
 R1
-Z220 !s100 a?iEVPzT5dTg:f_?<LlJR2
-Z221 I1C:T@@[JB5FYljWBZ[Wob1
-Z222 Vlo70LmF8f29:_7l@JFJoW1
-Z223 !s105 tb_LBM_DE2_sv_unit
+Z222 !s100 a?iEVPzT5dTg:f_?<LlJR2
+Z223 I1C:T@@[JB5FYljWBZ[Wob1
+Z224 Vlo70LmF8f29:_7l@JFJoW1
+Z225 !s105 tb_LBM_DE2_sv_unit
 S1
 R6
 R7
-Z224 8C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv
-Z225 FC:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv
+Z226 8C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv
+Z227 FC:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv
 L0 1
 R10
 r1
 31
-Z226 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv|
+Z228 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv|
 R12
-Z227 ntb_@l@b@m_@d@e2
-Z228 !s108 1635896387.181000
-Z229 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv|
+Z229 ntb_@l@b@m_@d@e2
+Z230 !s108 1635901634.853000
+Z231 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_moment_ram
 R1
-Z230 IhL<_HISE4X0LZmR8]0<XK3
-Z231 VG903R?K3Q140dY=]bG`Te1
-Z232 !s105 tb_moment_ram_sv_unit
+Z232 IhL<_HISE4X0LZmR8]0<XK3
+Z233 VG903R?K3Q140dY=]bG`Te1
+Z234 !s105 tb_moment_ram_sv_unit
 S1
 R6
-Z233 w1635720622
-Z234 8C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv
-Z235 FC:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv
+Z235 w1635720622
+Z236 8C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv
+Z237 FC:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv
 L0 1
 R10
 r1
 31
-Z236 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv|
+Z238 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv|
 R12
-Z237 !s100 n2XG5cl19X[kTWL;<PI3B3
-Z238 !s108 1635720640.844000
-Z239 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv|
+Z239 !s100 n2XG5cl19X[kTWL;<PI3B3
+Z240 !s108 1635720640.844000
+Z241 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_mux2
 R1
-Z240 !s100 _XEKFa8?c3faV0DE?ELm00
-Z241 Ij<NC`=n3e4c`OUN5I>6@>0
-Z242 VEcae<=N7KEAKKT`>c<Kh81
-Z243 !s105 tb_mux2_sv_unit
+Z242 !s100 _XEKFa8?c3faV0DE?ELm00
+Z243 Ij<NC`=n3e4c`OUN5I>6@>0
+Z244 VEcae<=N7KEAKKT`>c<Kh81
+Z245 !s105 tb_mux2_sv_unit
 S1
 R6
-Z244 w1635626858
-Z245 8C:/Users/arism/Desktop/LBM_DE2/tb_mux2.sv
-Z246 FC:/Users/arism/Desktop/LBM_DE2/tb_mux2.sv
+Z246 w1635626858
+Z247 8C:/Users/arism/Desktop/LBM_DE2/tb_mux2.sv
+Z248 FC:/Users/arism/Desktop/LBM_DE2/tb_mux2.sv
 L0 1
 R10
 r1
 31
-Z247 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_mux2.sv|
+Z249 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_mux2.sv|
 R12
-Z248 !s108 1635627188.802000
-Z249 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_mux2.sv|
+Z250 !s108 1635627188.802000
+Z251 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_mux2.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_reg32
 R1
-Z250 IJDkSA6]bZPR_XH;M6Y;P81
-Z251 VE9ZjW`XdCYljRXP?4[?]F2
+Z252 IJDkSA6]bZPR_XH;M6Y;P81
+Z253 VE9ZjW`XdCYljRXP?4[?]F2
 S1
 R6
-Z252 w1635723909
-Z253 8C:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv
-Z254 FC:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv
+Z254 w1635723909
+Z255 8C:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv
+Z256 FC:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv
 L0 1
 R10
 r1
 31
 R12
-Z255 !s100 iM_jzE4bjb_JKOJ;f_bQY3
-Z256 !s105 tb_reg32_sv_unit
-Z257 !s108 1635724081.904000
-Z258 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv|
-Z259 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv|
+Z257 !s100 iM_jzE4bjb_JKOJ;f_bQY3
+Z258 !s105 tb_reg32_sv_unit
+Z259 !s108 1635724081.904000
+Z260 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv|
+Z261 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_reg32.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_row_counter
 R1
-Z260 !s100 >6__eM5eS0lW[=S>`^=Eo3
-Z261 I<0=@j9i]lLN;o9?i;g_>21
-Z262 V^RXIZ:73j;@oQJ@4JRd6D1
-Z263 !s105 tb_row_counter_sv_unit
+Z262 !s100 >6__eM5eS0lW[=S>`^=Eo3
+Z263 I<0=@j9i]lLN;o9?i;g_>21
+Z264 V^RXIZ:73j;@oQJ@4JRd6D1
+Z265 !s105 tb_row_counter_sv_unit
 S1
 R6
 R7
-Z264 8C:/Users/arism/Desktop/LBM_DE2/tb_row_counter.sv
-Z265 FC:/Users/arism/Desktop/LBM_DE2/tb_row_counter.sv
+Z266 8C:/Users/arism/Desktop/LBM_DE2/tb_row_counter.sv
+Z267 FC:/Users/arism/Desktop/LBM_DE2/tb_row_counter.sv
 L0 1
 R10
 r1
 31
-Z266 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_row_counter.sv|
+Z268 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_row_counter.sv|
 R12
-Z267 !s108 1635896387.596000
-Z268 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_row_counter.sv|
+Z269 !s108 1635901635.341000
+Z270 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_row_counter.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtb_wall_detector
 R1
-Z269 I6`AN75RaYQ3USlCUz3enM1
-Z270 VXYJSH0;Ac@E[Yin1FoiJf1
-Z271 !s105 tb_wall_detector_sv_unit
+Z271 !s100 PSjUEDMVVWmQnfH:2ezFl2
+Z272 I6`AN75RaYQ3USlCUz3enM1
+Z273 VXYJSH0;Ac@E[Yin1FoiJf1
+Z274 !s105 tb_wall_detector_sv_unit
 S1
 R6
-Z272 w1635896367
-Z273 8C:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv
-Z274 FC:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv
+Z275 w1635896367
+Z276 8C:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv
+Z277 FC:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv
 L0 1
 R10
 r1
 31
-Z275 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv|
+Z278 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv|
 R12
+Z279 !s108 1635901635.430000
+Z280 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv|
 !i10b 1
-Z276 !s100 PSjUEDMVVWmQnfH:2ezFl2
 !s85 0
-Z277 !s108 1635896387.680000
-Z278 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv|
 !s101 -O0
 vtb_weights_reg
 R1
-Z279 IRLiNKBBnZ>hB7h0M>aL[z3
-Z280 VJb8@K58faVLW<1d32UzUS0
-Z281 !s105 tb_weights_reg_sv_unit
+Z281 IRLiNKBBnZ>hB7h0M>aL[z3
+Z282 VJb8@K58faVLW<1d32UzUS0
+Z283 !s105 tb_weights_reg_sv_unit
 S1
 R6
-Z282 w1635650507
-Z283 8C:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv
-Z284 FC:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv
+Z284 w1635650507
+Z285 8C:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv
+Z286 FC:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv
 L0 1
 R10
 r1
 31
-Z285 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv|
+Z287 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv|
 R12
-Z286 !s100 G=OaUeA0<c8K382z0MR@`1
-Z287 !s108 1635650531.031000
-Z288 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv|
+Z288 !s100 G=OaUeA0<c8K382z0MR@`1
+Z289 !s108 1635650531.031000
+Z290 !s107 C:/Users/arism/Desktop/LBM_DE2/tb_weights_reg.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vwall_detector
 R1
-!i10b 1
-Z289 !s100 oB0Ym^Wal9b<KcHdOZE_f0
-Z290 IX;VCALYLL5ZfHMC1jLX<l0
-Z291 V2XKbjH=Akf^Jl7;iHB1S:1
-Z292 !s105 wall_detector_sv_unit
+Z291 !s100 oB0Ym^Wal9b<KcHdOZE_f0
+Z292 IX;VCALYLL5ZfHMC1jLX<l0
+Z293 V2XKbjH=Akf^Jl7;iHB1S:1
+Z294 !s105 wall_detector_sv_unit
 S1
 R6
-Z293 w1635896261
-Z294 8C:/Users/arism/Desktop/LBM_DE2/wall_detector.sv
-Z295 FC:/Users/arism/Desktop/LBM_DE2/wall_detector.sv
+Z295 w1635896261
+Z296 8C:/Users/arism/Desktop/LBM_DE2/wall_detector.sv
+Z297 FC:/Users/arism/Desktop/LBM_DE2/wall_detector.sv
 L0 1
 R10
 r1
-!s85 0
 31
-!s108 1635896387.785000
-!s107 C:/Users/arism/Desktop/LBM_DE2/wall_detector.sv|
-Z296 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/wall_detector.sv|
-!s101 -O0
+Z298 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/wall_detector.sv|
 R12
+!i10b 1
+!s85 0
+Z299 !s108 1635901635.512000
+Z300 !s107 C:/Users/arism/Desktop/LBM_DE2/wall_detector.sv|
+!s101 -O0
 vweights_reg
 R1
-Z297 !s100 Xa0lId`H3Ab13@J@@n2600
-Z298 I?HhkP;NWMReO8jj[>7YGB2
-Z299 VT7`d<e0^>j`1Q=3[czQDA0
-Z300 !s105 weights_reg_sv_unit
+Z301 !s100 Xa0lId`H3Ab13@J@@n2600
+Z302 I?HhkP;NWMReO8jj[>7YGB2
+Z303 VT7`d<e0^>j`1Q=3[czQDA0
+Z304 !s105 weights_reg_sv_unit
 S1
 R6
-Z301 w1635650062
-Z302 8C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv
-Z303 FC:/Users/arism/Desktop/LBM_DE2/weights_reg.sv
+Z305 w1635650062
+Z306 8C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv
+Z307 FC:/Users/arism/Desktop/LBM_DE2/weights_reg.sv
 L0 1
 R10
 r1
 31
-Z304 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv|
+Z308 !s90 -reportprogress|300|-work|work|-sv|C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv|
 R12
-Z305 !s108 1635650531.097000
-Z306 !s107 C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv|
+Z309 !s108 1635650531.097000
+Z310 !s107 C:/Users/arism/Desktop/LBM_DE2/weights_reg.sv|
 !i10b 1
 !s85 0
 !s101 -O0

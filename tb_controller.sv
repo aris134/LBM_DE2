@@ -14,7 +14,7 @@ module tb_controller();
 	logic div_valid;
 	logic LID, BOTTOM_WALL, LEFT_WALL, RIGHT_WALL;
 	logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem;
-	logic select_p_mem, select_ux_mem, select_uy_mem, select_fin;
+	logic select_p_mem, select_ux_mem, select_uy_mem, select_fin_mem;
 	logic [1:0] select_ux_reg;
 	logic select_p_reg, select_uy_reg;
 	logic count_init_en;

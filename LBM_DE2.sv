@@ -23,7 +23,7 @@ logic select_uy_mem;
 logic [1:0] select_ux_reg;
 logic select_uy_reg;
 logic select_p_reg;
-logic select_fin;
+logic select_fin_mem;
 logic count_init_en;
 
 // divider signals
@@ -166,9 +166,9 @@ assign fin_1 = fin_out[8*DATA_WIDTH-1:7*DATA_WIDTH];
 assign fin_0 = fin_out[9*DATA_WIDTH-1:8*DATA_WIDTH];
 
 logic signed [DATA_WIDTH_F-1:0] feq_in;
-
-
 logic signed [DATA_WIDTH_F-1:0] feq_out;
+
+logic signed [DATA_WIDTH_F-1:0] fin_mem_in;
 
 assign cx_8 = cx[DATA_WIDTH-1:0];
 assign cx_7 = cx[2*DATA_WIDTH-1:DATA_WIDTH];
@@ -338,7 +338,7 @@ controller fsm (.Clk(CLOCK_50),
 																															  .select_ux_reg(select_ux_reg),
 																															  .select_uy_reg(select_uy_reg),
 																															  .select_p_reg(select_p_reg),
-																															  .select_fin(select_fin),
+																															  .select_fin_mem(select_fin_mem),
 																															  .count_init_en(count_init_en),
 																															  .div_start(div_start),
 																															  .LD_EN_P(LD_EN_P),
@@ -392,7 +392,7 @@ moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_W
 distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) fin_ram (.address(count_init),
                                                                                                         .Clk(CLOCK_50),
 																																		  .WE(WE_fin_mem),
-																																		  .data_in(weights),
+																																		  .data_in(fin_mem_in),
 																																		  .data_out(fin_out));
 
 distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) feq_ram (.address(count_init),
@@ -401,6 +401,13 @@ distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(
 																																		  .data_in(feq_in),
 																																		  .data_out(feq_out));
 
+// fin_mem multiplexer
+
+mux2 #(.DATA_WIDTH(DATA_WIDTH_F)) fin_mem_mux (.Din0(weights),
+															  .Din1(feq_in),
+															  .select(select_fin_mem),
+															  .Dout(fin_mem_in));																																		  
+																																		  
 // moment reg multiplexers
 
 mux2 #(.DATA_WIDTH(DATA_WIDTH)) p_in_mux (.Din0(pmux_in),
