@@ -33,6 +33,15 @@ module tb_controller();
 	logic LD_EN_FEQ6;
 	logic LD_EN_FEQ7;
 	logic LD_EN_FEQ8;
+	logic LD_EN_FOUT0;
+	logic LD_EN_FOUT1;
+	logic LD_EN_FOUT2;
+	logic LD_EN_FOUT3;
+	logic LD_EN_FOUT4;
+	logic LD_EN_FOUT5;
+	logic LD_EN_FOUT6;
+	logic LD_EN_FOUT7;
+	logic LD_EN_FOUT8;
 	
 	controller #(.GRID_DIM(GRID_DIM), .DATA_WIDTH(DATA_WIDTH)) controller0 (.*);
 	
