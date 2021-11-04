@@ -1,12 +1,24 @@
-module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_DIM)) (input Clk, Reset,
+module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_DIM), ADDRESS_WIDTH2=$clog2(GRID_DIM)+1) 
+						 (input Clk, Reset,
 						 input logic [ADDRESS_WIDTH-1:0] count_init,
 						 input logic div_valid,
 						 input logic LID, BOTTOM_WALL, LEFT_WALL, RIGHT_WALL,
+						 input logic [ADDRESS_WIDTH2-1:0] stream_addr0,
+						 input logic [ADDRESS_WIDTH2-1:0] stream_addr1,
+						 input logic [ADDRESS_WIDTH2-1:0] stream_addr2,
+						 input logic [ADDRESS_WIDTH2-1:0] stream_addr3,
+						 input logic [ADDRESS_WIDTH2-1:0] stream_addr4,
+						 input logic [ADDRESS_WIDTH2-1:0] stream_addr5,
+						 input logic [ADDRESS_WIDTH2-1:0] stream_addr6,
+						 input logic [ADDRESS_WIDTH2-1:0] stream_addr7,
+						 input logic [ADDRESS_WIDTH2-1:0] stream_addr8,
 						 output logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem,
-						 output logic select_p_mem, select_ux_mem, select_uy_mem, select_fin_mem,
+						 output logic select_p_mem, select_ux_mem, select_uy_mem,
+						 output logic [3:0] select_fin_mem,
 						 output logic select_p_reg, select_uy_reg,
 						 output logic [1:0] select_ux_reg,
-						 output logic count_init_en,
+						 output logic [3:0] select_fin_addr,
+						 output logic count_init_en, row_count_en,
 						 output logic div_start,
 						 output logic LD_EN_P, LD_EN_PUX, LD_EN_PUY, LD_EN_UX, LD_EN_UY,
 						 output logic LD_EN_FEQ0, LD_EN_FEQ1, LD_EN_FEQ2, LD_EN_FEQ3, LD_EN_FEQ4,
@@ -14,9 +26,10 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 output logic LD_EN_FOUT0, LD_EN_FOUT1, LD_EN_FOUT2, LD_EN_FOUT3, LD_EN_FOUT4,
 						 output logic LD_EN_FOUT5, LD_EN_FOUT6, LD_EN_FOUT7, LD_EN_FOUT8);
 						 
-	enum logic [3:0] {START, CALC_MOMENT_1, CALC_MOMENT_2, CALC_MOMENT_3,
+	enum logic [4:0] {START, CALC_MOMENT_1, CALC_MOMENT_2, CALC_MOMENT_3,
 							CALC_MOMENT_4, CALC_MOMENT_5, CALC_MOMENT_6, CALC_EQUIL_1,
-							CALC_EQUIL_2, CALC_COLL_1, CALC_COLL_2} State, Next_state;
+							CALC_EQUIL_2, CALC_COLL_1, CALC_COLL_2, STREAM_0, STREAM_1, STREAM_2,
+							STREAM_3, STREAM_4, STREAM_5, STREAM_6, STREAM_7, STREAM_8, TEMP} State, Next_state;
 	
 	// variable declarations
 	
@@ -58,6 +71,26 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 		CALC_COLL_1:
 				Next_state <= CALC_COLL_2;
 		CALC_COLL_2:
+				Next_state <= STREAM_0;
+		STREAM_0:
+				Next_state <= STREAM_1;
+		STREAM_1:
+				Next_state <= STREAM_2;
+		STREAM_2:
+				Next_state <= STREAM_3;
+		STREAM_3:
+				Next_state <= STREAM_4;
+		STREAM_4:
+				Next_state <= STREAM_5;
+		STREAM_5:
+				Next_state <= STREAM_6;
+		STREAM_6:
+				Next_state <= STREAM_7;
+		STREAM_7:
+				Next_state <= STREAM_8;
+		STREAM_8:
+				Next_state <= TEMP;
+		TEMP:
 				;
 		endcase
 	end
@@ -78,8 +111,10 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	select_p_reg = 1'b0;
 	select_ux_reg = 2'b00;
 	select_uy_reg = 1'b0;
-	select_fin_mem = 1'b0;
+	select_fin_mem = 4'b0000;
+	select_fin_addr = 4'b0000;
 	count_init_en = 1'b0;
+	row_count_en = 1'b0;
 	LD_EN_P = 1'b0;
 	LD_EN_PUX = 1'b0;
 	LD_EN_PUY = 1'b0;
@@ -112,23 +147,11 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				WE_ux_mem = 1'b1;
 				WE_uy_mem = 1'b1;
 				WE_fin_mem = 1'b1;
-				select_p_mem = 1'b1;
-				select_ux_mem = 1'b1;
-				select_uy_mem = 1'b1;
-				select_fin_mem = 1'b1;
 				count_init_en = 1'b1;
 			end
 	CALC_MOMENT_1:
 			begin
-				WE_p_mem = 1'b0;
-				WE_ux_mem = 1'b0;
-				WE_uy_mem = 1'b0;
-				WE_fin_mem = 1'b0;
-				select_p_mem = 1'b0;
-				select_ux_mem = 1'b0;
-				select_uy_mem = 1'b0;
-				select_fin_mem = 1'b0;
-				count_init_en = 1'b0;
+				row_count_en = 1'b1;
 				if (LID | BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
 					select_p_reg = 1'b1;
 				end
@@ -185,7 +208,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 			begin
 				WE_feq_mem = 1'b1;
 				if (LID | BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
-					select_fin_mem = 1'b1;
+					select_fin_mem = 4'b0001;
 					WE_fin_mem = 1'b1;
 				end
 			end
@@ -204,6 +227,79 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	CALC_COLL_2:
 			begin
 				WE_fout_mem = 1'b1;
+			end
+	STREAM_0: // stream address 0
+			begin
+				// if stream address is invalid (=-1) then leave WE deasserted
+				if (stream_addr0 != -1) begin
+					select_fin_mem = 4'b0010;
+					select_fin_addr = 4'b0001;
+					WE_fin_mem = 1'b1;
+				end
+			end
+	STREAM_1:
+			begin
+				if (stream_addr1 != -1) begin
+					select_fin_mem = 4'b0011;
+					select_fin_addr = 4'b0010;
+					WE_fin_mem = 1'b1;
+				end
+			end
+	STREAM_2:
+			begin
+				if (stream_addr2 != -1) begin
+					select_fin_mem = 4'b0100;
+					select_fin_addr = 4'b0011;
+					WE_fin_mem = 1'b1;
+				end
+			end
+	STREAM_3:
+			begin
+				if (stream_addr3 != -1) begin
+					select_fin_mem = 4'b0101;
+					select_fin_addr = 4'b0100;
+					WE_fin_mem = 1'b1;
+				end
+			end
+	STREAM_4:
+			begin
+				if (stream_addr4 != -1) begin
+					select_fin_mem = 4'b0110;
+					select_fin_addr = 4'b0101;
+					WE_fin_mem = 1'b1;
+				end
+			end
+	STREAM_5:
+			begin
+				if (stream_addr5 != -1) begin
+					select_fin_mem = 4'b0111;
+					select_fin_addr = 4'b0110;
+					WE_fin_mem = 1'b1;
+				end
+			end
+	STREAM_6:
+			begin
+				if (stream_addr6 != -1) begin
+					select_fin_mem = 4'b1000;
+					select_fin_addr = 4'b0111;
+					WE_fin_mem = 1'b1;
+				end
+			end
+	STREAM_7:
+			begin
+				if (stream_addr7 != -1) begin
+					select_fin_mem = 4'b1001;
+					select_fin_addr = 4'b1000;
+					WE_fin_mem = 1'b1;
+				end
+			end
+	STREAM_8:
+			begin
+				if (stream_addr8 != -1) begin
+					select_fin_mem = 4'b1010;
+					select_fin_addr = 4'b1001;
+					WE_fin_mem = 1'b1;
+				end
 			end
 		endcase
 	end

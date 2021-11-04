@@ -23,8 +23,10 @@ logic select_uy_mem;
 logic [1:0] select_ux_reg;
 logic select_uy_reg;
 logic select_p_reg;
-logic select_fin_mem;
+logic [3:0] select_fin_mem;
+logic [3:0] select_fin_addr;
 logic count_init_en;
+logic row_count_en;
 
 // divider signals
 logic div_start;
@@ -44,6 +46,30 @@ logic remainder0;
 logic remainder1;
 
 logic [ADDRESS_WIDTH-1:0] count_init;
+
+logic [9*(ADDRESS_WIDTH+1)-1:0] stream_addresses;
+
+int num_valid_addr;
+
+logic [ADDRESS_WIDTH:0] stream_addr0;
+logic [ADDRESS_WIDTH:0] stream_addr1;
+logic [ADDRESS_WIDTH:0] stream_addr2;
+logic [ADDRESS_WIDTH:0] stream_addr3;
+logic [ADDRESS_WIDTH:0] stream_addr4;
+logic [ADDRESS_WIDTH:0] stream_addr5;
+logic [ADDRESS_WIDTH:0] stream_addr6;
+logic [ADDRESS_WIDTH:0] stream_addr7;
+logic [ADDRESS_WIDTH:0] stream_addr8;
+
+assign stream_addr8 = stream_addresses[ADDRESS_WIDTH+1-1:0];
+assign stream_addr7 = stream_addresses[2*(ADDRESS_WIDTH+1)-1:ADDRESS_WIDTH+1];
+assign stream_addr6 = stream_addresses[3*(ADDRESS_WIDTH+1)-1:2*(ADDRESS_WIDTH+1)];
+assign stream_addr5 = stream_addresses[4*(ADDRESS_WIDTH+1)-1:3*(ADDRESS_WIDTH+1)];
+assign stream_addr4 = stream_addresses[5*(ADDRESS_WIDTH+1)-1:4*(ADDRESS_WIDTH+1)];
+assign stream_addr3 = stream_addresses[6*(ADDRESS_WIDTH+1)-1:5*(ADDRESS_WIDTH+1)];
+assign stream_addr2 = stream_addresses[7*(ADDRESS_WIDTH+1)-1:6*(ADDRESS_WIDTH+1)];
+assign stream_addr1 = stream_addresses[8*(ADDRESS_WIDTH+1)-1:7*(ADDRESS_WIDTH+1)];
+assign stream_addr0 = stream_addresses[9*(ADDRESS_WIDTH+1)-1:8*(ADDRESS_WIDTH+1)];
 
 logic signed [DATA_WIDTH-1:0] pwr;
 logic signed [DATA_WIDTH-1:0] gnd;
@@ -109,7 +135,6 @@ logic signed [DATA_WIDTH-1:0] fin_6;
 logic signed [DATA_WIDTH-1:0] fin_7;
 logic signed [DATA_WIDTH-1:0] fin_8;
 
-
 logic signed [DATA_WIDTH-1:0] pmux_in;
 logic signed [DATA_WIDTH-1:0] uxmux_in;
 logic signed [DATA_WIDTH-1:0] uymux_in;
@@ -144,6 +169,8 @@ logic signed [DATA_WIDTH-1:0] uy_mem_data_in;
 logic LD_EN_P;
 logic LD_EN_PUX;
 logic LD_EN_PUY;
+logic LD_EN_UX;
+logic LD_EN_UY;
 logic LD_EN_FEQ0;
 logic LD_EN_FEQ1;
 logic LD_EN_FEQ2;
@@ -181,6 +208,7 @@ logic signed [DATA_WIDTH_F-1:0] fout_mem_in;
 logic signed [DATA_WIDTH_F-1:0] fout_mem_out;
 
 logic signed [DATA_WIDTH_F-1:0] fin_mem_in;
+logic [ADDRESS_WIDTH-1:0] fin_addr_in;
 
 assign cx_8 = cx[DATA_WIDTH-1:0];
 assign cx_7 = cx[2*DATA_WIDTH-1:DATA_WIDTH];
@@ -201,6 +229,76 @@ assign cy_3 = cy[6*DATA_WIDTH-1:5*DATA_WIDTH];
 assign cy_2 = cy[7*DATA_WIDTH-1:6*DATA_WIDTH];
 assign cy_1 = cy[8*DATA_WIDTH-1:7*DATA_WIDTH];
 assign cy_0 = cy[9*DATA_WIDTH-1:8*DATA_WIDTH];
+
+
+logic signed [ADDRESS_WIDTH-1:0] cx0_int;
+logic signed [ADDRESS_WIDTH-1:0] cx1_int;
+logic signed [ADDRESS_WIDTH-1:0] cx2_int;
+logic signed [ADDRESS_WIDTH-1:0] cx3_int;
+logic signed [ADDRESS_WIDTH-1:0] cx4_int;
+logic signed [ADDRESS_WIDTH-1:0] cx5_int;
+logic signed [ADDRESS_WIDTH-1:0] cx6_int;
+logic signed [ADDRESS_WIDTH-1:0] cx7_int;
+logic signed [ADDRESS_WIDTH-1:0] cx8_int;
+
+logic signed [ADDRESS_WIDTH:0] cx0_int_sext;
+logic signed [ADDRESS_WIDTH:0] cx1_int_sext;
+logic signed [ADDRESS_WIDTH:0] cx2_int_sext;
+logic signed [ADDRESS_WIDTH:0] cx3_int_sext;
+logic signed [ADDRESS_WIDTH:0] cx4_int_sext;
+logic signed [ADDRESS_WIDTH:0] cx5_int_sext;
+logic signed [ADDRESS_WIDTH:0] cx6_int_sext;
+logic signed [ADDRESS_WIDTH:0] cx7_int_sext;
+logic signed [ADDRESS_WIDTH:0] cx8_int_sext;
+
+logic signed [ADDRESS_WIDTH-1:0] cy0_int;
+logic signed [ADDRESS_WIDTH-1:0] cy1_int;
+logic signed [ADDRESS_WIDTH-1:0] cy2_int;
+logic signed [ADDRESS_WIDTH-1:0] cy3_int;
+logic signed [ADDRESS_WIDTH-1:0] cy4_int;
+logic signed [ADDRESS_WIDTH-1:0] cy5_int;
+logic signed [ADDRESS_WIDTH-1:0] cy6_int;
+logic signed [ADDRESS_WIDTH-1:0] cy7_int;
+logic signed [ADDRESS_WIDTH-1:0] cy8_int;
+
+logic signed [ADDRESS_WIDTH:0] cy0_int_sext;
+logic signed [ADDRESS_WIDTH:0] cy1_int_sext;
+logic signed [ADDRESS_WIDTH:0] cy2_int_sext;
+logic signed [ADDRESS_WIDTH:0] cy3_int_sext;
+logic signed [ADDRESS_WIDTH:0] cy4_int_sext;
+logic signed [ADDRESS_WIDTH:0] cy5_int_sext;
+logic signed [ADDRESS_WIDTH:0] cy6_int_sext;
+logic signed [ADDRESS_WIDTH:0] cy7_int_sext;
+logic signed [ADDRESS_WIDTH:0] cy8_int_sext;
+
+assign cx0_int = cx_0[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cx1_int = cx_1[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cx2_int = cx_2[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cx3_int = cx_3[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cx4_int = cx_4[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cx5_int = cx_5[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cx6_int = cx_6[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cx7_int = cx_7[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cx8_int = cx_8[DATA_WIDTH-1:DATA_WIDTH-8];
+
+assign cy0_int = cy_0[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cy1_int = cy_1[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cy2_int = cy_2[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cy3_int = cy_3[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cy4_int = cy_4[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cy5_int = cy_5[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cy6_int = cy_6[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cy7_int = cy_7[DATA_WIDTH-1:DATA_WIDTH-8];
+assign cy8_int = cy_8[DATA_WIDTH-1:DATA_WIDTH-8];
+
+logic signed [9*(ADDRESS_WIDTH+1)-1:0] cx_int_concat;
+logic signed [9*(ADDRESS_WIDTH+1)-1:0] cy_int_concat;
+
+assign cx_int_concat = {cx0_int_sext, cx1_int_sext, cx2_int_sext, cx3_int_sext, cx4_int_sext, cx5_int_sext, cx6_int_sext, cx7_int_sext, cx8_int_sext};
+/*assign cy_int_concat = {-cy0_int_sext, ~cy1_int_sext+1, ~cy2_int_sext+1, ~cy3_int_sext+1,
+							   ~cy4_int_sext+1, ~cy5_int_sext+1, ~cy6_int_sext+1, ~cy7_int_sext+1, ~cy8_int_sext+1};*/
+								
+assign cy_int_concat = {9'b0_0000_0000, 9'b0_0000_0000, 9'b1_1111_1111, 9'b0_0000_0000, 9'b0_0000_0001, 9'b1_1111_1111, 9'b1_1111_1111, 9'b0_0000_0001, 9'b0_0000_0001};
 
 
 logic signed [DATA_WIDTH-1:0] ux2;
@@ -342,6 +440,11 @@ assign fout_mem_in = {fout0_out,fout1_out,fout2_out,fout3_out,fout4_out,fout5_ou
 
 logic [COUNT_WIDTH-1:0] y_pos; // rows
 logic [ADDRESS_WIDTH-1:0] x_pos; // columns
+logic signed [ADDRESS_WIDTH:0] x_pos_zext;
+logic signed [ADDRESS_WIDTH:0] y_pos_zext;
+
+assign x_pos_zext = {1'b0,x_pos};
+assign y_pos_zext = {{ADDRESS_WIDTH+1-COUNT_WIDTH{1'b0}}, y_pos};
 
 logic LID;
 logic BOTTOM_WALL;
@@ -373,57 +476,68 @@ counter_init #(.GRID_DIM(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH)) init_counter 
 
 row_counter #(.GRID_DIM(GRID_DIM), .INIT_COUNT_WIDTH(ADDRESS_WIDTH), .COUNT_WIDTH(COUNT_WIDTH)) row_cnter (.Clk(CLOCK_50),
 																										  .Reset(RESET),
-																										  .Enable(count_init_en),
+																										  .Enable(row_count_en), // wrong enable
 																										  .count_init(count_init),
 																										  .Data_out(y_pos));																									  
 																									  
 // controller
 controller fsm (.Clk(CLOCK_50),
-																															  .Reset(RESET),
-																															  .count_init(count_init),
-																															  .div_valid(div_valid),
-																															  .LID(LID),
-																															  .BOTTOM_WALL(BOTTOM_WALL),
-																															  .LEFT_WALL(LEFT_WALL),
-																															  .RIGHT_WALL(RIGHT_WALL),
-																															  .WE_p_mem(WE_p_mem),
-																															  .WE_ux_mem(WE_ux_mem),
-																															  .WE_uy_mem(WE_uy_mem),
-																															  .WE_fin_mem(WE_fin_mem),
-																															  .WE_fout_mem(WE_fout_mem),
-																															  .WE_feq_mem(WE_feq_mem),
-																															  .select_p_mem(select_p_mem),
-																															  .select_ux_mem(select_ux_mem),
-																															  .select_uy_mem(select_uy_mem),
-																															  .select_ux_reg(select_ux_reg),
-																															  .select_uy_reg(select_uy_reg),
-																															  .select_p_reg(select_p_reg),
-																															  .select_fin_mem(select_fin_mem),
-																															  .count_init_en(count_init_en),
-																															  .div_start(div_start),
-																															  .LD_EN_P(LD_EN_P),
-																															  .LD_EN_PUX(LD_EN_PUX),
-																															  .LD_EN_PUY(LD_EN_PUY),
-																															  .LD_EN_UX(LD_EN_UX),
-																															  .LD_EN_UY(LD_EN_UY),
-																															  .LD_EN_FEQ0(LD_EN_FEQ0),
-																															  .LD_EN_FEQ1(LD_EN_FEQ1),
-																															  .LD_EN_FEQ2(LD_EN_FEQ2),
-																															  .LD_EN_FEQ3(LD_EN_FEQ3),
-																															  .LD_EN_FEQ4(LD_EN_FEQ4),
-																															  .LD_EN_FEQ5(LD_EN_FEQ5),
-																															  .LD_EN_FEQ6(LD_EN_FEQ6),
-																															  .LD_EN_FEQ7(LD_EN_FEQ7),
-																															  .LD_EN_FEQ8(LD_EN_FEQ8),
-																															  .LD_EN_FOUT0(LD_EN_FOUT0),
-																															  .LD_EN_FOUT1(LD_EN_FOUT1),
-																															  .LD_EN_FOUT2(LD_EN_FOUT2),
-																															  .LD_EN_FOUT3(LD_EN_FOUT3),
-																															  .LD_EN_FOUT4(LD_EN_FOUT4),
-																															  .LD_EN_FOUT5(LD_EN_FOUT5),
-																															  .LD_EN_FOUT6(LD_EN_FOUT6),
-																															  .LD_EN_FOUT7(LD_EN_FOUT7),
-																															  .LD_EN_FOUT8(LD_EN_FOUT8));
+					  .Reset(RESET),
+					  .count_init(count_init),
+					  .div_valid(div_valid),
+					  .LID(LID),
+					  .BOTTOM_WALL(BOTTOM_WALL),
+					  .LEFT_WALL(LEFT_WALL),
+					  .RIGHT_WALL(RIGHT_WALL),
+					  .stream_addr0(stream_addr0),
+					  .stream_addr1(stream_addr1),
+					  .stream_addr2(stream_addr2),
+					  .stream_addr3(stream_addr3),
+					  .stream_addr4(stream_addr4),
+					  .stream_addr5(stream_addr5),
+					  .stream_addr6(stream_addr6),
+					  .stream_addr7(stream_addr7),
+					  .stream_addr8(stream_addr8),
+					  .WE_p_mem(WE_p_mem),
+					  .WE_ux_mem(WE_ux_mem),
+					  .WE_uy_mem(WE_uy_mem),
+					  .WE_fin_mem(WE_fin_mem),
+					  .WE_fout_mem(WE_fout_mem),
+					  .WE_feq_mem(WE_feq_mem),
+					  .select_p_mem(select_p_mem),
+					  .select_ux_mem(select_ux_mem),
+					  .select_uy_mem(select_uy_mem),
+					  .select_ux_reg(select_ux_reg),
+					  .select_fin_addr(select_fin_addr),
+					  .select_uy_reg(select_uy_reg),
+					  .select_p_reg(select_p_reg),
+					  .select_fin_mem(select_fin_mem),
+					  .count_init_en(count_init_en),
+					  .row_count_en(row_count_en),
+					  .div_start(div_start),
+					  .LD_EN_P(LD_EN_P),
+					  .LD_EN_PUX(LD_EN_PUX),
+					  .LD_EN_PUY(LD_EN_PUY),
+					  .LD_EN_UX(LD_EN_UX),
+					  .LD_EN_UY(LD_EN_UY),
+					  .LD_EN_FEQ0(LD_EN_FEQ0),
+					  .LD_EN_FEQ1(LD_EN_FEQ1),
+					  .LD_EN_FEQ2(LD_EN_FEQ2),
+					  .LD_EN_FEQ3(LD_EN_FEQ3),
+					  .LD_EN_FEQ4(LD_EN_FEQ4),
+					  .LD_EN_FEQ5(LD_EN_FEQ5),
+					  .LD_EN_FEQ6(LD_EN_FEQ6),
+					  .LD_EN_FEQ7(LD_EN_FEQ7),
+					  .LD_EN_FEQ8(LD_EN_FEQ8),
+					  .LD_EN_FOUT0(LD_EN_FOUT0),
+					  .LD_EN_FOUT1(LD_EN_FOUT1),
+					  .LD_EN_FOUT2(LD_EN_FOUT2),
+					  .LD_EN_FOUT3(LD_EN_FOUT3),
+					  .LD_EN_FOUT4(LD_EN_FOUT4),
+					  .LD_EN_FOUT5(LD_EN_FOUT5),
+					  .LD_EN_FOUT6(LD_EN_FOUT6),
+					  .LD_EN_FOUT7(LD_EN_FOUT7),
+					  .LD_EN_FOUT8(LD_EN_FOUT8));
 
 
 // wall detector
@@ -458,7 +572,7 @@ moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_W
 																															  .data_in(uy_mem_data_in),
 																															  .data_out(uy_mem_data_out));
 																															  
-distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) fin_ram (.address(count_init),
+distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) fin_ram (.address(fin_addr_in),
                                                                                                         .Clk(CLOCK_50),
 																																		  .WE(WE_fin_mem),
 																																		  .data_in(fin_mem_in),
@@ -475,13 +589,7 @@ distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(
 																																		  .WE(WE_fout_mem),
 																																		  .data_in(fout_mem_in),
 																																		  .data_out(fout_mem_out));
-
-// fin_mem multiplexer
-
-mux2 #(.DATA_WIDTH(DATA_WIDTH_F)) fin_mem_mux (.Din0(weights),
-															  .Din1(feq_in),
-															  .select(select_fin_mem),
-															  .Dout(fin_mem_in));																																		  
+											  
 																																		  
 // moment reg multiplexers
 
@@ -515,7 +623,23 @@ mux2 #(.DATA_WIDTH(DATA_WIDTH)) ux_mem_mux (.Din0(gnd),
 mux2 #(.DATA_WIDTH(DATA_WIDTH)) uy_mem_mux (.Din0(gnd),
 														 .Din1(uy_out),
 														 .select(select_uy_mem),
-														 .Dout(uy_mem_data_in));														 
+														 .Dout(uy_mem_data_in));	
+	
+// fin_mem multiplexer
+													
+mux11 #(.DATA_WIDTH(DATA_WIDTH_F)) fin_mem_mux (.Din0(weights),
+															   .Din1(feq_in),
+																.Din2({fout_mem_out[9*DATA_WIDTH-1:8*DATA_WIDTH], fin_1, fin_2, fin_3, fin_4, fin_5, fin_6, fin_7, fin_8}), // actually fin with fin0 replaced with fout0
+																.Din3({fin_0, fout_mem_out[8*DATA_WIDTH-1:7*DATA_WIDTH], fin_2, fin_3, fin_4, fin_5, fin_6, fin_7, fin_8}), // fin with f1 replaced with fout1
+																.Din4({fin_0, fin_1, fout_mem_out[7*DATA_WIDTH-1:6*DATA_WIDTH], fin_3, fin_4, fin_5, fin_6, fin_7, fin_8}), // etc.
+																.Din5({fin_0, fin_1, fin_2, fout_mem_out[6*DATA_WIDTH-1:5*DATA_WIDTH], fin_4, fin_5, fin_6, fin_7, fin_8}),
+																.Din6({fin_0, fin_1, fin_2, fin_3, fout_mem_out[5*DATA_WIDTH-1:4*DATA_WIDTH], fin_5, fin_6, fin_7, fin_8}),
+																.Din7({fin_0, fin_1, fin_2, fin_3, fin_4, fout_mem_out[4*DATA_WIDTH-1:3*DATA_WIDTH], fin_6, fin_7, fin_8}),
+																.Din8({fin_0, fin_1, fin_2, fin_3, fin_4, fin_5, fout_mem_out[3*DATA_WIDTH-1:2*DATA_WIDTH], fin_7, fin_8}),
+																.Din9({fin_0, fin_1, fin_2, fin_3, fin_4, fin_5, fin_6, fout_mem_out[2*DATA_WIDTH-1:DATA_WIDTH], fin_8}),
+																.Din10({fin_0, fin_1, fin_2, fin_3, fin_4, fin_5, fin_6, fin_7, fout_mem_out[DATA_WIDTH-1:0]}),
+																.select(select_fin_mem),
+																.Dout(fin_mem_in));		
 
 // moment calculation hardware
 adder9 #(.DATA_WIDTH(DATA_WIDTH)) fin_sum (.Din0(fin_0),
@@ -1140,5 +1264,84 @@ reg32 #(.WIDTH(DATA_WIDTH)) fout8_reg (.Clk(CLOCK_50),
 													 .Reset(RESET),
 													 .LD_EN(LD_EN_FOUT8),
 													 .Data_In(fout8_in),
-													 .Data_Out(fout8_out));													  
+													 .Data_Out(fout8_out));	
+
+// Streaming
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext0 (.Data_In(cx0_int),
+																											  .Data_Out(cx0_int_sext));
+																											  
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext1 (.Data_In(cx1_int),
+																											  .Data_Out(cx1_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext2 (.Data_In(cx2_int),
+																											  .Data_Out(cx2_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext3 (.Data_In(cx3_int),
+																											  .Data_Out(cx3_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext4 (.Data_In(cx4_int),
+																											  .Data_Out(cx4_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext5 (.Data_In(cx5_int),
+																											  .Data_Out(cx5_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext6 (.Data_In(cx6_int),
+																											  .Data_Out(cx6_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext7 (.Data_In(cx7_int),
+																											  .Data_Out(cx7_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext8 (.Data_In(cx8_int),
+																											  .Data_Out(cx8_int_sext));
+
+//
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext9 (.Data_In(cy0_int),
+																											  .Data_Out(cy0_int_sext));
+																											  
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext10 (.Data_In(cy1_int),
+																											  .Data_Out(cy1_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext11 (.Data_In(cy2_int),
+																											  .Data_Out(cy2_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext12 (.Data_In(cy3_int),
+																											  .Data_Out(cy3_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext13 (.Data_In(cy4_int),
+																											  .Data_Out(cy4_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext14 (.Data_In(cy5_int),
+																											  .Data_Out(cy5_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext15 (.Data_In(cy6_int),
+																											  .Data_Out(cy6_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext16 (.Data_In(cy7_int),
+																											  .Data_Out(cy7_int_sext));
+
+sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext17 (.Data_In(cy8_int),
+																											  .Data_Out(cy8_int_sext));
+	
+
+streaming_unit #(.GRID_DIM(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH+1)) streamer (.x(x_pos_zext),
+																								.y(y_pos_zext),
+																								.cx(cx_int_concat),
+																								.cy(cy_int_concat),
+																								.write_addresses(stream_addresses));
+											
+fin_addr_mux #(.ADDRESS_WIDTH(ADDRESS_WIDTH)) mux_fin_addr
+				  (.Din0(count_init),
+				  .Din1(stream_addr0[ADDRESS_WIDTH-1:0]),
+				  .Din2(stream_addr1[ADDRESS_WIDTH-1:0]),
+				  .Din3(stream_addr2[ADDRESS_WIDTH-1:0]),
+				  .Din4(stream_addr3[ADDRESS_WIDTH-1:0]),
+				  .Din5(stream_addr4[ADDRESS_WIDTH-1:0]),
+				  .Din6(stream_addr5[ADDRESS_WIDTH-1:0]),
+				  .Din7(stream_addr6[ADDRESS_WIDTH-1:0]),
+				  .Din8(stream_addr7[ADDRESS_WIDTH-1:0]),
+				  .Din9(stream_addr8[ADDRESS_WIDTH-1:0]),
+				  .select(select_fin_addr),
+				  .Dout(fin_addr_in));
 endmodule

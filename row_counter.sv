@@ -9,12 +9,7 @@ always_ff @ (posedge Clk or negedge Reset)
 begin
 if (~Reset)
 	count <= 0;
-else if (Enable)/*
-	if (count_init == 0)
-		count <= 0;
-	if (count_init > 0)
-		if (count_init % 16 == 0)
-			count <= count + 1'b1;*/
+else if (Enable)
 	if (count_init > 0 & count_init % 16 == 0) begin
 		count <= count + 1'b1;
 	end else if (count_init == 0) begin

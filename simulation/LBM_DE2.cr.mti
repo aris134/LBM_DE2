@@ -5,19 +5,26 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	controller
 
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/mux11.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/mux11.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module mux11
+
+Top level modules:
+	mux11
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/fp_to_unsigned.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/fp_to_unsigned.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module fp_to_unsigned
+
+Top level modules:
+	fp_to_unsigned
+
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_row_counter.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_row_counter.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module tb_row_counter
 
 Top level modules:
 	tb_row_counter
-
-} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_convert_to_fp.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_convert_to_fp.sv
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module tb_convert_to_fp
-
-Top level modules:
-	tb_convert_to_fp
 
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -26,12 +33,40 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	LBM_DE2
 
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_convert_to_fp.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_convert_to_fp.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_convert_to_fp
+
+Top level modules:
+	tb_convert_to_fp
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_streaming_unit.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_streaming_unit.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_streaming_unit
+
+Top level modules:
+	tb_streaming_unit
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/sign_extender.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/sign_extender.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module sign_extender
+
+Top level modules:
+	sign_extender
+
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/row_counter.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/row_counter.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module row_counter
 
 Top level modules:
 	row_counter
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/fin_addr_mux.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/fin_addr_mux.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module fin_addr_mux
+
+Top level modules:
+	fin_addr_mux
 
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/convert_to_fp.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/convert_to_fp.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -47,6 +82,13 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	fp_div
 
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_fp_to_unsigned.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_fp_to_unsigned.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_fp_to_unsigned
+
+Top level modules:
+	tb_fp_to_unsigned
+
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module cy_reg
@@ -61,12 +103,12 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	adder2
 
-} {} {}} C:/Users/arism/Desktop/LBM_DE2/mux3.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/mux3.sv
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_zero_extend.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_zero_extend.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module mux3
+-- Compiling module tb_zero_extend
 
 Top level modules:
-	mux3
+	tb_zero_extend
 
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_fp_div.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -75,6 +117,13 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	tb_fp_div
 
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/mux3.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/mux3.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module mux3
+
+Top level modules:
+	mux3
+
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module tb_wall_detector
@@ -82,12 +131,26 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	tb_wall_detector
 
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/zero_extend.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/zero_extend.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module zero_extend
+
+Top level modules:
+	zero_extend
+
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/cx_reg.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module cx_reg
 
 Top level modules:
 	cx_reg
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/streaming_unit.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/streaming_unit.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module streaming_unit
+
+Top level modules:
+	streaming_unit
 
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/wall_detector.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/wall_detector.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
