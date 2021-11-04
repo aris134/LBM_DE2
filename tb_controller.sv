@@ -3,8 +3,10 @@ module tb_controller();
 	timeunit 1ns;
 	timeprecision 1ns;
 	
-	parameter GRID_DIM = 16*16;
 	parameter DATA_WIDTH = 32;
+	parameter GRID_DIM = 16*16;
+	parameter ADDRESS_WIDTH = $clog2(GRID_DIM);
+	parameter ADDRESS_WIDTH2 = $clog2(GRID_DIM) + 1;
 	
 	parameter CLK_PERIOD = 20; // 50 MHz clock
 	
@@ -14,11 +16,23 @@ module tb_controller();
 	logic div_valid;
 	logic LID, BOTTOM_WALL, LEFT_WALL, RIGHT_WALL;
 	logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem;
-	logic select_p_mem, select_ux_mem, select_uy_mem, select_fin_mem;
+	logic select_p_mem, select_ux_mem, select_uy_mem;
+	logic [3:0] select_fin_mem;
+	logic [3:0] select_fin_addr;
 	logic [1:0] select_ux_reg;
 	logic select_p_reg, select_uy_reg;
 	logic count_init_en;
+	logic row_count_en;
 	logic div_start;
+	logic [ADDRESS_WIDTH2-1:0] stream_addr0;
+	logic [ADDRESS_WIDTH2-1:0] stream_addr1;
+	logic [ADDRESS_WIDTH2-1:0] stream_addr2;
+	logic [ADDRESS_WIDTH2-1:0] stream_addr3;
+	logic [ADDRESS_WIDTH2-1:0] stream_addr4;
+	logic [ADDRESS_WIDTH2-1:0] stream_addr5;
+	logic [ADDRESS_WIDTH2-1:0] stream_addr6;
+	logic [ADDRESS_WIDTH2-1:0] stream_addr7;
+	logic [ADDRESS_WIDTH2-1:0] stream_addr8;
 	logic LD_EN_P;
 	logic LD_EN_PUX;
 	logic LD_EN_PUY;

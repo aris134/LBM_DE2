@@ -1,0 +1,23 @@
+module tb_streaming_unit();
+
+	timeunit 1ns;
+	timeprecision 1ns;
+	
+	parameter GRID_DIM=16*16;
+	parameter ADDRESS_WIDTH=$clog2(GRID_DIM);
+	
+	logic signed [ADDRESS_WIDTH:0] x;
+	logic signed [ADDRESS_WIDTH:0] y;
+	logic signed [9*ADDRESS_WIDTH:0] cx;
+	logic signed [9*ADDRESS_WIDTH:0] cy;
+	logic [9*ADDRESS_WIDTH:0] write_addresses);
+	
+	streaming_unit #(.GRID_DIM(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH)) streamer (.*);
+	
+	initial begin
+		#5 Data_In = 8'b0000_1010; // no wall	
+		
+		#10 $finish;
+	end
+	
+endmodule
