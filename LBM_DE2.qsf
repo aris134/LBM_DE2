@@ -93,4 +93,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE sign_extender.sv
 set_global_assignment -name SYSTEMVERILOG_FILE tb_streaming_unit.sv
 set_global_assignment -name SYSTEMVERILOG_FILE fin_addr_mux.sv
 set_global_assignment -name SYSTEMVERILOG_FILE mux11.sv
+set_global_assignment -name SYSTEMVERILOG_FILE time_step_counter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_time_step_counter.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
