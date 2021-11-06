@@ -34,8 +34,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 							STREAM_3, STREAM_4, STREAM_5, STREAM_6, STREAM_7, STREAM_8, INCREMENT_POS,
 							INCREMENT_TIME, STOP} State, Next_state;
 	
-	// variable declarations
-	
+	 // fairly simple controller that orchestrates the LBM algorithm
 	 always_ff @ (posedge Clk or negedge Reset)
     begin 
         if (~Reset) 
@@ -175,7 +174,6 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 			end
 	CALC_MOMENT_2:
 			begin
-			// filler state for allowing p, pux, puy registers time to load data
 			select_p_mem = 1'b1;
 			WE_p_mem = 1'b1;
 			end
@@ -321,7 +319,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 			end
 	INCREMENT_TIME:
 			begin
-				time_count_en = 1'b1;
+				time_count_en = 1'b1; // increment the time counter once we've covered the grid
 			end
 		endcase
 	end
