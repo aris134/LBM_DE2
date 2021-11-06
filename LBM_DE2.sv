@@ -1,4 +1,4 @@
-module LBM_DE2	#(GRID_DIM=16*16,
+module LBM_DE2	#(GRID_DIM=16*16, MAX_TIME=8, TIME_COUNT_WIDTH=$clog2(MAX_TIME),
 		DATA_WIDTH=32, ADDRESS_WIDTH=$clog2(GRID_DIM), COUNT_WIDTH=$clog2(GRID_DIM/16),
 		DATA_WIDTH_F=9*DATA_WIDTH, FRACTIONAL_BITS=24, INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS)(
 		
@@ -27,6 +27,7 @@ logic [3:0] select_fin_mem;
 logic [3:0] select_fin_addr;
 logic count_init_en;
 logic row_count_en;
+logic time_count_en;
 
 // divider signals
 logic div_start;
@@ -46,6 +47,7 @@ logic remainder0;
 logic remainder1;
 
 logic [ADDRESS_WIDTH-1:0] count_init;
+logic [TIME_COUNT_WIDTH-1:0] time_count;
 
 logic [9*(ADDRESS_WIDTH+1)-1:0] stream_addresses;
 
@@ -74,8 +76,8 @@ assign stream_addr0 = stream_addresses[9*(ADDRESS_WIDTH+1)-1:8*(ADDRESS_WIDTH+1)
 logic signed [DATA_WIDTH-1:0] pwr;
 logic signed [DATA_WIDTH-1:0] gnd;
 
-assign pwr = {{DATA_WIDTH-1{1'b0}}, 1'b1};
-assign gnd = {{DATA_WIDTH{1'b0}}};
+assign pwr = 32'h01_000000;
+assign gnd = 32'h00_000000;
 
 logic signed [DATA_WIDTH_F-1:0] weights;
 logic signed [DATA_WIDTH_F-1:0] cx;
@@ -479,11 +481,16 @@ row_counter #(.GRID_DIM(GRID_DIM), .INIT_COUNT_WIDTH(ADDRESS_WIDTH), .COUNT_WIDT
 																										  .Enable(row_count_en), // wrong enable
 																										  .count_init(count_init),
 																										  .Data_out(y_pos));																									  
+
+// time step counter
+
+time_step_counter #(.MAX_TIME(MAX_TIME), .TIME_COUNT_WIDTH(TIME_COUNT_WIDTH)) timer (.Clk(CLOCK_50), .Reset(RESET), .Enable(time_count_en), .Data_out(time_count));
 																									  
 // controller
 controller fsm (.Clk(CLOCK_50),
 					  .Reset(RESET),
 					  .count_init(count_init),
+					  .time_count(time_count),
 					  .div_valid(div_valid),
 					  .LID(LID),
 					  .BOTTOM_WALL(BOTTOM_WALL),
@@ -514,6 +521,7 @@ controller fsm (.Clk(CLOCK_50),
 					  .select_fin_mem(select_fin_mem),
 					  .count_init_en(count_init_en),
 					  .row_count_en(row_count_en),
+					  .time_count_en(time_count_en),
 					  .div_start(div_start),
 					  .LD_EN_P(LD_EN_P),
 					  .LD_EN_PUX(LD_EN_PUX),

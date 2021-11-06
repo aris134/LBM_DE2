@@ -1,6 +1,8 @@
-module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_DIM), ADDRESS_WIDTH2=$clog2(GRID_DIM)+1) 
+module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_DIM),
+						  ADDRESS_WIDTH2=$clog2(GRID_DIM)+1, MAX_TIME=10, TIME_COUNT_WIDTH=$clog2(MAX_TIME)) 
 						 (input Clk, Reset,
 						 input logic [ADDRESS_WIDTH-1:0] count_init,
+						 input logic [TIME_COUNT_WIDTH-1:0] time_count,
 						 input logic div_valid,
 						 input logic LID, BOTTOM_WALL, LEFT_WALL, RIGHT_WALL,
 						 input logic [ADDRESS_WIDTH2-1:0] stream_addr0,
@@ -18,7 +20,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 output logic select_p_reg, select_uy_reg,
 						 output logic [1:0] select_ux_reg,
 						 output logic [3:0] select_fin_addr,
-						 output logic count_init_en, row_count_en,
+						 output logic count_init_en, row_count_en, time_count_en,
 						 output logic div_start,
 						 output logic LD_EN_P, LD_EN_PUX, LD_EN_PUY, LD_EN_UX, LD_EN_UY,
 						 output logic LD_EN_FEQ0, LD_EN_FEQ1, LD_EN_FEQ2, LD_EN_FEQ3, LD_EN_FEQ4,
@@ -29,7 +31,8 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	enum logic [4:0] {START, CALC_MOMENT_1, CALC_MOMENT_2, CALC_MOMENT_3,
 							CALC_MOMENT_4, CALC_MOMENT_5, CALC_MOMENT_6, CALC_EQUIL_1,
 							CALC_EQUIL_2, CALC_COLL_1, CALC_COLL_2, STREAM_0, STREAM_1, STREAM_2,
-							STREAM_3, STREAM_4, STREAM_5, STREAM_6, STREAM_7, STREAM_8, TEMP} State, Next_state;
+							STREAM_3, STREAM_4, STREAM_5, STREAM_6, STREAM_7, STREAM_8, INCREMENT_POS,
+							INCREMENT_TIME, STOP} State, Next_state;
 	
 	// variable declarations
 	
@@ -89,9 +92,19 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 		STREAM_7:
 				Next_state <= STREAM_8;
 		STREAM_8:
-				Next_state <= TEMP;
-		TEMP:
-				;
+				Next_state <= INCREMENT_POS;
+		INCREMENT_POS:
+				if (count_init < GRID_DIM - 1) begin
+					Next_state <= CALC_MOMENT_1;
+				end else begin
+					Next_state <= INCREMENT_TIME;
+				end
+		INCREMENT_TIME:
+				if (time_count < MAX_TIME) begin
+					Next_state <= CALC_MOMENT_1;
+				end else begin
+					Next_state <= STOP;
+				end
 		endcase
 	end
 	
@@ -115,6 +128,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	select_fin_addr = 4'b0000;
 	count_init_en = 1'b0;
 	row_count_en = 1'b0;
+	time_count_en = 1'b0;
 	LD_EN_P = 1'b0;
 	LD_EN_PUX = 1'b0;
 	LD_EN_PUY = 1'b0;
@@ -300,6 +314,14 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 					select_fin_addr = 4'b1001;
 					WE_fin_mem = 1'b1;
 				end
+			end
+	INCREMENT_POS:
+			begin
+				count_init_en = 1'b1; // increment the grid position counter
+			end
+	INCREMENT_TIME:
+			begin
+				time_count_en = 1'b1;
 			end
 		endcase
 	end
