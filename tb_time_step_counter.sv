@@ -10,7 +10,7 @@ module tb_time_step_counter();
 	logic Clk;
 	logic Reset;
 	logic Enable;
-	logic [TIME_COUNT_WIDTH-1:0] Data_out;
+	logic [TIME_COUNT_WIDTH:0] Data_out;
 	
 	time_step_counter #(.MAX_TIME(MAX_TIME), .TIME_COUNT_WIDTH(TIME_COUNT_WIDTH)) timer (.*);
 	

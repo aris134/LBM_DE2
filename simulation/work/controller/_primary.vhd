@@ -28,6 +28,9 @@ entity controller is
         stream_addr6    : in     vl_logic_vector;
         stream_addr7    : in     vl_logic_vector;
         stream_addr8    : in     vl_logic_vector;
+        p_mem_array     : in     vl_logic;
+        ux_mem_array    : in     vl_logic;
+        uy_mem_array    : in     vl_logic;
         WE_p_mem        : out    vl_logic;
         WE_ux_mem       : out    vl_logic;
         WE_uy_mem       : out    vl_logic;

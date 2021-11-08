@@ -23,6 +23,7 @@ module tb_LBM_DE2();
 	logic signed [DATA_WIDTH-1:0] uy_mem_data_out;
 	logic signed [DATA_WIDTH_F-1:0] fin_mem_data_out;
 	
+	
 	LBM_DE2 #(.GRID_DIM(GRID_DIM), .MAX_TIME(MAX_TIME), .TIME_COUNT_WIDTH(TIME_COUNT_WIDTH), .DATA_WIDTH(DATA_WIDTH), .ADDRESS_WIDTH(ADDRESS_WIDTH),
 	          .DATA_WIDTH_F(DATA_WIDTH_F), .FRACTIONAL_BITS(FRACTIONAL_BITS), .INTEGER_BITS(INTEGER_BITS)) LBM_DE2_0 (.*);
 	
@@ -36,7 +37,7 @@ module tb_LBM_DE2();
 		
 		#15 RESET = 1;
 		
-		#1000000 $finish;
+		#3508000 $finish;
 	end
 	
 endmodule
