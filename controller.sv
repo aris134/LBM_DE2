@@ -321,6 +321,8 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 			begin
 				time_count_en = 1'b1; // increment the time counter once we've covered the grid
 			end
+	default:
+			;
 		endcase
 	end
 	

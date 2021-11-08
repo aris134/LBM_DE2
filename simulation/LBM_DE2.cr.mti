@@ -1,16 +1,16 @@
-C:/Users/arism/Desktop/LBM_DE2/time_step_counter.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/time_step_counter.sv
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module time_step_counter
-
-Top level modules:
-	time_step_counter
-
-} {} {}} C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
+C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module LBM_DE2
 
 Top level modules:
 	LBM_DE2
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/time_step_counter.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/time_step_counter.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module time_step_counter
+
+Top level modules:
+	time_step_counter
 
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_LBM_DE2.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012

@@ -288,75 +288,11 @@ assign cy_2 = cy[7*DATA_WIDTH-1:6*DATA_WIDTH];
 assign cy_1 = cy[8*DATA_WIDTH-1:7*DATA_WIDTH];
 assign cy_0 = cy[9*DATA_WIDTH-1:8*DATA_WIDTH];
 
-// ignore most of this for now. This needs to get cleaned up.
-// skip to next commented section
-logic signed [ADDRESS_WIDTH-1:0] cx0_int;
-logic signed [ADDRESS_WIDTH-1:0] cx1_int;
-logic signed [ADDRESS_WIDTH-1:0] cx2_int;
-logic signed [ADDRESS_WIDTH-1:0] cx3_int;
-logic signed [ADDRESS_WIDTH-1:0] cx4_int;
-logic signed [ADDRESS_WIDTH-1:0] cx5_int;
-logic signed [ADDRESS_WIDTH-1:0] cx6_int;
-logic signed [ADDRESS_WIDTH-1:0] cx7_int;
-logic signed [ADDRESS_WIDTH-1:0] cx8_int;
-
-logic signed [ADDRESS_WIDTH:0] cx0_int_sext;
-logic signed [ADDRESS_WIDTH:0] cx1_int_sext;
-logic signed [ADDRESS_WIDTH:0] cx2_int_sext;
-logic signed [ADDRESS_WIDTH:0] cx3_int_sext;
-logic signed [ADDRESS_WIDTH:0] cx4_int_sext;
-logic signed [ADDRESS_WIDTH:0] cx5_int_sext;
-logic signed [ADDRESS_WIDTH:0] cx6_int_sext;
-logic signed [ADDRESS_WIDTH:0] cx7_int_sext;
-logic signed [ADDRESS_WIDTH:0] cx8_int_sext;
-
-logic signed [ADDRESS_WIDTH-1:0] cy0_int;
-logic signed [ADDRESS_WIDTH-1:0] cy1_int;
-logic signed [ADDRESS_WIDTH-1:0] cy2_int;
-logic signed [ADDRESS_WIDTH-1:0] cy3_int;
-logic signed [ADDRESS_WIDTH-1:0] cy4_int;
-logic signed [ADDRESS_WIDTH-1:0] cy5_int;
-logic signed [ADDRESS_WIDTH-1:0] cy6_int;
-logic signed [ADDRESS_WIDTH-1:0] cy7_int;
-logic signed [ADDRESS_WIDTH-1:0] cy8_int;
-
-logic signed [ADDRESS_WIDTH:0] cy0_int_sext;
-logic signed [ADDRESS_WIDTH:0] cy1_int_sext;
-logic signed [ADDRESS_WIDTH:0] cy2_int_sext;
-logic signed [ADDRESS_WIDTH:0] cy3_int_sext;
-logic signed [ADDRESS_WIDTH:0] cy4_int_sext;
-logic signed [ADDRESS_WIDTH:0] cy5_int_sext;
-logic signed [ADDRESS_WIDTH:0] cy6_int_sext;
-logic signed [ADDRESS_WIDTH:0] cy7_int_sext;
-logic signed [ADDRESS_WIDTH:0] cy8_int_sext;
-
-assign cx0_int = cx_0[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cx1_int = cx_1[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cx2_int = cx_2[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cx3_int = cx_3[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cx4_int = cx_4[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cx5_int = cx_5[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cx6_int = cx_6[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cx7_int = cx_7[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cx8_int = cx_8[DATA_WIDTH-1:DATA_WIDTH-8];
-
-assign cy0_int = cy_0[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cy1_int = cy_1[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cy2_int = cy_2[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cy3_int = cy_3[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cy4_int = cy_4[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cy5_int = cy_5[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cy6_int = cy_6[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cy7_int = cy_7[DATA_WIDTH-1:DATA_WIDTH-8];
-assign cy8_int = cy_8[DATA_WIDTH-1:DATA_WIDTH-8];
-
+// integer parts of discrete velocities to go into the streaming unit
 logic signed [9*(ADDRESS_WIDTH+1)-1:0] cx_int_concat;
 logic signed [9*(ADDRESS_WIDTH+1)-1:0] cy_int_concat;
-// again ignore this for now
-assign cx_int_concat = {cx0_int_sext, cx1_int_sext, cx2_int_sext, cx3_int_sext, cx4_int_sext, cx5_int_sext, cx6_int_sext, cx7_int_sext, cx8_int_sext};
-/*assign cy_int_concat = {-cy0_int_sext, ~cy1_int_sext+1, ~cy2_int_sext+1, ~cy3_int_sext+1,
-							   ~cy4_int_sext+1, ~cy5_int_sext+1, ~cy6_int_sext+1, ~cy7_int_sext+1, ~cy8_int_sext+1};*/
-								
+
+assign cx_int_concat = {9'b0_0000_0000, 9'b0_0000_0001, 9'b0_0000_0000, 9'b1_1111_1111, 9'b0_0000_0000, 9'b0_0000_0001, 9'b1_1111_1111, 9'b1_1111_1111, 9'b0_0000_0001};								
 assign cy_int_concat = {9'b0_0000_0000, 9'b0_0000_0000, 9'b1_1111_1111, 9'b0_0000_0000, 9'b0_0000_0001, 9'b1_1111_1111, 9'b1_1111_1111, 9'b0_0000_0001, 9'b0_0000_0001};
 
 // intermediate values for equlibrium calculation
@@ -1353,63 +1289,6 @@ reg32 #(.WIDTH(DATA_WIDTH)) fout8_reg (.Clk(CLOCK_50),
 													 .Data_Out(fout8_out));	
 
 // Streaming
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext0 (.Data_In(cx0_int),
-																											  .Data_Out(cx0_int_sext));
-																											  
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext1 (.Data_In(cx1_int),
-																											  .Data_Out(cx1_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext2 (.Data_In(cx2_int),
-																											  .Data_Out(cx2_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext3 (.Data_In(cx3_int),
-																											  .Data_Out(cx3_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext4 (.Data_In(cx4_int),
-																											  .Data_Out(cx4_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext5 (.Data_In(cx5_int),
-																											  .Data_Out(cx5_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext6 (.Data_In(cx6_int),
-																											  .Data_Out(cx6_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext7 (.Data_In(cx7_int),
-																											  .Data_Out(cx7_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext8 (.Data_In(cx8_int),
-																											  .Data_Out(cx8_int_sext));
-
-//
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext9 (.Data_In(cy0_int),
-																											  .Data_Out(cy0_int_sext));
-																											  
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext10 (.Data_In(cy1_int),
-																											  .Data_Out(cy1_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext11 (.Data_In(cy2_int),
-																											  .Data_Out(cy2_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext12 (.Data_In(cy3_int),
-																											  .Data_Out(cy3_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext13 (.Data_In(cy4_int),
-																											  .Data_Out(cy4_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext14 (.Data_In(cy5_int),
-																											  .Data_Out(cy5_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext15 (.Data_In(cy6_int),
-																											  .Data_Out(cy6_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext16 (.Data_In(cy7_int),
-																											  .Data_Out(cy7_int_sext));
-
-sign_extender #(.INPUT_WIDTH(ADDRESS_WIDTH), .OUTPUT_WIDTH(ADDRESS_WIDTH+1)) sext17 (.Data_In(cy8_int),
-																											  .Data_Out(cy8_int_sext));
-	
 
 streaming_unit #(.GRID_DIM(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH+1)) streamer (.x(x_pos_zext),
 																								.y(y_pos_zext),

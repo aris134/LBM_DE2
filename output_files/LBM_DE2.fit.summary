@@ -1,16 +1,16 @@
-Fitter Status : Failed - Wed Nov 03 21:14:15 2021
+Fitter Status : Successful - Mon Nov 08 09:47:02 2021
 Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Web Edition
 Revision Name : LBM_DE2
 Top-level Entity Name : LBM_DE2
 Family : Cyclone IV E
 Device : EP4CE115F29C7
 Timing Models : Final
-Total logic elements : 253,218 / 114,480 ( 221 % )
-    Total combinational functions : 105,886 / 114,480 ( 92 % )
-    Dedicated logic registers : 148,681 / 114,480 ( 130 % )
-Total registers : 148681
+Total logic elements : 8,780 / 114,480 ( 8 % )
+    Total combinational functions : 8,135 / 114,480 ( 7 % )
+    Dedicated logic registers : 2,108 / 114,480 ( 2 % )
+Total registers : 2108
 Total pins : 386 / 529 ( 73 % )
 Total virtual pins : 0
-Total memory bits : 24,576 / 3,981,312 ( < 1 % )
+Total memory bits : 172,032 / 3,981,312 ( 4 % )
 Embedded Multiplier 9-bit elements : 456 / 532 ( 86 % )
 Total PLLs : 0 / 4 ( 0 % )

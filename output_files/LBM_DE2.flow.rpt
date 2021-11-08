@@ -1,5 +1,5 @@
 Flow report for LBM_DE2
-Fri Nov 05 21:00:51 2021
+Mon Nov 08 09:47:38 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -40,22 +40,22 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Flow Failed - Fri Nov 05 21:00:51 2021     ;
+; Flow Status                        ; Successful - Mon Nov 08 09:47:38 2021      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; LBM_DE2                                    ;
 ; Top-level Entity Name              ; LBM_DE2                                    ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE115F29C7                              ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; N/A until Partition Merge                  ;
-;     Total combinational functions  ; N/A until Partition Merge                  ;
-;     Dedicated logic registers      ; N/A until Partition Merge                  ;
-; Total registers                    ; N/A until Partition Merge                  ;
-; Total pins                         ; N/A until Partition Merge                  ;
-; Total virtual pins                 ; N/A until Partition Merge                  ;
-; Total memory bits                  ; N/A until Partition Merge                  ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                  ;
-; Total PLLs                         ; N/A until Partition Merge                  ;
+; Total logic elements               ; 8,780 / 114,480 ( 8 % )                    ;
+;     Total combinational functions  ; 8,135 / 114,480 ( 7 % )                    ;
+;     Dedicated logic registers      ; 2,108 / 114,480 ( 2 % )                    ;
+; Total registers                    ; 2108                                       ;
+; Total pins                         ; 386 / 529 ( 73 % )                         ;
+; Total virtual pins                 ; 0                                          ;
+; Total memory bits                  ; 172,032 / 3,981,312 ( 4 % )                ;
+; Embedded Multiplier 9-bit elements ; 456 / 532 ( 86 % )                         ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                              ;
 +------------------------------------+--------------------------------------------+
 
 
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/05/2021 21:00:50 ;
+; Start date & time ; 11/08/2021 09:44:31 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; LBM_DE2             ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                           ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+---------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 211898707314421.163616045011784 ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 211898707314421.163638267006580 ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl               ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog) ; <None>        ; --          ; --             ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                              ; --            ; --          ; --             ;
@@ -88,29 +88,41 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------+---------------+-------------+----------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------+
-; Flow Elapsed Time                                                                                                        ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:01     ; 1.0                     ; 4599 MB             ; 00:00:01                           ;
-; Total                ; 00:00:01     ; --                      ; --                  ; 00:00:01                           ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:18     ; 1.0                     ; 4758 MB             ; 00:00:18                           ;
+; Fitter                    ; 00:02:11     ; 1.0                     ; 5218 MB             ; 00:02:11                           ;
+; Assembler                 ; 00:00:05     ; 1.0                     ; 4648 MB             ; 00:00:05                           ;
+; TimeQuest Timing Analyzer ; 00:00:11     ; 1.0                     ; 4809 MB             ; 00:00:11                           ;
+; EDA Netlist Writer        ; 00:00:12     ; 1.0                     ; 4659 MB             ; 00:00:11                           ;
+; Total                     ; 00:02:57     ; --                      ; --                  ; 00:02:56                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+-----------------------------------------------------------------------------------+
-; Flow OS Summary                                                                   ;
-+----------------------+------------------+-----------+------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
-+----------------------+------------------+-----------+------------+----------------+
-; Analysis & Synthesis ; DESKTOP-VUCT7PH  ; Windows 7 ; 6.2        ; x86_64         ;
-+----------------------+------------------+-----------+------------+----------------+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++---------------------------+------------------+-----------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
++---------------------------+------------------+-----------+------------+----------------+
+; Analysis & Synthesis      ; DESKTOP-VUCT7PH  ; Windows 7 ; 6.2        ; x86_64         ;
+; Fitter                    ; DESKTOP-VUCT7PH  ; Windows 7 ; 6.2        ; x86_64         ;
+; Assembler                 ; DESKTOP-VUCT7PH  ; Windows 7 ; 6.2        ; x86_64         ;
+; TimeQuest Timing Analyzer ; DESKTOP-VUCT7PH  ; Windows 7 ; 6.2        ; x86_64         ;
+; EDA Netlist Writer        ; DESKTOP-VUCT7PH  ; Windows 7 ; 6.2        ; x86_64         ;
++---------------------------+------------------+-----------+------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off LBM_DE2 -c LBM_DE2
+quartus_fit --read_settings_files=off --write_settings_files=off LBM_DE2 -c LBM_DE2
+quartus_asm --read_settings_files=off --write_settings_files=off LBM_DE2 -c LBM_DE2
+quartus_sta LBM_DE2 -c LBM_DE2
+quartus_eda --read_settings_files=off --write_settings_files=off LBM_DE2 -c LBM_DE2
 
 
 
