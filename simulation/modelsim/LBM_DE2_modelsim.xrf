@@ -30,7 +30,6 @@ source_file = 1, C:/Users/arism/Desktop/LBM_DE2/wall_detector.sv
 source_file = 1, C:/Users/arism/Desktop/LBM_DE2/tb_wall_detector.sv
 source_file = 1, C:/Users/arism/Desktop/LBM_DE2/mux3.sv
 source_file = 1, C:/Users/arism/Desktop/LBM_DE2/streaming_unit.sv
-source_file = 1, C:/Users/arism/Desktop/LBM_DE2/sign_extender.sv
 source_file = 1, C:/Users/arism/Desktop/LBM_DE2/tb_streaming_unit.sv
 source_file = 1, C:/Users/arism/Desktop/LBM_DE2/fin_addr_mux.sv
 source_file = 1, C:/Users/arism/Desktop/LBM_DE2/mux11.sv
