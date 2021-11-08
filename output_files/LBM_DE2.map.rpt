@@ -1,5 +1,5 @@
 Analysis & Synthesis report for LBM_DE2
-Mon Nov 08 09:49:43 2021
+Mon Nov 08 15:49:47 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -17,258 +17,254 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   9. Analysis & Synthesis DSP Block Usage Summary
  10. State Machine - |LBM_DE2|controller:fsm|State
  11. Registers Removed During Synthesis
- 12. Removed Registers Triggering Further Register Optimizations
- 13. General Register Statistics
- 14. Registers Added for RAM Pass-Through Logic
- 15. Registers Packed Into Inferred Megafunctions
- 16. Multiplexer Restructuring Statistics (Restructuring Performed)
- 17. Source assignments for moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated
- 18. Source assignments for moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated
- 19. Source assignments for moment_ram:uy_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated
- 20. Source assignments for distribution_ram:fin_ram|altsyncram:mem_rtl_0|altsyncram_k0e1:auto_generated
- 21. Source assignments for distribution_ram:fout_ram|altsyncram:mem_rtl_0|altsyncram_5ji1:auto_generated
- 22. Parameter Settings for User Entity Instance: Top-level Entity: |LBM_DE2
- 23. Parameter Settings for User Entity Instance: counter_init:init_counter
- 24. Parameter Settings for User Entity Instance: row_counter:row_cnter
- 25. Parameter Settings for User Entity Instance: time_step_counter:timer
- 26. Parameter Settings for User Entity Instance: controller:fsm
- 27. Parameter Settings for User Entity Instance: wall_detector:wall_det
- 28. Parameter Settings for User Entity Instance: weights_reg:w_reg
- 29. Parameter Settings for User Entity Instance: moment_ram:p_ram
- 30. Parameter Settings for User Entity Instance: moment_ram:ux_ram
- 31. Parameter Settings for User Entity Instance: moment_ram:uy_ram
- 32. Parameter Settings for User Entity Instance: distribution_ram:fin_ram
- 33. Parameter Settings for User Entity Instance: distribution_ram:feq_ram
- 34. Parameter Settings for User Entity Instance: distribution_ram:fout_ram
- 35. Parameter Settings for User Entity Instance: mux2:p_in_mux
- 36. Parameter Settings for User Entity Instance: mux3:ux_in_mux
- 37. Parameter Settings for User Entity Instance: mux2:uy_in_mux
- 38. Parameter Settings for User Entity Instance: mux2:p_mem_mux
- 39. Parameter Settings for User Entity Instance: mux2:ux_mem_mux
- 40. Parameter Settings for User Entity Instance: mux2:uy_mem_mux
- 41. Parameter Settings for User Entity Instance: mux11:fin_mem_mux
- 42. Parameter Settings for User Entity Instance: adder9:fin_sum
- 43. Parameter Settings for User Entity Instance: reg32:p_reg
- 44. Parameter Settings for User Entity Instance: reg32:pux_reg
- 45. Parameter Settings for User Entity Instance: reg32:puy_reg
- 46. Parameter Settings for User Entity Instance: reg32:ux_reg
- 47. Parameter Settings for User Entity Instance: reg32:uy_reg
- 48. Parameter Settings for User Entity Instance: cx_reg:reg_cx
- 49. Parameter Settings for User Entity Instance: cy_reg:reg_cy
- 50. Parameter Settings for User Entity Instance: fp_mult:prod_cx0fin0
- 51. Parameter Settings for User Entity Instance: fp_mult:prod_cx1fin1
- 52. Parameter Settings for User Entity Instance: fp_mult:prod_cx2fin2
- 53. Parameter Settings for User Entity Instance: fp_mult:prod_cx3fin3
- 54. Parameter Settings for User Entity Instance: fp_mult:prod_cx4fin4
- 55. Parameter Settings for User Entity Instance: fp_mult:prod_cx5fin5
- 56. Parameter Settings for User Entity Instance: fp_mult:prod_cx6fin6
- 57. Parameter Settings for User Entity Instance: fp_mult:prod_cx7fin7
- 58. Parameter Settings for User Entity Instance: fp_mult:prod_cx8fin8
- 59. Parameter Settings for User Entity Instance: adder9:cxfin_sum
- 60. Parameter Settings for User Entity Instance: fp_mult:prod_cy0fin0
- 61. Parameter Settings for User Entity Instance: fp_mult:prod_cy1fin1
- 62. Parameter Settings for User Entity Instance: fp_mult:prod_cy2fin2
- 63. Parameter Settings for User Entity Instance: fp_mult:prod_cy3fin3
- 64. Parameter Settings for User Entity Instance: fp_mult:prod_cy4fin4
- 65. Parameter Settings for User Entity Instance: fp_mult:prod_cy5fin5
- 66. Parameter Settings for User Entity Instance: fp_mult:prod_cy6fin6
- 67. Parameter Settings for User Entity Instance: fp_mult:prod_cy7fin7
- 68. Parameter Settings for User Entity Instance: fp_mult:prod_cy8fin8
- 69. Parameter Settings for User Entity Instance: adder9:cyfin_sum
- 70. Parameter Settings for User Entity Instance: fp_div:div_ux
- 71. Parameter Settings for User Entity Instance: fp_div:div_uy
- 72. Parameter Settings for User Entity Instance: fp_mult:prod_ux2
- 73. Parameter Settings for User Entity Instance: fp_mult:prod_uy2
- 74. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy
- 75. Parameter Settings for User Entity Instance: fp_mult:prod_6ux
- 76. Parameter Settings for User Entity Instance: fp_mult:prod_neg6ux
- 77. Parameter Settings for User Entity Instance: fp_mult:prod_6uy
- 78. Parameter Settings for User Entity Instance: fp_mult:prod_neg6uy
- 79. Parameter Settings for User Entity Instance: adder2:sum_ux_uy
- 80. Parameter Settings for User Entity Instance: adder2:diff_ux_uy
- 81. Parameter Settings for User Entity Instance: fp_mult:prod_3_ux_minus_uy
- 82. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_ux_minus_uy
- 83. Parameter Settings for User Entity Instance: fp_mult:prod_3_ux_plus_uy
- 84. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_ux_plus_uy
- 85. Parameter Settings for User Entity Instance: adder2:sum_u2
- 86. Parameter Settings for User Entity Instance: fp_mult:prod_9_ux2
- 87. Parameter Settings for User Entity Instance: fp_mult:prod_9_uy2
- 88. Parameter Settings for User Entity Instance: fp_mult:prod_3_u2
- 89. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_u2
- 90. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy_9
- 91. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy_neg9
- 92. Parameter Settings for User Entity Instance: adder2:add0
- 93. Parameter Settings for User Entity Instance: adder2:add1
- 94. Parameter Settings for User Entity Instance: adder2:add2
- 95. Parameter Settings for User Entity Instance: adder2:add3
- 96. Parameter Settings for User Entity Instance: adder2:add4
- 97. Parameter Settings for User Entity Instance: adder2:add5
- 98. Parameter Settings for User Entity Instance: adder2:add6
- 99. Parameter Settings for User Entity Instance: adder2:add7
-100. Parameter Settings for User Entity Instance: adder2:add8
-101. Parameter Settings for User Entity Instance: adder2:add9
-102. Parameter Settings for User Entity Instance: adder2:add10
-103. Parameter Settings for User Entity Instance: adder2:ad11
-104. Parameter Settings for User Entity Instance: fp_mult:prod_p29
-105. Parameter Settings for User Entity Instance: fp_mult:prod_p118
-106. Parameter Settings for User Entity Instance: fp_mult:prod_p136
-107. Parameter Settings for User Entity Instance: reg32:feq0_reg
-108. Parameter Settings for User Entity Instance: reg32:feq1_reg
-109. Parameter Settings for User Entity Instance: reg32:feq2_reg
-110. Parameter Settings for User Entity Instance: reg32:feq3_reg
-111. Parameter Settings for User Entity Instance: reg32:feq4_reg
-112. Parameter Settings for User Entity Instance: reg32:feq5_reg
-113. Parameter Settings for User Entity Instance: reg32:feq6_reg
-114. Parameter Settings for User Entity Instance: reg32:feq7_reg
-115. Parameter Settings for User Entity Instance: reg32:feq8_reg
-116. Parameter Settings for User Entity Instance: fp_mult:prod_feq8
-117. Parameter Settings for User Entity Instance: fp_mult:prod_feq6
-118. Parameter Settings for User Entity Instance: fp_mult:prod_feq5
-119. Parameter Settings for User Entity Instance: fp_mult:prod_feq7
-120. Parameter Settings for User Entity Instance: fp_mult:prod_feq0
-121. Parameter Settings for User Entity Instance: fp_mult:prod_feq1
-122. Parameter Settings for User Entity Instance: fp_mult:prod_feq3
-123. Parameter Settings for User Entity Instance: fp_mult:prod_feq2
-124. Parameter Settings for User Entity Instance: fp_mult:prod_feq4
-125. Parameter Settings for User Entity Instance: adder2:add12
-126. Parameter Settings for User Entity Instance: adder2:add13
-127. Parameter Settings for User Entity Instance: adder2:add14
-128. Parameter Settings for User Entity Instance: adder2:add15
-129. Parameter Settings for User Entity Instance: adder2:add16
-130. Parameter Settings for User Entity Instance: adder2:add17
-131. Parameter Settings for User Entity Instance: adder2:add18
-132. Parameter Settings for User Entity Instance: adder2:add19
-133. Parameter Settings for User Entity Instance: adder2:add20
-134. Parameter Settings for User Entity Instance: adder2:add21
-135. Parameter Settings for User Entity Instance: adder2:add22
-136. Parameter Settings for User Entity Instance: adder2:add23
-137. Parameter Settings for User Entity Instance: adder2:add24
-138. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq0
-139. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq1
-140. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq2
-141. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq3
-142. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq4
-143. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq5
-144. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq6
-145. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq7
-146. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq8
-147. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin0
-148. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin1
-149. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin2
-150. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin3
-151. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin4
-152. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin5
-153. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin6
-154. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin7
-155. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin8
-156. Parameter Settings for User Entity Instance: adder2:add25
-157. Parameter Settings for User Entity Instance: adder2:add26
-158. Parameter Settings for User Entity Instance: adder2:add27
-159. Parameter Settings for User Entity Instance: adder2:add28
-160. Parameter Settings for User Entity Instance: adder2:add29
-161. Parameter Settings for User Entity Instance: adder2:add30
-162. Parameter Settings for User Entity Instance: adder2:add31
-163. Parameter Settings for User Entity Instance: adder2:add32
-164. Parameter Settings for User Entity Instance: adder2:add33
-165. Parameter Settings for User Entity Instance: reg32:fout0_reg
-166. Parameter Settings for User Entity Instance: reg32:fout1_reg
-167. Parameter Settings for User Entity Instance: reg32:fout2_reg
-168. Parameter Settings for User Entity Instance: reg32:fout3_reg
-169. Parameter Settings for User Entity Instance: reg32:fout4_reg
-170. Parameter Settings for User Entity Instance: reg32:fout5_reg
-171. Parameter Settings for User Entity Instance: reg32:fout6_reg
-172. Parameter Settings for User Entity Instance: reg32:fout7_reg
-173. Parameter Settings for User Entity Instance: reg32:fout8_reg
-174. Parameter Settings for User Entity Instance: streaming_unit:streamer
-175. Parameter Settings for User Entity Instance: fin_addr_mux:mux_fin_addr
-176. Parameter Settings for Inferred Entity Instance: moment_ram:p_ram|altsyncram:mem_rtl_0
-177. Parameter Settings for Inferred Entity Instance: moment_ram:ux_ram|altsyncram:mem_rtl_0
-178. Parameter Settings for Inferred Entity Instance: moment_ram:uy_ram|altsyncram:mem_rtl_0
-179. Parameter Settings for Inferred Entity Instance: distribution_ram:fin_ram|altsyncram:mem_rtl_0
-180. Parameter Settings for Inferred Entity Instance: distribution_ram:fout_ram|altsyncram:mem_rtl_0
-181. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p136|lpm_mult:Mult0
-182. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq8|lpm_mult:Mult0
-183. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq7|lpm_mult:Mult0
-184. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq6|lpm_mult:Mult0
-185. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq5|lpm_mult:Mult0
-186. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p118|lpm_mult:Mult0
-187. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq4|lpm_mult:Mult0
-188. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq3|lpm_mult:Mult0
-189. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq2|lpm_mult:Mult0
-190. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq1|lpm_mult:Mult0
-191. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_u2|lpm_mult:Mult0
-192. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p29|lpm_mult:Mult0
-193. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq0|lpm_mult:Mult0
-194. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq8|lpm_mult:Mult0
-195. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin8|lpm_mult:Mult0
-196. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq7|lpm_mult:Mult0
-197. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin7|lpm_mult:Mult0
-198. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq6|lpm_mult:Mult0
-199. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin6|lpm_mult:Mult0
-200. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq5|lpm_mult:Mult0
-201. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin5|lpm_mult:Mult0
-202. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq4|lpm_mult:Mult0
-203. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin4|lpm_mult:Mult0
-204. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq3|lpm_mult:Mult0
-205. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin3|lpm_mult:Mult0
-206. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq2|lpm_mult:Mult0
-207. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin2|lpm_mult:Mult0
-208. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq1|lpm_mult:Mult0
-209. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin1|lpm_mult:Mult0
-210. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq0|lpm_mult:Mult0
-211. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin0|lpm_mult:Mult0
-212. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_u2|lpm_mult:Mult0
-213. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uy2|lpm_mult:Mult0
-214. Parameter Settings for Inferred Entity Instance: fp_mult:prod_ux2|lpm_mult:Mult0
-215. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx8fin8|lpm_mult:Mult0
-216. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy8fin8|lpm_mult:Mult0
-217. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_ux_minus_uy|lpm_mult:Mult0
-218. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy|lpm_mult:Mult0
-219. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy_neg9|lpm_mult:Mult0
-220. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_ux_plus_uy|lpm_mult:Mult0
-221. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy_9|lpm_mult:Mult0
-222. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_ux_minus_uy|lpm_mult:Mult0
-223. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_ux_plus_uy|lpm_mult:Mult0
-224. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg6uy|lpm_mult:Mult0
-225. Parameter Settings for Inferred Entity Instance: fp_mult:prod_9_uy2|lpm_mult:Mult0
-226. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg6ux|lpm_mult:Mult0
-227. Parameter Settings for Inferred Entity Instance: fp_mult:prod_9_ux2|lpm_mult:Mult0
-228. Parameter Settings for Inferred Entity Instance: fp_mult:prod_6uy|lpm_mult:Mult0
-229. Parameter Settings for Inferred Entity Instance: fp_mult:prod_6ux|lpm_mult:Mult0
-230. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx6fin6|lpm_mult:Mult0
-231. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx7fin7|lpm_mult:Mult0
-232. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx5fin5|lpm_mult:Mult0
-233. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy6fin6|lpm_mult:Mult0
-234. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy2fin2|lpm_mult:Mult0
-235. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx1fin1|lpm_mult:Mult0
-236. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx3fin3|lpm_mult:Mult0
-237. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy4fin4|lpm_mult:Mult0
-238. altsyncram Parameter Settings by Entity Instance
-239. lpm_mult Parameter Settings by Entity Instance
-240. Port Connectivity Checks: "streaming_unit:streamer"
-241. Port Connectivity Checks: "fp_mult:prod_coll_fin0"
-242. Port Connectivity Checks: "fp_mult:prod_coll_feq0"
-243. Port Connectivity Checks: "adder2:add12"
-244. Port Connectivity Checks: "fp_mult:prod_p136"
-245. Port Connectivity Checks: "fp_mult:prod_p118"
-246. Port Connectivity Checks: "fp_mult:prod_p29"
-247. Port Connectivity Checks: "fp_mult:prod_uxuy_neg9"
-248. Port Connectivity Checks: "fp_mult:prod_9_ux2"
-249. Port Connectivity Checks: "fp_mult:prod_neg3_ux_minus_uy"
-250. Port Connectivity Checks: "fp_mult:prod_3_ux_minus_uy"
-251. Port Connectivity Checks: "fp_mult:prod_neg6ux"
-252. Port Connectivity Checks: "fp_mult:prod_6ux"
-253. Port Connectivity Checks: "fp_div:div_uy"
-254. Port Connectivity Checks: "fp_div:div_ux"
-255. Port Connectivity Checks: "mux2:p_mem_mux"
-256. Port Connectivity Checks: "mux3:ux_in_mux"
-257. Port Connectivity Checks: "mux2:p_in_mux"
-258. Port Connectivity Checks: "distribution_ram:feq_ram"
-259. Port Connectivity Checks: "wall_detector:wall_det"
-260. Port Connectivity Checks: "controller:fsm"
-261. Elapsed Time Per Partition
-262. Analysis & Synthesis Messages
-263. Analysis & Synthesis Suppressed Messages
+ 12. General Register Statistics
+ 13. Registers Added for RAM Pass-Through Logic
+ 14. Registers Packed Into Inferred Megafunctions
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_bfi1:auto_generated
+ 17. Source assignments for moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_lfi1:auto_generated
+ 18. Source assignments for distribution_ram:fin_ram|altsyncram:mem_rtl_0|altsyncram_k0e1:auto_generated
+ 19. Source assignments for distribution_ram:fout_ram|altsyncram:mem_rtl_0|altsyncram_5ji1:auto_generated
+ 20. Parameter Settings for User Entity Instance: Top-level Entity: |LBM_DE2
+ 21. Parameter Settings for User Entity Instance: counter_init:init_counter
+ 22. Parameter Settings for User Entity Instance: row_counter:row_cnter
+ 23. Parameter Settings for User Entity Instance: time_step_counter:timer
+ 24. Parameter Settings for User Entity Instance: controller:fsm
+ 25. Parameter Settings for User Entity Instance: wall_detector:wall_det
+ 26. Parameter Settings for User Entity Instance: weights_reg:w_reg
+ 27. Parameter Settings for User Entity Instance: moment_ram:p_ram
+ 28. Parameter Settings for User Entity Instance: moment_ram:ux_ram
+ 29. Parameter Settings for User Entity Instance: moment_ram:uy_ram
+ 30. Parameter Settings for User Entity Instance: distribution_ram:fin_ram
+ 31. Parameter Settings for User Entity Instance: distribution_ram:feq_ram
+ 32. Parameter Settings for User Entity Instance: distribution_ram:fout_ram
+ 33. Parameter Settings for User Entity Instance: mux2:p_in_mux
+ 34. Parameter Settings for User Entity Instance: mux3:ux_in_mux
+ 35. Parameter Settings for User Entity Instance: mux2:uy_in_mux
+ 36. Parameter Settings for User Entity Instance: mux2:p_mem_mux
+ 37. Parameter Settings for User Entity Instance: mux2:ux_mem_mux
+ 38. Parameter Settings for User Entity Instance: mux2:uy_mem_mux
+ 39. Parameter Settings for User Entity Instance: mux11:fin_mem_mux
+ 40. Parameter Settings for User Entity Instance: adder9:fin_sum
+ 41. Parameter Settings for User Entity Instance: reg32:p_reg
+ 42. Parameter Settings for User Entity Instance: reg32:pux_reg
+ 43. Parameter Settings for User Entity Instance: reg32:puy_reg
+ 44. Parameter Settings for User Entity Instance: reg32:ux_reg
+ 45. Parameter Settings for User Entity Instance: reg32:uy_reg
+ 46. Parameter Settings for User Entity Instance: cx_reg:reg_cx
+ 47. Parameter Settings for User Entity Instance: cy_reg:reg_cy
+ 48. Parameter Settings for User Entity Instance: fp_mult:prod_cx0fin0
+ 49. Parameter Settings for User Entity Instance: fp_mult:prod_cx1fin1
+ 50. Parameter Settings for User Entity Instance: fp_mult:prod_cx2fin2
+ 51. Parameter Settings for User Entity Instance: fp_mult:prod_cx3fin3
+ 52. Parameter Settings for User Entity Instance: fp_mult:prod_cx4fin4
+ 53. Parameter Settings for User Entity Instance: fp_mult:prod_cx5fin5
+ 54. Parameter Settings for User Entity Instance: fp_mult:prod_cx6fin6
+ 55. Parameter Settings for User Entity Instance: fp_mult:prod_cx7fin7
+ 56. Parameter Settings for User Entity Instance: fp_mult:prod_cx8fin8
+ 57. Parameter Settings for User Entity Instance: adder9:cxfin_sum
+ 58. Parameter Settings for User Entity Instance: fp_mult:prod_cy0fin0
+ 59. Parameter Settings for User Entity Instance: fp_mult:prod_cy1fin1
+ 60. Parameter Settings for User Entity Instance: fp_mult:prod_cy2fin2
+ 61. Parameter Settings for User Entity Instance: fp_mult:prod_cy3fin3
+ 62. Parameter Settings for User Entity Instance: fp_mult:prod_cy4fin4
+ 63. Parameter Settings for User Entity Instance: fp_mult:prod_cy5fin5
+ 64. Parameter Settings for User Entity Instance: fp_mult:prod_cy6fin6
+ 65. Parameter Settings for User Entity Instance: fp_mult:prod_cy7fin7
+ 66. Parameter Settings for User Entity Instance: fp_mult:prod_cy8fin8
+ 67. Parameter Settings for User Entity Instance: adder9:cyfin_sum
+ 68. Parameter Settings for User Entity Instance: fp_div:div_ux
+ 69. Parameter Settings for User Entity Instance: fp_div:div_uy
+ 70. Parameter Settings for User Entity Instance: fp_mult:prod_ux2
+ 71. Parameter Settings for User Entity Instance: fp_mult:prod_uy2
+ 72. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy
+ 73. Parameter Settings for User Entity Instance: fp_mult:prod_6ux
+ 74. Parameter Settings for User Entity Instance: fp_mult:prod_neg6ux
+ 75. Parameter Settings for User Entity Instance: fp_mult:prod_6uy
+ 76. Parameter Settings for User Entity Instance: fp_mult:prod_neg6uy
+ 77. Parameter Settings for User Entity Instance: adder2:sum_ux_uy
+ 78. Parameter Settings for User Entity Instance: adder2:diff_ux_uy
+ 79. Parameter Settings for User Entity Instance: fp_mult:prod_3_ux_minus_uy
+ 80. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_ux_minus_uy
+ 81. Parameter Settings for User Entity Instance: fp_mult:prod_3_ux_plus_uy
+ 82. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_ux_plus_uy
+ 83. Parameter Settings for User Entity Instance: adder2:sum_u2
+ 84. Parameter Settings for User Entity Instance: fp_mult:prod_9_ux2
+ 85. Parameter Settings for User Entity Instance: fp_mult:prod_9_uy2
+ 86. Parameter Settings for User Entity Instance: fp_mult:prod_3_u2
+ 87. Parameter Settings for User Entity Instance: fp_mult:prod_neg3_u2
+ 88. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy_9
+ 89. Parameter Settings for User Entity Instance: fp_mult:prod_uxuy_neg9
+ 90. Parameter Settings for User Entity Instance: adder2:add0
+ 91. Parameter Settings for User Entity Instance: adder2:add1
+ 92. Parameter Settings for User Entity Instance: adder2:add2
+ 93. Parameter Settings for User Entity Instance: adder2:add3
+ 94. Parameter Settings for User Entity Instance: adder2:add4
+ 95. Parameter Settings for User Entity Instance: adder2:add5
+ 96. Parameter Settings for User Entity Instance: adder2:add6
+ 97. Parameter Settings for User Entity Instance: adder2:add7
+ 98. Parameter Settings for User Entity Instance: adder2:add8
+ 99. Parameter Settings for User Entity Instance: adder2:add9
+100. Parameter Settings for User Entity Instance: adder2:add10
+101. Parameter Settings for User Entity Instance: adder2:ad11
+102. Parameter Settings for User Entity Instance: fp_mult:prod_p29
+103. Parameter Settings for User Entity Instance: fp_mult:prod_p118
+104. Parameter Settings for User Entity Instance: fp_mult:prod_p136
+105. Parameter Settings for User Entity Instance: reg32:feq0_reg
+106. Parameter Settings for User Entity Instance: reg32:feq1_reg
+107. Parameter Settings for User Entity Instance: reg32:feq2_reg
+108. Parameter Settings for User Entity Instance: reg32:feq3_reg
+109. Parameter Settings for User Entity Instance: reg32:feq4_reg
+110. Parameter Settings for User Entity Instance: reg32:feq5_reg
+111. Parameter Settings for User Entity Instance: reg32:feq6_reg
+112. Parameter Settings for User Entity Instance: reg32:feq7_reg
+113. Parameter Settings for User Entity Instance: reg32:feq8_reg
+114. Parameter Settings for User Entity Instance: fp_mult:prod_feq8
+115. Parameter Settings for User Entity Instance: fp_mult:prod_feq6
+116. Parameter Settings for User Entity Instance: fp_mult:prod_feq5
+117. Parameter Settings for User Entity Instance: fp_mult:prod_feq7
+118. Parameter Settings for User Entity Instance: fp_mult:prod_feq0
+119. Parameter Settings for User Entity Instance: fp_mult:prod_feq1
+120. Parameter Settings for User Entity Instance: fp_mult:prod_feq3
+121. Parameter Settings for User Entity Instance: fp_mult:prod_feq2
+122. Parameter Settings for User Entity Instance: fp_mult:prod_feq4
+123. Parameter Settings for User Entity Instance: adder2:add12
+124. Parameter Settings for User Entity Instance: adder2:add13
+125. Parameter Settings for User Entity Instance: adder2:add14
+126. Parameter Settings for User Entity Instance: adder2:add15
+127. Parameter Settings for User Entity Instance: adder2:add16
+128. Parameter Settings for User Entity Instance: adder2:add17
+129. Parameter Settings for User Entity Instance: adder2:add18
+130. Parameter Settings for User Entity Instance: adder2:add19
+131. Parameter Settings for User Entity Instance: adder2:add20
+132. Parameter Settings for User Entity Instance: adder2:add21
+133. Parameter Settings for User Entity Instance: adder2:add22
+134. Parameter Settings for User Entity Instance: adder2:add23
+135. Parameter Settings for User Entity Instance: adder2:add24
+136. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq0
+137. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq1
+138. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq2
+139. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq3
+140. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq4
+141. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq5
+142. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq6
+143. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq7
+144. Parameter Settings for User Entity Instance: fp_mult:prod_coll_feq8
+145. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin0
+146. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin1
+147. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin2
+148. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin3
+149. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin4
+150. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin5
+151. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin6
+152. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin7
+153. Parameter Settings for User Entity Instance: fp_mult:prod_coll_fin8
+154. Parameter Settings for User Entity Instance: adder2:add25
+155. Parameter Settings for User Entity Instance: adder2:add26
+156. Parameter Settings for User Entity Instance: adder2:add27
+157. Parameter Settings for User Entity Instance: adder2:add28
+158. Parameter Settings for User Entity Instance: adder2:add29
+159. Parameter Settings for User Entity Instance: adder2:add30
+160. Parameter Settings for User Entity Instance: adder2:add31
+161. Parameter Settings for User Entity Instance: adder2:add32
+162. Parameter Settings for User Entity Instance: adder2:add33
+163. Parameter Settings for User Entity Instance: reg32:fout0_reg
+164. Parameter Settings for User Entity Instance: reg32:fout1_reg
+165. Parameter Settings for User Entity Instance: reg32:fout2_reg
+166. Parameter Settings for User Entity Instance: reg32:fout3_reg
+167. Parameter Settings for User Entity Instance: reg32:fout4_reg
+168. Parameter Settings for User Entity Instance: reg32:fout5_reg
+169. Parameter Settings for User Entity Instance: reg32:fout6_reg
+170. Parameter Settings for User Entity Instance: reg32:fout7_reg
+171. Parameter Settings for User Entity Instance: reg32:fout8_reg
+172. Parameter Settings for User Entity Instance: streaming_unit:streamer
+173. Parameter Settings for User Entity Instance: fin_addr_mux:mux_fin_addr
+174. Parameter Settings for Inferred Entity Instance: moment_ram:p_ram|altsyncram:mem_rtl_0
+175. Parameter Settings for Inferred Entity Instance: moment_ram:ux_ram|altsyncram:mem_rtl_0
+176. Parameter Settings for Inferred Entity Instance: distribution_ram:fin_ram|altsyncram:mem_rtl_0
+177. Parameter Settings for Inferred Entity Instance: distribution_ram:fout_ram|altsyncram:mem_rtl_0
+178. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p136|lpm_mult:Mult0
+179. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq8|lpm_mult:Mult0
+180. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq7|lpm_mult:Mult0
+181. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq6|lpm_mult:Mult0
+182. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq5|lpm_mult:Mult0
+183. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p118|lpm_mult:Mult0
+184. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq4|lpm_mult:Mult0
+185. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq3|lpm_mult:Mult0
+186. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq2|lpm_mult:Mult0
+187. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq1|lpm_mult:Mult0
+188. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_u2|lpm_mult:Mult0
+189. Parameter Settings for Inferred Entity Instance: fp_mult:prod_p29|lpm_mult:Mult0
+190. Parameter Settings for Inferred Entity Instance: fp_mult:prod_feq0|lpm_mult:Mult0
+191. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq8|lpm_mult:Mult0
+192. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin8|lpm_mult:Mult0
+193. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq7|lpm_mult:Mult0
+194. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin7|lpm_mult:Mult0
+195. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq6|lpm_mult:Mult0
+196. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin6|lpm_mult:Mult0
+197. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq5|lpm_mult:Mult0
+198. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin5|lpm_mult:Mult0
+199. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq4|lpm_mult:Mult0
+200. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin4|lpm_mult:Mult0
+201. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq3|lpm_mult:Mult0
+202. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin3|lpm_mult:Mult0
+203. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq2|lpm_mult:Mult0
+204. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin2|lpm_mult:Mult0
+205. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq1|lpm_mult:Mult0
+206. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin1|lpm_mult:Mult0
+207. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_feq0|lpm_mult:Mult0
+208. Parameter Settings for Inferred Entity Instance: fp_mult:prod_coll_fin0|lpm_mult:Mult0
+209. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_u2|lpm_mult:Mult0
+210. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uy2|lpm_mult:Mult0
+211. Parameter Settings for Inferred Entity Instance: fp_mult:prod_ux2|lpm_mult:Mult0
+212. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx8fin8|lpm_mult:Mult0
+213. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy8fin8|lpm_mult:Mult0
+214. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_ux_minus_uy|lpm_mult:Mult0
+215. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy|lpm_mult:Mult0
+216. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy_neg9|lpm_mult:Mult0
+217. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_ux_plus_uy|lpm_mult:Mult0
+218. Parameter Settings for Inferred Entity Instance: fp_mult:prod_uxuy_9|lpm_mult:Mult0
+219. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg3_ux_minus_uy|lpm_mult:Mult0
+220. Parameter Settings for Inferred Entity Instance: fp_mult:prod_3_ux_plus_uy|lpm_mult:Mult0
+221. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg6uy|lpm_mult:Mult0
+222. Parameter Settings for Inferred Entity Instance: fp_mult:prod_9_uy2|lpm_mult:Mult0
+223. Parameter Settings for Inferred Entity Instance: fp_mult:prod_neg6ux|lpm_mult:Mult0
+224. Parameter Settings for Inferred Entity Instance: fp_mult:prod_9_ux2|lpm_mult:Mult0
+225. Parameter Settings for Inferred Entity Instance: fp_mult:prod_6uy|lpm_mult:Mult0
+226. Parameter Settings for Inferred Entity Instance: fp_mult:prod_6ux|lpm_mult:Mult0
+227. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx6fin6|lpm_mult:Mult0
+228. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx7fin7|lpm_mult:Mult0
+229. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx5fin5|lpm_mult:Mult0
+230. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy6fin6|lpm_mult:Mult0
+231. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy2fin2|lpm_mult:Mult0
+232. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx1fin1|lpm_mult:Mult0
+233. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cx3fin3|lpm_mult:Mult0
+234. Parameter Settings for Inferred Entity Instance: fp_mult:prod_cy4fin4|lpm_mult:Mult0
+235. altsyncram Parameter Settings by Entity Instance
+236. lpm_mult Parameter Settings by Entity Instance
+237. Port Connectivity Checks: "streaming_unit:streamer"
+238. Port Connectivity Checks: "fp_mult:prod_coll_fin0"
+239. Port Connectivity Checks: "fp_mult:prod_coll_feq0"
+240. Port Connectivity Checks: "adder2:add12"
+241. Port Connectivity Checks: "fp_mult:prod_p136"
+242. Port Connectivity Checks: "fp_mult:prod_p118"
+243. Port Connectivity Checks: "fp_mult:prod_p29"
+244. Port Connectivity Checks: "fp_mult:prod_uxuy_neg9"
+245. Port Connectivity Checks: "fp_mult:prod_9_ux2"
+246. Port Connectivity Checks: "fp_mult:prod_neg3_ux_minus_uy"
+247. Port Connectivity Checks: "fp_mult:prod_3_ux_minus_uy"
+248. Port Connectivity Checks: "fp_mult:prod_neg6ux"
+249. Port Connectivity Checks: "fp_mult:prod_6ux"
+250. Port Connectivity Checks: "fp_div:div_uy"
+251. Port Connectivity Checks: "fp_div:div_ux"
+252. Port Connectivity Checks: "mux2:p_mem_mux"
+253. Port Connectivity Checks: "mux3:ux_in_mux"
+254. Port Connectivity Checks: "mux2:p_in_mux"
+255. Port Connectivity Checks: "distribution_ram:feq_ram"
+256. Port Connectivity Checks: "wall_detector:wall_det"
+257. Elapsed Time Per Partition
+258. Analysis & Synthesis Messages
+259. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -294,15 +290,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 08 09:49:42 2021      ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 08 15:49:47 2021      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; LBM_DE2                                    ;
 ; Top-level Entity Name              ; LBM_DE2                                    ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 8,888                                      ;
-;     Total combinational functions  ; 8,131                                      ;
-;     Dedicated logic registers      ; 2,108                                      ;
-; Total registers                    ; 2108                                       ;
+; Total logic elements               ; 8,868                                      ;
+;     Total combinational functions  ; 8,127                                      ;
+;     Dedicated logic registers      ; 2,095                                      ;
+; Total registers                    ; 2095                                       ;
 ; Total pins                         ; 386                                        ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 172,032                                    ;
@@ -444,7 +440,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; altrom.inc                       ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
 ; altram.inc                       ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/altram.inc            ;         ;
 ; altdpram.inc                     ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
-; db/altsyncram_jvd1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/arism/Desktop/LBM_DE2/db/altsyncram_jvd1.tdf                ;         ;
+; db/altsyncram_bfi1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/arism/Desktop/LBM_DE2/db/altsyncram_bfi1.tdf                ;         ;
+; db/altsyncram_lfi1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/arism/Desktop/LBM_DE2/db/altsyncram_lfi1.tdf                ;         ;
 ; db/altsyncram_k0e1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/arism/Desktop/LBM_DE2/db/altsyncram_k0e1.tdf                ;         ;
 ; db/altsyncram_5ji1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/arism/Desktop/LBM_DE2/db/altsyncram_5ji1.tdf                ;         ;
 ; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/lpm_mult.tdf          ;         ;
@@ -473,29 +470,29 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 8,888          ;
+; Estimated Total logic elements              ; 8,868          ;
 ;                                             ;                ;
-; Total combinational functions               ; 8131           ;
+; Total combinational functions               ; 8127           ;
 ; Logic element usage by number of LUT inputs ;                ;
 ;     -- 4 input functions                    ; 776            ;
-;     -- 3 input functions                    ; 5712           ;
-;     -- <=2 input functions                  ; 1643           ;
+;     -- 3 input functions                    ; 5711           ;
+;     -- <=2 input functions                  ; 1640           ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 1841           ;
+;     -- normal mode                          ; 1837           ;
 ;     -- arithmetic mode                      ; 6290           ;
 ;                                             ;                ;
-; Total registers                             ; 2108           ;
-;     -- Dedicated logic registers            ; 2108           ;
+; Total registers                             ; 2095           ;
+;     -- Dedicated logic registers            ; 2095           ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
 ; I/O pins                                    ; 386            ;
 ; Total memory bits                           ; 172032         ;
 ; Embedded Multiplier 9-bit elements          ; 456            ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 2780           ;
-; Total fan-out                               ; 47142          ;
-; Average fan-out                             ; 3.88           ;
+; Maximum fan-out                             ; 2767           ;
+; Total fan-out                               ; 47097          ;
+; Average fan-out                             ; 3.89           ;
 +---------------------------------------------+----------------+
 
 
@@ -504,7 +501,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                    ; Library Name ;
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------+--------------+
-; |LBM_DE2                                  ; 8131 (33)         ; 2108 (0)     ; 172032      ; 456          ; 0       ; 228       ; 386  ; 0            ; |LBM_DE2                                                                               ; work         ;
+; |LBM_DE2                                  ; 8127 (33)         ; 2095 (0)     ; 172032      ; 456          ; 0       ; 228       ; 386  ; 0            ; |LBM_DE2                                                                               ; work         ;
 ;    |adder2:ad11|                          ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|adder2:ad11                                                                   ; work         ;
 ;    |adder2:add0|                          ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|adder2:add0                                                                   ; work         ;
 ;    |adder2:add10|                         ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|adder2:add10                                                                  ; work         ;
@@ -535,7 +532,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |adder9:cxfin_sum|                     ; 128 (128)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|adder9:cxfin_sum                                                              ; work         ;
 ;    |adder9:cyfin_sum|                     ; 128 (128)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|adder9:cyfin_sum                                                              ; work         ;
 ;    |adder9:fin_sum|                       ; 224 (224)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|adder9:fin_sum                                                                ; work         ;
-;    |controller:fsm|                       ; 28 (28)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|controller:fsm                                                                ; work         ;
+;    |controller:fsm|                       ; 30 (30)           ; 23 (23)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|controller:fsm                                                                ; work         ;
 ;    |counter_init:init_counter|            ; 9 (9)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|counter_init:init_counter                                                     ; work         ;
 ;    |distribution_ram:fin_ram|             ; 0 (0)             ; 0 (0)        ; 73728       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|distribution_ram:fin_ram                                                      ; work         ;
 ;       |altsyncram:mem_rtl_0|              ; 0 (0)             ; 0 (0)        ; 73728       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|distribution_ram:fin_ram|altsyncram:mem_rtl_0                                 ; work         ;
@@ -543,9 +540,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |distribution_ram:fout_ram|            ; 296 (296)         ; 882 (882)    ; 73728       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|distribution_ram:fout_ram                                                     ; work         ;
 ;       |altsyncram:mem_rtl_0|              ; 0 (0)             ; 0 (0)        ; 73728       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|distribution_ram:fout_ram|altsyncram:mem_rtl_0                                ; work         ;
 ;          |altsyncram_5ji1:auto_generated| ; 0 (0)             ; 0 (0)        ; 73728       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|distribution_ram:fout_ram|altsyncram:mem_rtl_0|altsyncram_5ji1:auto_generated ; work         ;
-;    |fin_addr_mux:mux_fin_addr|            ; 26 (26)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|fin_addr_mux:mux_fin_addr                                                     ; work         ;
-;    |fp_div:div_ux|                        ; 274 (274)         ; 105 (105)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|fp_div:div_ux                                                                 ; work         ;
-;    |fp_div:div_uy|                        ; 199 (199)         ; 105 (105)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|fp_div:div_uy                                                                 ; work         ;
+;    |fin_addr_mux:mux_fin_addr|            ; 27 (27)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|fin_addr_mux:mux_fin_addr                                                     ; work         ;
+;    |fp_div:div_ux|                        ; 273 (273)         ; 105 (105)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|fp_div:div_ux                                                                 ; work         ;
+;    |fp_div:div_uy|                        ; 197 (197)         ; 105 (105)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|fp_div:div_uy                                                                 ; work         ;
 ;    |fp_mult:prod_3_u2|                    ; 82 (0)            ; 0 (0)        ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |LBM_DE2|fp_mult:prod_3_u2                                                             ; work         ;
 ;       |lpm_mult:Mult0|                    ; 82 (0)            ; 0 (0)        ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |LBM_DE2|fp_mult:prod_3_u2|lpm_mult:Mult0                                              ; work         ;
 ;          |mult_0at:auto_generated|        ; 82 (82)           ; 0 (0)        ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |LBM_DE2|fp_mult:prod_3_u2|lpm_mult:Mult0|mult_0at:auto_generated                      ; work         ;
@@ -719,14 +716,11 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;          |mult_46t:auto_generated|        ; 76 (76)           ; 0 (0)        ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |LBM_DE2|fp_mult:prod_uy2|lpm_mult:Mult0|mult_46t:auto_generated                       ; work         ;
 ;    |moment_ram:p_ram|                     ; 73 (73)           ; 82 (82)      ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:p_ram                                                              ; work         ;
 ;       |altsyncram:mem_rtl_0|              ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:p_ram|altsyncram:mem_rtl_0                                         ; work         ;
-;          |altsyncram_jvd1:auto_generated| ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated          ; work         ;
-;    |moment_ram:ux_ram|                    ; 72 (72)           ; 82 (82)      ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:ux_ram                                                             ; work         ;
-;       |altsyncram:mem_rtl_0|              ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:ux_ram|altsyncram:mem_rtl_0                                        ; work         ;
-;          |altsyncram_jvd1:auto_generated| ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated         ; work         ;
-;    |moment_ram:uy_ram|                    ; 71 (71)           ; 82 (82)      ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:uy_ram                                                             ; work         ;
-;       |altsyncram:mem_rtl_0|              ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:uy_ram|altsyncram:mem_rtl_0                                        ; work         ;
-;          |altsyncram_jvd1:auto_generated| ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:uy_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated         ; work         ;
-;    |mux11:fin_mem_mux|                    ; 664 (664)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|mux11:fin_mem_mux                                                             ; work         ;
+;          |altsyncram_bfi1:auto_generated| ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_bfi1:auto_generated          ; work         ;
+;    |moment_ram:ux_ram|                    ; 136 (136)         ; 146 (146)    ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:ux_ram                                                             ; work         ;
+;       |altsyncram:mem_rtl_0|              ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:ux_ram|altsyncram:mem_rtl_0                                        ; work         ;
+;          |altsyncram_lfi1:auto_generated| ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_lfi1:auto_generated         ; work         ;
+;    |mux11:fin_mem_mux|                    ; 663 (663)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|mux11:fin_mem_mux                                                             ; work         ;
 ;    |mux2:p_mem_mux|                       ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|mux2:p_mem_mux                                                                ; work         ;
 ;    |mux2:ux_mem_mux|                      ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|mux2:ux_mem_mux                                                               ; work         ;
 ;    |mux2:uy_in_mux|                       ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|mux2:uy_in_mux                                                                ; work         ;
@@ -756,8 +750,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |reg32:ux_reg|                         ; 0 (0)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|reg32:ux_reg                                                                  ; work         ;
 ;    |reg32:uy_reg|                         ; 0 (0)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|reg32:uy_reg                                                                  ; work         ;
 ;    |row_counter:row_cnter|                ; 5 (5)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|row_counter:row_cnter                                                         ; work         ;
-;    |streaming_unit:streamer|              ; 36 (36)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|streaming_unit:streamer                                                       ; work         ;
-;    |wall_detector:wall_det|               ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|wall_detector:wall_det                                                        ; work         ;
+;    |streaming_unit:streamer|              ; 33 (33)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|streaming_unit:streamer                                                       ; work         ;
+;    |time_step_counter:timer|              ; 6 (6)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|time_step_counter:timer                                                       ; work         ;
+;    |wall_detector:wall_det|               ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|wall_detector:wall_det                                                        ; work         ;
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -769,9 +764,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
 ; distribution_ram:fin_ram|altsyncram:mem_rtl_0|altsyncram_k0e1:auto_generated|ALTSYNCRAM  ; AUTO ; Simple Dual Port ; 256          ; 288          ; 256          ; 288          ; 73728 ; None ;
 ; distribution_ram:fout_ram|altsyncram:mem_rtl_0|altsyncram_5ji1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 256          ; 288          ; 256          ; 288          ; 73728 ; None ;
-; moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated|ALTSYNCRAM          ; AUTO ; Simple Dual Port ; 256          ; 32           ; 256          ; 32           ; 8192  ; None ;
-; moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated|ALTSYNCRAM         ; AUTO ; Simple Dual Port ; 256          ; 32           ; 256          ; 32           ; 8192  ; None ;
-; moment_ram:uy_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated|ALTSYNCRAM         ; AUTO ; Simple Dual Port ; 256          ; 32           ; 256          ; 32           ; 8192  ; None ;
+; moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_bfi1:auto_generated|ALTSYNCRAM          ; AUTO ; Simple Dual Port ; 256          ; 32           ; 256          ; 32           ; 8192  ; None ;
+; moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_lfi1:auto_generated|ALTSYNCRAM         ; AUTO ; Simple Dual Port ; 256          ; 64           ; 256          ; 64           ; 16384 ; None ;
 +------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
 
 
@@ -928,24 +922,13 @@ Encoding Type:  One-Hot
 ; weights_reg:w_reg|d_out[273..275]       ; Stuck at GND due to stuck port data_in ;
 ; weights_reg:w_reg|d_out[276..278]       ; Stuck at VCC due to stuck port data_in ;
 ; weights_reg:w_reg|d_out[279..287]       ; Stuck at GND due to stuck port data_in ;
-; time_step_counter:timer|count[0..2]     ; Lost fanout                            ;
-; controller:fsm|State.STOP               ; Lost fanout                            ;
 ; controller:fsm|State~4                  ; Lost fanout                            ;
 ; controller:fsm|State~5                  ; Lost fanout                            ;
 ; controller:fsm|State~6                  ; Lost fanout                            ;
 ; controller:fsm|State~7                  ; Lost fanout                            ;
 ; controller:fsm|State~8                  ; Lost fanout                            ;
-; Total Number of Removed Registers = 873 ;                                        ;
+; Total Number of Removed Registers = 869 ;                                        ;
 +-----------------------------------------+----------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                ;
-+----------------------------------+--------------------+--------------------------------------------------------------------+
-; Register name                    ; Reason for Removal ; Registers Removed due to This Register                             ;
-+----------------------------------+--------------------+--------------------------------------------------------------------+
-; time_step_counter:timer|count[2] ; Lost Fanouts       ; time_step_counter:timer|count[1], time_step_counter:timer|count[0] ;
-+----------------------------------+--------------------+--------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -953,12 +936,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 2108  ;
+; Total registers                              ; 2095  ;
 ; Number of registers using Synchronous Clear  ; 144   ;
 ; Number of registers using Synchronous Load   ; 448   ;
-; Number of registers using Asynchronous Clear ; 806   ;
+; Number of registers using Asynchronous Clear ; 802   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 1662  ;
+; Number of registers using Clock Enable       ; 1655  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -1066,55 +1049,38 @@ Encoding Type:  One-Hot
 ; moment_ram:ux_ram|mem_rtl_0_bypass[46]          ; moment_ram:ux_ram|mem_rtl_0         ;
 ; moment_ram:ux_ram|mem_rtl_0_bypass[47]          ; moment_ram:ux_ram|mem_rtl_0         ;
 ; moment_ram:ux_ram|mem_rtl_0_bypass[48]          ; moment_ram:ux_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[0]           ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[1]           ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[2]           ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[3]           ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[4]           ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[5]           ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[6]           ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[7]           ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[8]           ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[9]           ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[10]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[11]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[12]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[13]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[14]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[15]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[16]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[17]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[18]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[19]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[20]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[21]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[22]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[23]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[24]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[25]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[26]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[27]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[28]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[29]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[30]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[31]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[32]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[33]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[34]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[35]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[36]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[37]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[38]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[39]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[40]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[41]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[42]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[43]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[44]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[45]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[46]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[47]          ; moment_ram:uy_ram|mem_rtl_0         ;
-; moment_ram:uy_ram|mem_rtl_0_bypass[48]          ; moment_ram:uy_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[49]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[50]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[51]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[52]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[53]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[54]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[55]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[56]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[57]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[58]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[59]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[60]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[61]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[62]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[63]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[64]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[65]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[66]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[67]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[68]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[69]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[70]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[71]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[72]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[73]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[74]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[75]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[76]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[77]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[78]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[79]          ; moment_ram:ux_ram|mem_rtl_0         ;
+; moment_ram:ux_ram|mem_rtl_0_bypass[80]          ; moment_ram:ux_ram|mem_rtl_0         ;
 ; distribution_ram:fout_ram|mem_rtl_0_bypass[0]   ; distribution_ram:fout_ram|mem_rtl_0 ;
 ; distribution_ram:fout_ram|mem_rtl_0_bypass[1]   ; distribution_ram:fout_ram|mem_rtl_0 ;
 ; distribution_ram:fout_ram|mem_rtl_0_bypass[2]   ; distribution_ram:fout_ram|mem_rtl_0 ;
@@ -1428,6 +1394,9 @@ Encoding Type:  One-Hot
 +-------------------------------------------+------------------------------------+------+
 ; Register Name                             ; Megafunction                       ; Type ;
 +-------------------------------------------+------------------------------------+------+
+; moment_ram:p_ram|mem[0..255][0..31]       ; moment_ram:p_ram|mem_rtl_0         ; RAM  ;
+; moment_ram:ux_ram|mem[0..255][0..31]      ; moment_ram:ux_ram|mem_rtl_0        ; RAM  ;
+; moment_ram:uy_ram|mem[0..255][0..31]      ; moment_ram:ux_ram|mem_rtl_0        ; RAM  ;
 ; distribution_ram:fin_ram|data_out[0..287] ; distribution_ram:fin_ram|mem_rtl_0 ; RAM  ;
 +-------------------------------------------+------------------------------------+------+
 
@@ -1437,30 +1406,30 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LBM_DE2|row_counter:row_cnter|count[1]          ;
-; 3:1                ; 288 bits  ; 576 LEs       ; 576 LEs              ; 0 LEs                  ; Yes        ; |LBM_DE2|distribution_ram:fout_ram|data_out[265] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LBM_DE2|row_counter:row_cnter|count[0]          ;
+; 3:1                ; 288 bits  ; 576 LEs       ; 576 LEs              ; 0 LEs                  ; Yes        ; |LBM_DE2|distribution_ram:fout_ram|data_out[263] ;
 ; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_ux|q[1]                      ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_uy|q[5]                      ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|i[0]                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_uy|q[4]                      ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|i[2]                      ;
 ; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|i[5]                      ;
-; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|q1[11]                    ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|q1[15]                    ;
 ; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|q1[31]                    ;
-; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|ac[24]                    ;
-; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|ac[31]                    ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|ac[28]                    ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|ac[29]                    ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |LBM_DE2|controller:fsm|select_ux_reg[1]         ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |LBM_DE2|moment_ram:p_ram|mem                    ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |LBM_DE2|moment_ram:ux_ram|mem                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |LBM_DE2|moment_ram:uy_ram|mem                   ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 128 LEs              ; 192 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux272                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux244                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux212                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux171                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux148                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux127                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux77                 ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux61                 ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux16                 ;
-; 19:1               ; 4 bits    ; 48 LEs        ; 12 LEs               ; 36 LEs                 ; No         ; |LBM_DE2|fin_addr_mux:mux_fin_addr|Mux7          ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |LBM_DE2|moment_ram:p_ram|Mux31                  ;
+; 3:1                ; 64 bits   ; 128 LEs       ; 128 LEs              ; 0 LEs                  ; No         ; |LBM_DE2|moment_ram:ux_ram|Mux31                 ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 128 LEs              ; 192 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux274                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux248                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux215                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux169                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux151                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux120                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux95                 ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux55                 ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux19                 ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |LBM_DE2|controller:fsm|Selector5                ;
+; 19:1               ; 4 bits    ; 48 LEs        ; 12 LEs               ; 36 LEs                 ; No         ; |LBM_DE2|fin_addr_mux:mux_fin_addr|Mux4          ;
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |LBM_DE2|streaming_unit:streamer|Add5            ;
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |LBM_DE2|streaming_unit:streamer|Add5            ;
 ; 16:1               ; 4 bits    ; 40 LEs        ; 16 LEs               ; 24 LEs                 ; No         ; |LBM_DE2|fin_addr_mux:mux_fin_addr|Mux3          ;
@@ -1468,7 +1437,7 @@ Encoding Type:  One-Hot
 
 
 +---------------------------------------------------------------------------------------------+
-; Source assignments for moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated ;
+; Source assignments for moment_ram:p_ram|altsyncram:mem_rtl_0|altsyncram_bfi1:auto_generated ;
 +---------------------------------+--------------------+------+-------------------------------+
 ; Assignment                      ; Value              ; From ; To                            ;
 +---------------------------------+--------------------+------+-------------------------------+
@@ -1477,16 +1446,7 @@ Encoding Type:  One-Hot
 
 
 +----------------------------------------------------------------------------------------------+
-; Source assignments for moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated ;
-+---------------------------------+--------------------+------+--------------------------------+
-; Assignment                      ; Value              ; From ; To                             ;
-+---------------------------------+--------------------+------+--------------------------------+
-; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                              ;
-+---------------------------------+--------------------+------+--------------------------------+
-
-
-+----------------------------------------------------------------------------------------------+
-; Source assignments for moment_ram:uy_ram|altsyncram:mem_rtl_0|altsyncram_jvd1:auto_generated ;
+; Source assignments for moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_lfi1:auto_generated ;
 +---------------------------------+--------------------+------+--------------------------------+
 ; Assignment                      ; Value              ; From ; To                             ;
 +---------------------------------+--------------------+------+--------------------------------+
@@ -1573,8 +1533,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; GRID_DIM         ; 256   ; Signed Integer                   ;
 ; ADDRESS_WIDTH    ; 8     ; Signed Integer                   ;
 ; ADDRESS_WIDTH2   ; 9     ; Signed Integer                   ;
-; MAX_TIME         ; 10    ; Signed Integer                   ;
-; TIME_COUNT_WIDTH ; 4     ; Signed Integer                   ;
+; MAX_TIME         ; 8     ; Signed Integer                   ;
+; TIME_COUNT_WIDTH ; 3     ; Signed Integer                   ;
 +------------------+-------+----------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -3256,7 +3216,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                    ;
 ; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                    ;
 ; BYTE_SIZE                          ; 8                    ; Untyped                    ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                    ;
 ; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
 ; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
 ; INIT_FILE                          ; UNUSED               ; Untyped                    ;
@@ -3272,7 +3232,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                    ;
 ; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                    ;
 ; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                    ;
-; CBXI_PARAMETER                     ; altsyncram_jvd1      ; Untyped                    ;
+; CBXI_PARAMETER                     ; altsyncram_bfi1      ; Untyped                    ;
 +------------------------------------+----------------------+----------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -3289,7 +3249,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE              ;
 ; WIDTH_BYTEENA                      ; 1                    ; Untyped                     ;
 ; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                     ;
-; WIDTH_A                            ; 32                   ; Untyped                     ;
+; WIDTH_A                            ; 64                   ; Untyped                     ;
 ; WIDTHAD_A                          ; 8                    ; Untyped                     ;
 ; NUMWORDS_A                         ; 256                  ; Untyped                     ;
 ; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                     ;
@@ -3298,7 +3258,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                     ;
 ; INDATA_ACLR_A                      ; NONE                 ; Untyped                     ;
 ; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                     ;
-; WIDTH_B                            ; 32                   ; Untyped                     ;
+; WIDTH_B                            ; 64                   ; Untyped                     ;
 ; WIDTHAD_B                          ; 8                    ; Untyped                     ;
 ; NUMWORDS_B                         ; 256                  ; Untyped                     ;
 ; INDATA_REG_B                       ; CLOCK1               ; Untyped                     ;
@@ -3317,7 +3277,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                     ;
 ; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                     ;
 ; BYTE_SIZE                          ; 8                    ; Untyped                     ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                     ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                     ;
 ; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                     ;
 ; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                     ;
 ; INIT_FILE                          ; UNUSED               ; Untyped                     ;
@@ -3333,68 +3293,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                     ;
 ; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                     ;
 ; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                     ;
-; CBXI_PARAMETER                     ; altsyncram_jvd1      ; Untyped                     ;
-+------------------------------------+----------------------+-----------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: moment_ram:uy_ram|altsyncram:mem_rtl_0 ;
-+------------------------------------+----------------------+-----------------------------+
-; Parameter Name                     ; Value                ; Type                        ;
-+------------------------------------+----------------------+-----------------------------+
-; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                     ;
-; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                  ;
-; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                ;
-; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                ;
-; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE              ;
-; WIDTH_BYTEENA                      ; 1                    ; Untyped                     ;
-; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                     ;
-; WIDTH_A                            ; 32                   ; Untyped                     ;
-; WIDTHAD_A                          ; 8                    ; Untyped                     ;
-; NUMWORDS_A                         ; 256                  ; Untyped                     ;
-; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                     ;
-; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                     ;
-; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                     ;
-; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                     ;
-; INDATA_ACLR_A                      ; NONE                 ; Untyped                     ;
-; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                     ;
-; WIDTH_B                            ; 32                   ; Untyped                     ;
-; WIDTHAD_B                          ; 8                    ; Untyped                     ;
-; NUMWORDS_B                         ; 256                  ; Untyped                     ;
-; INDATA_REG_B                       ; CLOCK1               ; Untyped                     ;
-; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                     ;
-; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                     ;
-; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                     ;
-; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                     ;
-; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                     ;
-; INDATA_ACLR_B                      ; NONE                 ; Untyped                     ;
-; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                     ;
-; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                     ;
-; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                     ;
-; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                     ;
-; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                     ;
-; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                     ;
-; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                     ;
-; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                     ;
-; BYTE_SIZE                          ; 8                    ; Untyped                     ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                     ;
-; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                     ;
-; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                     ;
-; INIT_FILE                          ; UNUSED               ; Untyped                     ;
-; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                     ;
-; MAXIMUM_DEPTH                      ; 0                    ; Untyped                     ;
-; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                     ;
-; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                     ;
-; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                     ;
-; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                     ;
-; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                     ;
-; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                     ;
-; ENABLE_ECC                         ; FALSE                ; Untyped                     ;
-; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                     ;
-; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                     ;
-; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                     ;
-; CBXI_PARAMETER                     ; altsyncram_jvd1      ; Untyped                     ;
+; CBXI_PARAMETER                     ; altsyncram_lfi1      ; Untyped                     ;
 +------------------------------------+----------------------+-----------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -5521,7 +5420,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------------------+------------------------------------------------+
 ; Name                                      ; Value                                          ;
 +-------------------------------------------+------------------------------------------------+
-; Number of entity instances                ; 5                                              ;
+; Number of entity instances                ; 4                                              ;
 ; Entity Instance                           ; moment_ram:p_ram|altsyncram:mem_rtl_0          ;
 ;     -- OPERATION_MODE                     ; DUAL_PORT                                      ;
 ;     -- WIDTH_A                            ; 32                                             ;
@@ -5532,29 +5431,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     -- ADDRESS_REG_B                      ; CLOCK0                                         ;
 ;     -- OUTDATA_REG_B                      ; UNREGISTERED                                   ;
 ;     -- RAM_BLOCK_TYPE                     ; AUTO                                           ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                       ;
 ; Entity Instance                           ; moment_ram:ux_ram|altsyncram:mem_rtl_0         ;
 ;     -- OPERATION_MODE                     ; DUAL_PORT                                      ;
-;     -- WIDTH_A                            ; 32                                             ;
+;     -- WIDTH_A                            ; 64                                             ;
 ;     -- NUMWORDS_A                         ; 256                                            ;
 ;     -- OUTDATA_REG_A                      ; UNREGISTERED                                   ;
-;     -- WIDTH_B                            ; 32                                             ;
+;     -- WIDTH_B                            ; 64                                             ;
 ;     -- NUMWORDS_B                         ; 256                                            ;
 ;     -- ADDRESS_REG_B                      ; CLOCK0                                         ;
 ;     -- OUTDATA_REG_B                      ; UNREGISTERED                                   ;
 ;     -- RAM_BLOCK_TYPE                     ; AUTO                                           ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                      ;
-; Entity Instance                           ; moment_ram:uy_ram|altsyncram:mem_rtl_0         ;
-;     -- OPERATION_MODE                     ; DUAL_PORT                                      ;
-;     -- WIDTH_A                            ; 32                                             ;
-;     -- NUMWORDS_A                         ; 256                                            ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                                   ;
-;     -- WIDTH_B                            ; 32                                             ;
-;     -- NUMWORDS_B                         ; 256                                            ;
-;     -- ADDRESS_REG_B                      ; CLOCK0                                         ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                                   ;
-;     -- RAM_BLOCK_TYPE                     ; AUTO                                           ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                       ;
 ; Entity Instance                           ; distribution_ram:fin_ram|altsyncram:mem_rtl_0  ;
 ;     -- OPERATION_MODE                     ; DUAL_PORT                                      ;
 ;     -- WIDTH_A                            ; 288                                            ;
@@ -6412,30 +6300,28 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------------+-------+----------+--------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "fp_div:div_uy"                                                                                                         ;
-+------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                                                                ;
-+------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
-; busy ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                    ;
-; dbz  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                    ;
-; ovf  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                    ;
-; r    ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "r[31..1]" have no fanouts ;
-; r    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                    ;
-+------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_div:div_uy"                                                                      ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; busy ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; dbz  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ovf  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; r    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "fp_div:div_ux"                                                                                                         ;
-+------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                                                                ;
-+------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
-; busy ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                    ;
-; dbz  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                    ;
-; ovf  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                    ;
-; r    ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "r[31..1]" have no fanouts ;
-; r    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                    ;
-+------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_div:div_ux"                                                                      ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; busy ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; dbz  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ovf  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; r    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------+
@@ -6498,21 +6384,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------+-------+----------+-----------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "controller:fsm"                                                                                                                                         ;
-+------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port       ; Type  ; Severity ; Details                                                                                                                                            ;
-+------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------+
-; time_count ; Input ; Warning  ; Input port expression (3 bits) is smaller than the input port (4 bits) it drives.  Extra input bit(s) "time_count[3..3]" will be connected to GND. ;
-+------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------+
-
-
 +-------------------------------+
 ; Elapsed Time Per Partition    ;
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:17     ;
+; Top            ; 00:00:26     ;
 +----------------+--------------+
 
 
@@ -6522,7 +6399,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Nov 08 09:49:20 2021
+    Info: Processing started: Mon Nov 08 15:49:11 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LBM_DE2 -c LBM_DE2
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file lbm_de2.sv
@@ -6597,14 +6474,17 @@ Info (12021): Found 1 design units, including 1 entities, in source file time_st
     Info (12023): Found entity 1: time_step_counter
 Info (12021): Found 1 design units, including 1 entities, in source file tb_time_step_counter.sv
     Info (12023): Found entity 1: tb_time_step_counter
+Info (12021): Found 1 design units, including 1 entities, in source file tb_display.sv
+    Info (12023): Found entity 1: tb_display
 Info (12127): Elaborating entity "LBM_DE2" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at LBM_DE2.sv(471): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at LBM_DE2.sv(476): truncated value with size 32 to match size of target (8)
 Info (12128): Elaborating entity "counter_init" for hierarchy "counter_init:init_counter"
 Info (12128): Elaborating entity "row_counter" for hierarchy "row_counter:row_cnter"
 Info (12128): Elaborating entity "time_step_counter" for hierarchy "time_step_counter:timer"
 Info (12128): Elaborating entity "controller" for hierarchy "controller:fsm"
-Warning (10958): SystemVerilog warning at controller.sv(52): unique or priority keyword makes case statement complete
-Info (10264): Verilog HDL Case Statement information at controller.sv(156): all case item expressions in this case statement are onehot
+Warning (10175): Verilog HDL warning at controller.sv(331): ignoring unsupported system task
+Warning (10175): Verilog HDL warning at controller.sv(332): ignoring unsupported system task
+Warning (10175): Verilog HDL warning at controller.sv(333): ignoring unsupported system task
 Info (12128): Elaborating entity "wall_detector" for hierarchy "wall_detector:wall_det"
 Info (12128): Elaborating entity "weights_reg" for hierarchy "weights_reg:w_reg"
 Info (12128): Elaborating entity "moment_ram" for hierarchy "moment_ram:p_ram"
@@ -6633,10 +6513,9 @@ Warning (10230): Verilog HDL assignment warning at streaming_unit.sv(63): trunca
 Info (12128): Elaborating entity "fin_addr_mux" for hierarchy "fin_addr_mux:mux_fin_addr"
 Warning (276020): Inferred RAM node "moment_ram:p_ram|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
 Warning (276020): Inferred RAM node "moment_ram:ux_ram|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
-Warning (276020): Inferred RAM node "moment_ram:uy_ram|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
 Warning (276027): Inferred dual-clock RAM node "distribution_ram:fin_ram|mem_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
 Warning (276020): Inferred RAM node "distribution_ram:fout_ram|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
-Info (19000): Inferred 5 megafunctions from design logic
+Info (19000): Inferred 4 megafunctions from design logic
     Info (276029): Inferred altsyncram megafunction from the following design logic: "moment_ram:p_ram|mem_rtl_0" 
         Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
         Info (286033): Parameter WIDTH_A set to 32
@@ -6652,12 +6531,13 @@ Info (19000): Inferred 5 megafunctions from design logic
         Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
         Info (286033): Parameter INDATA_ACLR_A set to NONE
         Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
     Info (276029): Inferred altsyncram megafunction from the following design logic: "moment_ram:ux_ram|mem_rtl_0" 
         Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
-        Info (286033): Parameter WIDTH_A set to 32
+        Info (286033): Parameter WIDTH_A set to 64
         Info (286033): Parameter WIDTHAD_A set to 8
         Info (286033): Parameter NUMWORDS_A set to 256
-        Info (286033): Parameter WIDTH_B set to 32
+        Info (286033): Parameter WIDTH_B set to 64
         Info (286033): Parameter WIDTHAD_B set to 8
         Info (286033): Parameter NUMWORDS_B set to 256
         Info (286033): Parameter ADDRESS_ACLR_A set to NONE
@@ -6667,21 +6547,7 @@ Info (19000): Inferred 5 megafunctions from design logic
         Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
         Info (286033): Parameter INDATA_ACLR_A set to NONE
         Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
-    Info (276029): Inferred altsyncram megafunction from the following design logic: "moment_ram:uy_ram|mem_rtl_0" 
-        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
-        Info (286033): Parameter WIDTH_A set to 32
-        Info (286033): Parameter WIDTHAD_A set to 8
-        Info (286033): Parameter NUMWORDS_A set to 256
-        Info (286033): Parameter WIDTH_B set to 32
-        Info (286033): Parameter WIDTHAD_B set to 8
-        Info (286033): Parameter NUMWORDS_B set to 256
-        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
-        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
-        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
-        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
-        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
-        Info (286033): Parameter INDATA_ACLR_A set to NONE
-        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
     Info (276029): Inferred altsyncram megafunction from the following design logic: "distribution_ram:fin_ram|mem_rtl_0" 
         Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
         Info (286033): Parameter WIDTH_A set to 288
@@ -6787,8 +6653,28 @@ Info (12133): Instantiated megafunction "moment_ram:p_ram|altsyncram:mem_rtl_0" 
     Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
     Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
     Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_jvd1.tdf
-    Info (12023): Found entity 1: altsyncram_jvd1
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_bfi1.tdf
+    Info (12023): Found entity 1: altsyncram_bfi1
+Info (12130): Elaborated megafunction instantiation "moment_ram:ux_ram|altsyncram:mem_rtl_0"
+Info (12133): Instantiated megafunction "moment_ram:ux_ram|altsyncram:mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "64"
+    Info (12134): Parameter "WIDTHAD_A" = "8"
+    Info (12134): Parameter "NUMWORDS_A" = "256"
+    Info (12134): Parameter "WIDTH_B" = "64"
+    Info (12134): Parameter "WIDTHAD_B" = "8"
+    Info (12134): Parameter "NUMWORDS_B" = "256"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_lfi1.tdf
+    Info (12023): Found entity 1: altsyncram_lfi1
 Info (12130): Elaborated megafunction instantiation "distribution_ram:fin_ram|altsyncram:mem_rtl_0"
 Info (12133): Instantiated megafunction "distribution_ram:fin_ram|altsyncram:mem_rtl_0" with the following parameter:
     Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
@@ -7039,25 +6925,24 @@ Info (12133): Instantiated megafunction "fp_mult:prod_6uy|lpm_mult:Mult0" with t
     Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
     Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
     Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
-Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (13014): Ignored 12065 buffer(s)
     Info (13019): Ignored 12065 SOFT buffer(s)
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 9 registers lost all their fanouts during netlist optimizations.
+Info (17049): 5 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/Users/arism/Desktop/LBM_DE2/output_files/LBM_DE2.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 10507 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 10488 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 384 output pins
-    Info (21061): Implemented 8993 logic cells
+    Info (21061): Implemented 8974 logic cells
     Info (21064): Implemented 672 RAM segments
     Info (21062): Implemented 456 DSP elements
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 19 warnings
-    Info: Peak virtual memory: 4748 megabytes
-    Info: Processing ended: Mon Nov 08 09:49:43 2021
-    Info: Elapsed time: 00:00:23
-    Info: Total CPU time (on all processors): 00:00:23
+    Info: Peak virtual memory: 4862 megabytes
+    Info: Processing ended: Mon Nov 08 15:49:47 2021
+    Info: Elapsed time: 00:00:36
+    Info: Total CPU time (on all processors): 00:00:36
 
 
 +------------------------------------------+

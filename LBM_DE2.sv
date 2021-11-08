@@ -42,6 +42,11 @@ module LBM_DE2	#(GRID_DIM=16*16, MAX_TIME=8, TIME_COUNT_WIDTH=$clog2(MAX_TIME),
 */
 	
 /** SIGNAL DECLARATIONS/ASSIGNMENTS **/
+// test bench specific memory arrays
+logic [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0];
+logic [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0];
+logic [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0];
+
 // controller signals
 logic WE_p_mem;
 logic WE_ux_mem;
@@ -100,12 +105,12 @@ logic dbz0;
 logic dbz1;
 logic ovf0;
 logic ovf1;
-logic remainder0;
-logic remainder1;
+logic signed [DATA_WIDTH-1:0] remainder0;
+logic signed [DATA_WIDTH-1:0] remainder1;
 
 // counter values
 logic [ADDRESS_WIDTH-1:0] count_init;
-logic [TIME_COUNT_WIDTH-1:0] time_count;
+logic [TIME_COUNT_WIDTH:0] time_count;
 
 // streaming unit output
 // if one of the streaming addresses is -1, then that
@@ -519,6 +524,9 @@ controller fsm (.Clk(CLOCK_50),
 					  .stream_addr6(stream_addr6),
 					  .stream_addr7(stream_addr7),
 					  .stream_addr8(stream_addr8),
+					  .p_mem_array(p_mem_array),
+					  .ux_mem_array(ux_mem_array),
+					  .uy_mem_array(uy_mem_array),
 					  .WE_p_mem(WE_p_mem),
 					  .WE_ux_mem(WE_ux_mem),
 					  .WE_uy_mem(WE_uy_mem),
@@ -580,19 +588,22 @@ moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_W
 																															 .Clk(CLOCK_50),
 																															 .WE(WE_p_mem),
 																															 .data_in(p_mem_data_in),
-																															 .data_out(p_mem_data_out));
+																															 .data_out(p_mem_data_out),
+																															 .mem_array(p_mem_array));
 																															 
 moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) ux_ram (.address(count_init),
 																															  .Clk(CLOCK_50),
 																															  .WE(WE_ux_mem),
 																															  .data_in(ux_mem_data_in),
-																															  .data_out(ux_mem_data_out));
+																															  .data_out(ux_mem_data_out),
+																															  .mem_array(ux_mem_array));
 																															  
 moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) uy_ram (.address(count_init),
 																															  .Clk(CLOCK_50),
 																															  .WE(WE_uy_mem),
 																															  .data_in(uy_mem_data_in),
-																															  .data_out(uy_mem_data_out));
+																															  .data_out(uy_mem_data_out),
+																															  .mem_array(uy_mem_array));
 																															  
 distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) fin_ram (.address(fin_addr_in),
                                                                                                         .Clk(CLOCK_50),

@@ -4,9 +4,11 @@ module moment_ram #(DEPTH=16*16,
 							 input Clk,
 							 input WE,
 							 input logic signed [DATA_WIDTH-1:0] data_in,
-							 output logic signed [DATA_WIDTH-1:0] data_out);
+							 output logic signed [DATA_WIDTH-1:0] data_out,
+							 output logic [DATA_WIDTH-1:0] mem_array [DEPTH-1:0]); // for test bench purposes
 		
 		logic [DATA_WIDTH-1:0] mem [DEPTH-1:0];
+		assign mem_array = mem; // for test bench purposes
 		assign data_out = mem[address];
 		
 		always @ (posedge Clk)

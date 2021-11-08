@@ -1,4 +1,25 @@
-C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
+C:/Users/arism/Desktop/LBM_DE2/controller.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/controller.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module controller
+
+Top level modules:
+	controller
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_moment_ram.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_moment_ram
+
+Top level modules:
+	tb_moment_ram
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_controller.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_controller.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_controller
+
+Top level modules:
+	tb_controller
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module LBM_DE2
 
@@ -18,5 +39,26 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 
 Top level modules:
 	tb_LBM_DE2
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_time_step_counter.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_time_step_counter.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_time_step_counter
+
+Top level modules:
+	tb_time_step_counter
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_display.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_display.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_display
+
+Top level modules:
+	tb_display
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/moment_ram.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module moment_ram
+
+Top level modules:
+	moment_ram
 
 } {} {}}

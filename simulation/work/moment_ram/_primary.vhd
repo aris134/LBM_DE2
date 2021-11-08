@@ -11,7 +11,8 @@ entity moment_ram is
         Clk             : in     vl_logic;
         WE              : in     vl_logic;
         data_in         : in     vl_logic_vector;
-        data_out        : out    vl_logic_vector
+        data_out        : out    vl_logic_vector;
+        mem_array       : out    vl_logic
     );
     attribute mti_svvh_generic_type : integer;
     attribute mti_svvh_generic_type of DEPTH : constant is 1;

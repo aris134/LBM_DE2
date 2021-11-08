@@ -15,7 +15,7 @@ module tb_controller();
 	// inputs and outputs
 	logic Clk, Reset;
 	logic [7:0] count_init;
-	logic [TIME_COUNT_WIDTH-1:0] time_count;
+	logic [TIME_COUNT_WIDTH:0] time_count;
 	logic div_valid;
 	logic LID, BOTTOM_WALL, LEFT_WALL, RIGHT_WALL;
 	logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem;
@@ -37,6 +37,9 @@ module tb_controller();
 	logic [ADDRESS_WIDTH2-1:0] stream_addr6;
 	logic [ADDRESS_WIDTH2-1:0] stream_addr7;
 	logic [ADDRESS_WIDTH2-1:0] stream_addr8;
+	logic [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0];
+	logic [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0];
+	logic [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0];
 	logic LD_EN_P;
 	logic LD_EN_PUX;
 	logic LD_EN_PUY;

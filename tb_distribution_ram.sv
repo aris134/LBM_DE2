@@ -14,7 +14,7 @@ module tb_distribution_ram();
 	logic signed [DATA_WIDTH-1:0] data_in;
 	logic signed [DATA_WIDTH-1:0] data_out;
 	
-	moment_ram #(.DEPTH(DEPTH), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) ram0 (.*);
+	distribution_ram #(.DEPTH(DEPTH), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) ram0 (.*);
 	
 	always #(CLK_PERIOD / 2) Clk = ~Clk;
 	

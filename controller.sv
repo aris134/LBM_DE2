@@ -1,8 +1,8 @@
 module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_DIM),
-						  ADDRESS_WIDTH2=$clog2(GRID_DIM)+1, MAX_TIME=10, TIME_COUNT_WIDTH=$clog2(MAX_TIME)) 
+						  ADDRESS_WIDTH2=$clog2(GRID_DIM)+1, MAX_TIME=8, TIME_COUNT_WIDTH=$clog2(MAX_TIME)) 
 						 (input Clk, Reset,
 						 input logic [ADDRESS_WIDTH-1:0] count_init,
-						 input logic [TIME_COUNT_WIDTH-1:0] time_count,
+						 input logic [TIME_COUNT_WIDTH:0] time_count,
 						 input logic div_valid,
 						 input logic LID, BOTTOM_WALL, LEFT_WALL, RIGHT_WALL,
 						 input logic [ADDRESS_WIDTH2-1:0] stream_addr0,
@@ -14,6 +14,9 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 input logic [ADDRESS_WIDTH2-1:0] stream_addr6,
 						 input logic [ADDRESS_WIDTH2-1:0] stream_addr7,
 						 input logic [ADDRESS_WIDTH2-1:0] stream_addr8,
+						 input logic [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0],
+						 input logic [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0],
+						 input logic [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0],
 						 output logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem,
 						 output logic select_p_mem, select_ux_mem, select_uy_mem,
 						 output logic [3:0] select_fin_mem,
@@ -104,6 +107,8 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				end else begin
 					Next_state <= STOP;
 				end
+		STOP:
+				;
 		endcase
 	end
 	
@@ -321,9 +326,15 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 			begin
 				time_count_en = 1'b1; // increment the time counter once we've covered the grid
 			end
+	STOP:
+		begin
+			$writememh("p_mem_h.txt", p_mem_array); // write out final p values
+			$writememh("ux_mem_h.txt", ux_mem_array); // write out final ux values
+			$writememh("uy_mem_h.txt", uy_mem_array); // write out final uy values
+		end
 	default:
 			;
 		endcase
 	end
-	
+
 endmodule
