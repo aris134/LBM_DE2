@@ -1,4 +1,4 @@
-module cx_reg #(WIDTH=32*9) (input logic Reset,	
+module cx_reg #(WIDTH=64*9) (input logic Reset,	
               output logic signed [WIDTH-1:0] Data_Out);	
 
 	 logic [WIDTH-1:0] d_out;
@@ -6,7 +6,7 @@ module cx_reg #(WIDTH=32*9) (input logic Reset,
     always_ff @ (negedge Reset)	
     begin
 	 	 if (~Reset)
-			  d_out <= {32'h00_000000, 32'h01_000000, 32'h00_000000, 32'hFF_000000, 32'h00_000000, 32'h01_000000, 32'hFF_000000, 32'hFF_000000, 32'h01_000000};
+			  d_out <= {64'h00_00000000000000, 64'h01_00000000000000, 64'h00_00000000000000, 64'hFF_00000000000000, 64'h00_00000000000000, 64'h01_00000000000000, 64'hFF_00000000000000, 64'hFF_00000000000000, 64'h01_00000000000000};
 		 else
 			  d_out <= d_out;
 	 end

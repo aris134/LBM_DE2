@@ -1,6 +1,6 @@
 module fp_div #(
-    parameter WIDTH=32,  // width of numbers in bits
-    parameter FBITS=24   // fractional bits (for fixed point)
+    parameter WIDTH=64,  // width of numbers in bits
+    parameter FBITS=56   // fractional bits (for fixed point)
     ) (
     input wire logic clk,
     input wire logic start,          // start signal
@@ -17,16 +17,16 @@ module fp_div #(
     // avoid negative vector width when fractional bits are not used
     localparam FBITSW = (FBITS) ? FBITS : 1;
 
-    logic [WIDTH-1:0] y1;           // copy of divisor
+    logic signed [WIDTH-1:0] y1;           // copy of divisor
     logic [WIDTH-1:0] q1, q1_next;  // intermediate quotient
     logic [WIDTH:0] ac, ac_next;    // accumulator (1 bit wider)
 
     localparam ITER = WIDTH+FBITS;  // iterations are dividend width + fractional bits
     logic [$clog2(ITER)-1:0] i;     // iteration counter
 	 logic negate;
-	 logic [WIDTH-1:0] x1;
+	 logic signed [WIDTH-1:0] x1;
 
-	 assign negate = x[WIDTH-1] ^ y[WIDTH-1];
+	 assign negate = x[WIDTH-1] ^ y[WIDTH-1]; // avoid negative numbers (multiply the positive numbers)
 	 assign x1 = (x > 0) ? x : -x;
 	 assign y1 = (y > 0) ? y : -y;
 	 

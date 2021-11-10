@@ -3,7 +3,7 @@ module tb_reg32();
 	timeunit 1ns;
 	timeprecision 1ns;
 	
-	parameter WIDTH = 32;
+	parameter WIDTH = 64;
 	parameter CLK_PERIOD = 20; // 50 MHz clock
 
 	logic Clk;
@@ -20,14 +20,14 @@ module tb_reg32();
 		Reset = 1;
 		LD_EN = 1;
 		Clk = 0;
-		Data_In = 32'h0000_0000;
+		Data_In = 64'h0000_0000_0000_0000;
 		
 		#10 Reset = 0;
 		
 		#10 Reset = 1;
 		
 		#10 LD_EN = 1;
-		Data_In = 32'h1234_5678;
+		Data_In = 64'h1234_5678_0000_0000;
 		
 		#20 $finish;
 	end

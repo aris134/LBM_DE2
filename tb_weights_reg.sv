@@ -3,7 +3,7 @@ module tb_weights_reg();
 	timeunit 1ns;
 	timeprecision 1ns;
 	
-	parameter WIDTH = 32*9;
+	parameter WIDTH = 64*9;
 
 	logic Reset;
 	logic signed [WIDTH-1:0] Data_Out;

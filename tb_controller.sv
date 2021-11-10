@@ -3,11 +3,11 @@ module tb_controller();
 	timeunit 1ns;
 	timeprecision 1ns;
 	
-	parameter DATA_WIDTH = 32;
+	parameter DATA_WIDTH = 64;
 	parameter GRID_DIM = 16*16;
 	parameter ADDRESS_WIDTH = $clog2(GRID_DIM);
 	parameter ADDRESS_WIDTH2 = $clog2(GRID_DIM) + 1;
-	parameter MAX_TIME=8;
+	parameter MAX_TIME=100; // default: 8
 	parameter TIME_COUNT_WIDTH=$clog2(MAX_TIME);
 	
 	parameter CLK_PERIOD = 20; // 50 MHz clock
@@ -37,9 +37,9 @@ module tb_controller();
 	logic [ADDRESS_WIDTH2-1:0] stream_addr6;
 	logic [ADDRESS_WIDTH2-1:0] stream_addr7;
 	logic [ADDRESS_WIDTH2-1:0] stream_addr8;
-	logic [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0];
-	logic [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0];
-	logic [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0];
+	logic signed [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0];
+	logic signed [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0];
+	logic signed [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0];
 	logic LD_EN_P;
 	logic LD_EN_PUX;
 	logic LD_EN_PUY;

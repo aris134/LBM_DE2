@@ -3,9 +3,9 @@ module tb_distribution_ram();
 	timeunit 1ns;
 	timeprecision 1ns;
 	
-	parameter DEPTH = 16*16*9;
+	parameter DEPTH = 16*16;
 	parameter ADDRESS_WIDTH = $clog2(DEPTH);
-	parameter DATA_WIDTH = 32*9;
+	parameter DATA_WIDTH = 64*9;
 	parameter CLK_PERIOD = 20; // 50 MHz clock
 	
 	logic [ADDRESS_WIDTH-1:0] address;
@@ -22,11 +22,10 @@ module tb_distribution_ram();
 		Clk = 0;
 		WE = 0;
 		address = 8'h00;
-		
-		#10 data_in = 288'h0000_0000_1111_1111_2222_2222_3333_3333_4444_4444_5555_5555_6666_6666_7777_7777_8888_8888;
+		#10 data_in = 5;
 		#12 WE = 1'b1;
 		#12 address = 8'h12;
-		#10 data_in = 288'h8888_8888_7777_7777_6666_6666_5555_5555_4444_4444_3333_3333_2222_2222_1111_1111_0000_0000;
+		#10 data_in = 6;
 		#20 WE = 1'b0;
 		#10 address = 8'h00;
 		#20 $finish;

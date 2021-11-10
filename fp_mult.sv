@@ -1,6 +1,6 @@
 module fp_mult
-	#(parameter FRACTIONAL_BITS=24,
-		parameter DATA_WIDTH=32,
+	#(parameter FRACTIONAL_BITS=56,
+		parameter DATA_WIDTH=64,
 		parameter INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS) (
 	
 	input logic signed [DATA_WIDTH-1:0] Din0,

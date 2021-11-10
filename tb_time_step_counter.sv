@@ -3,7 +3,7 @@ module tb_time_step_counter();
 	timeunit 1ns;
 	timeprecision 1ns;
 	
-	parameter MAX_TIME=8;
+	parameter MAX_TIME=100;
 	parameter TIME_COUNT_WIDTH=$clog2(MAX_TIME);
 	parameter CLK_PERIOD = 20; // 50 MHz clock
 	

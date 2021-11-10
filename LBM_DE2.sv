@@ -1,6 +1,6 @@
-module LBM_DE2	#(GRID_DIM=16*16, MAX_TIME=8, TIME_COUNT_WIDTH=$clog2(MAX_TIME),
-		DATA_WIDTH=32, ADDRESS_WIDTH=$clog2(GRID_DIM), COUNT_WIDTH=$clog2(GRID_DIM/16),
-		DATA_WIDTH_F=9*DATA_WIDTH, FRACTIONAL_BITS=24, INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS)
+module LBM_DE2	#(GRID_DIM=16*16, MAX_TIME=100, TIME_COUNT_WIDTH=$clog2(MAX_TIME),
+		DATA_WIDTH=64, ADDRESS_WIDTH=$clog2(GRID_DIM), COUNT_WIDTH=$clog2(GRID_DIM/16),
+		DATA_WIDTH_F=9*DATA_WIDTH, FRACTIONAL_BITS=56, INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS)
 		(input logic CLOCK_50,
 		input logic RESET,
 		output logic signed [DATA_WIDTH-1:0] p_mem_data_out,
@@ -33,19 +33,19 @@ module LBM_DE2	#(GRID_DIM=16*16, MAX_TIME=8, TIME_COUNT_WIDTH=$clog2(MAX_TIME),
 	Q8.24
 	
 	(DATA_WIDTH)h'XX_XXXXXX
-	Examples where DATA_WIDTH=32:
+	Examples where DATA_WIDTH=64:
 	
-	1.0 = 32'01_000000;
-	-1.0 = 32'hFF_000000;
-	3.5 = 32'h03_800000;
+	1.0 = 64'01_000000;
+	-1.0 = 64'hFF_000000;
+	3.5 = 64'h03_800000;
 
 */
 	
 /** SIGNAL DECLARATIONS/ASSIGNMENTS **/
 // test bench specific memory arrays
-logic [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0];
-logic [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0];
-logic [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0];
+logic signed [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0];
+logic signed [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0];
+logic signed [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0];
 
 // controller signals
 logic WE_p_mem;
@@ -142,8 +142,8 @@ assign stream_addr0 = stream_addresses[9*(ADDRESS_WIDTH+1)-1:8*(ADDRESS_WIDTH+1)
 logic signed [DATA_WIDTH-1:0] pwr;
 logic signed [DATA_WIDTH-1:0] gnd;
 
-assign pwr = 32'h01_000000;
-assign gnd = 32'h00_000000;
+assign pwr = 64'h01_0000000_0000000;
+assign gnd = 64'h00_0000000_0000000;
 
 // LBM parameters
 logic signed [DATA_WIDTH_F-1:0] weights;
@@ -151,7 +151,7 @@ logic signed [DATA_WIDTH_F-1:0] cx;
 logic signed [DATA_WIDTH_F-1:0] cy;
 
 logic signed [DATA_WIDTH-1:0] uLid;
-assign uLid = 32'h00_0CCCCC;
+assign uLid = 64'h00_0CCCCCCCCCCCCD; // 0.05
 
 // discrete velocity x-components
 logic signed [DATA_WIDTH-1:0] cx_0;
@@ -236,9 +236,9 @@ logic signed [DATA_WIDTH-1:0] const0; // see above
 logic signed [DATA_WIDTH-1:0] const1;
 logic signed [DATA_WIDTH-1:0] const2;
 
-assign const0 = 32'h00_38E38E; // 2/9
-assign const1 = 32'h00_0E38E3; // 1/18
-assign const2 = 32'h00_071C71; // 1/36
+assign const0 = 64'h00_38E38E38E38E38; // 2/9
+assign const1 = 64'h00_0E38E38E38E38E; // 1/18
+assign const2 = 64'h00_071C71C71C71C7; // 1/36
 
 // moment RAM input buses
 logic signed [DATA_WIDTH-1:0] p_mem_data_in;
@@ -352,31 +352,31 @@ logic signed [DATA_WIDTH-1:0] add24_out;
 // values used frequently in intermediate
 // calculations for equilibrium distribution
 logic signed [DATA_WIDTH-1:0] one;
-assign one = 32'h01_000000;
+assign one = 64'h01_00000000000000;
 
 logic signed [DATA_WIDTH-1:0] six;
-assign six = 32'h06_000000;
+assign six = 64'h06_00000000000000;
 
 logic signed [DATA_WIDTH-1:0] neg_six;
-assign neg_six = 32'hFA_000000;
+assign neg_six = 64'hFA_00000000000000; //////
 
 logic signed [DATA_WIDTH-1:0] three;
-assign three = 32'h03_000000;
+assign three = 64'h03_00000000000000;
 
 logic signed [DATA_WIDTH-1:0] neg_three;
-assign neg_three = 32'hFB_000000;
+assign neg_three = 64'hFD_00000000000000; ///////
 
 logic signed [DATA_WIDTH-1:0] two;
-assign two = 32'h02_000000;
+assign two = 64'h02_00000000000000;
 
 logic signed [DATA_WIDTH-1:0] neg_uy;
 assign neg_uy = ~uy_out + 1;
 
 logic signed [DATA_WIDTH-1:0] nine;
-assign nine = 32'h09_000000;
+assign nine = 64'h09_00000000000000;
 
 logic signed [DATA_WIDTH-1:0] neg_nine;
-assign neg_nine = 32'hF7_000000;
+assign neg_nine = 64'hF7_00000000000000;
 
 // equilibrium distribution components
 // input buses
@@ -466,8 +466,8 @@ logic RIGHT_WALL;
 logic signed [DATA_WIDTH-1:0] omega; // delta(t)/tau
 logic signed [DATA_WIDTH-1:0] omega_prime; // 1-delta(t)/tau
 
-assign omega = 32'h01_71F133; // w (relaxation parameter)
-assign omega_prime = 32'hFF_8E0ECD; // 1 - w
+assign omega = 64'h01_E88CB3C92909C6; // w = 250/131 (relaxation parameter) VERY IMPORTANT: THIS IS A FUNCTION OF THE GRID SIZE!!!
+assign omega_prime = 64'hFF_17734C36D6F63B; // 1 - w
 
 // calculating the row from the grid counter
 // the counter name has the "init" part in it
@@ -497,7 +497,7 @@ counter_init #(.GRID_DIM(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH)) init_counter 
 
 row_counter #(.GRID_DIM(GRID_DIM), .INIT_COUNT_WIDTH(ADDRESS_WIDTH), .COUNT_WIDTH(COUNT_WIDTH)) row_cnter (.Clk(CLOCK_50),
 																										  .Reset(RESET),
-																										  .Enable(row_count_en), // wrong enable
+																										  .Enable(row_count_en), 
 																										  .count_init(count_init),
 																										  .Data_out(y_pos));																									  
 
@@ -659,7 +659,7 @@ mux2 #(.DATA_WIDTH(DATA_WIDTH)) uy_mem_mux (.Din0(gnd),
 														 .Dout(uy_mem_data_in));	
 	
 // fin_mem multiplexer
-													
+// **********************************												
 mux11 #(.DATA_WIDTH(DATA_WIDTH_F)) fin_mem_mux (.Din0(weights),
 															   .Din1(feq_in),
 																.Din2({fout_mem_out[9*DATA_WIDTH-1:8*DATA_WIDTH], fin_1, fin_2, fin_3, fin_4, fin_5, fin_6, fin_7, fin_8}), // actually fin with fin0 replaced with fout0
@@ -1235,7 +1235,7 @@ adder2 #(.DATA_WIDTH(DATA_WIDTH)) add31 (.Din0(coll_prod_feq6),
                                          .Din1(coll_prod_fin6),
 													  .Dout(fout6_in));
 
-adder2 #(.DATA_WIDTH(DATA_WIDTH)) add32 (.Din0(coll_prod_feq7),
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add64 (.Din0(coll_prod_feq7),
                                          .Din1(coll_prod_fin7),
 													  .Dout(fout7_in));
 

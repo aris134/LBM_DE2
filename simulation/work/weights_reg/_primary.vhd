@@ -2,7 +2,7 @@ library verilog;
 use verilog.vl_types.all;
 entity weights_reg is
     generic(
-        WIDTH           : integer := 288
+        WIDTH           : integer := 576
     );
     port(
         Reset           : in     vl_logic;
