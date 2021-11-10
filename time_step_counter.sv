@@ -1,4 +1,4 @@
-module time_step_counter #(MAX_TIME=8, TIME_COUNT_WIDTH=$clog2(MAX_TIME)) (input Clk, Reset, Enable,
+module time_step_counter #(MAX_TIME=100, TIME_COUNT_WIDTH=$clog2(MAX_TIME)) (input Clk, Reset, Enable,
 					  output logic [TIME_COUNT_WIDTH:0] Data_out);
 					  
 logic [TIME_COUNT_WIDTH:0] count;

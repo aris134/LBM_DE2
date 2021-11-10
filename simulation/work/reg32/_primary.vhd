@@ -2,7 +2,7 @@ library verilog;
 use verilog.vl_types.all;
 entity reg32 is
     generic(
-        WIDTH           : integer := 32
+        WIDTH           : integer := 64
     );
     port(
         Clk             : in     vl_logic;

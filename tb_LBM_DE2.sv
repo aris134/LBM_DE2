@@ -4,13 +4,13 @@ module tb_LBM_DE2();
 	timeprecision 1ns;
 	
 	parameter GRID_DIM = 16*16;
-	parameter MAX_TIME = 8;
+	parameter MAX_TIME = 100;
 	parameter TIME_COUNT_WIDTH=$clog2(MAX_TIME);
-	parameter DATA_WIDTH = 32;
+	parameter DATA_WIDTH = 64;
 	parameter ADDRESS_WIDTH = $clog2(GRID_DIM);
 	parameter COUNT_WIDTH = $clog2(GRID_DIM/16);
 	parameter DATA_WIDTH_F=9*DATA_WIDTH;
-	parameter FRACTIONAL_BITS = 24;
+	parameter FRACTIONAL_BITS = 56;
 	parameter INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS;
 	
 	parameter CLK_PERIOD = 20; // 50 MHz clock
@@ -31,13 +31,11 @@ module tb_LBM_DE2();
 	
 	initial begin
 		CLOCK_50 = 0;
-		RESET = 1;
+		RESET = 0;
 		
-		#10 RESET = 0;
+		#10 RESET = 1;
 		
-		#15 RESET = 1;
-		
-		#3508000 $finish;
+		#76433600 $finish;
 	end
 	
 endmodule

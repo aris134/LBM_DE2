@@ -2,8 +2,8 @@ library verilog;
 use verilog.vl_types.all;
 entity tb_fp_mult is
     generic(
-        DATA_WIDTH      : integer := 32;
-        FRACTIONAL_BITS : integer := 24;
+        DATA_WIDTH      : integer := 64;
+        FRACTIONAL_BITS : integer := 56;
         INTEGER_BITS    : vl_notype
     );
     attribute mti_svvh_generic_type : integer;

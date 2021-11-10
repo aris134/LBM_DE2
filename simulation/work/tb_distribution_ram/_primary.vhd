@@ -2,9 +2,9 @@ library verilog;
 use verilog.vl_types.all;
 entity tb_distribution_ram is
     generic(
-        DEPTH           : integer := 2304;
+        DEPTH           : integer := 256;
         ADDRESS_WIDTH   : vl_notype;
-        DATA_WIDTH      : integer := 288;
+        DATA_WIDTH      : integer := 576;
         CLK_PERIOD      : integer := 20
     );
     attribute mti_svvh_generic_type : integer;

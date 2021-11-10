@@ -2,8 +2,8 @@ library verilog;
 use verilog.vl_types.all;
 entity fp_div is
     generic(
-        WIDTH           : integer := 32;
-        FBITS           : integer := 24
+        WIDTH           : integer := 64;
+        FBITS           : integer := 56
     );
     port(
         clk             : in     vl_logic;

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for LBM_DE2
-Mon Nov 08 15:49:47 2021
+Mon Nov 08 21:51:09 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -290,15 +290,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 08 15:49:47 2021      ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 08 21:51:08 2021      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; LBM_DE2                                    ;
 ; Top-level Entity Name              ; LBM_DE2                                    ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 8,868                                      ;
-;     Total combinational functions  ; 8,127                                      ;
-;     Dedicated logic registers      ; 2,095                                      ;
-; Total registers                    ; 2095                                       ;
+; Total logic elements               ; 8,858                                      ;
+;     Total combinational functions  ; 8,117                                      ;
+;     Dedicated logic registers      ; 2,092                                      ;
+; Total registers                    ; 2092                                       ;
 ; Total pins                         ; 386                                        ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 172,032                                    ;
@@ -470,28 +470,28 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 8,868          ;
+; Estimated Total logic elements              ; 8,858          ;
 ;                                             ;                ;
-; Total combinational functions               ; 8127           ;
+; Total combinational functions               ; 8117           ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 776            ;
-;     -- 3 input functions                    ; 5711           ;
+;     -- 4 input functions                    ; 797            ;
+;     -- 3 input functions                    ; 5680           ;
 ;     -- <=2 input functions                  ; 1640           ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 1837           ;
+;     -- normal mode                          ; 1827           ;
 ;     -- arithmetic mode                      ; 6290           ;
 ;                                             ;                ;
-; Total registers                             ; 2095           ;
-;     -- Dedicated logic registers            ; 2095           ;
+; Total registers                             ; 2092           ;
+;     -- Dedicated logic registers            ; 2092           ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
 ; I/O pins                                    ; 386            ;
 ; Total memory bits                           ; 172032         ;
 ; Embedded Multiplier 9-bit elements          ; 456            ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 2767           ;
-; Total fan-out                               ; 47097          ;
+; Maximum fan-out                             ; 2764           ;
+; Total fan-out                               ; 47079          ;
 ; Average fan-out                             ; 3.89           ;
 +---------------------------------------------+----------------+
 
@@ -501,7 +501,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                    ; Library Name ;
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------+--------------+
-; |LBM_DE2                                  ; 8127 (33)         ; 2095 (0)     ; 172032      ; 456          ; 0       ; 228       ; 386  ; 0            ; |LBM_DE2                                                                               ; work         ;
+; |LBM_DE2                                  ; 8117 (33)         ; 2092 (0)     ; 172032      ; 456          ; 0       ; 228       ; 386  ; 0            ; |LBM_DE2                                                                               ; work         ;
 ;    |adder2:ad11|                          ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|adder2:ad11                                                                   ; work         ;
 ;    |adder2:add0|                          ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|adder2:add0                                                                   ; work         ;
 ;    |adder2:add10|                         ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|adder2:add10                                                                  ; work         ;
@@ -542,7 +542,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;          |altsyncram_5ji1:auto_generated| ; 0 (0)             ; 0 (0)        ; 73728       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|distribution_ram:fout_ram|altsyncram:mem_rtl_0|altsyncram_5ji1:auto_generated ; work         ;
 ;    |fin_addr_mux:mux_fin_addr|            ; 27 (27)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|fin_addr_mux:mux_fin_addr                                                     ; work         ;
 ;    |fp_div:div_ux|                        ; 273 (273)         ; 105 (105)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|fp_div:div_ux                                                                 ; work         ;
-;    |fp_div:div_uy|                        ; 197 (197)         ; 105 (105)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|fp_div:div_uy                                                                 ; work         ;
+;    |fp_div:div_uy|                        ; 196 (196)         ; 105 (105)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|fp_div:div_uy                                                                 ; work         ;
 ;    |fp_mult:prod_3_u2|                    ; 82 (0)            ; 0 (0)        ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |LBM_DE2|fp_mult:prod_3_u2                                                             ; work         ;
 ;       |lpm_mult:Mult0|                    ; 82 (0)            ; 0 (0)        ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |LBM_DE2|fp_mult:prod_3_u2|lpm_mult:Mult0                                              ; work         ;
 ;          |mult_0at:auto_generated|        ; 82 (82)           ; 0 (0)        ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |LBM_DE2|fp_mult:prod_3_u2|lpm_mult:Mult0|mult_0at:auto_generated                      ; work         ;
@@ -720,7 +720,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |moment_ram:ux_ram|                    ; 136 (136)         ; 146 (146)    ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:ux_ram                                                             ; work         ;
 ;       |altsyncram:mem_rtl_0|              ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:ux_ram|altsyncram:mem_rtl_0                                        ; work         ;
 ;          |altsyncram_lfi1:auto_generated| ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|moment_ram:ux_ram|altsyncram:mem_rtl_0|altsyncram_lfi1:auto_generated         ; work         ;
-;    |mux11:fin_mem_mux|                    ; 663 (663)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|mux11:fin_mem_mux                                                             ; work         ;
+;    |mux11:fin_mem_mux|                    ; 659 (659)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|mux11:fin_mem_mux                                                             ; work         ;
 ;    |mux2:p_mem_mux|                       ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|mux2:p_mem_mux                                                                ; work         ;
 ;    |mux2:ux_mem_mux|                      ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|mux2:ux_mem_mux                                                               ; work         ;
 ;    |mux2:uy_in_mux|                       ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|mux2:uy_in_mux                                                                ; work         ;
@@ -751,7 +751,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |reg32:uy_reg|                         ; 0 (0)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|reg32:uy_reg                                                                  ; work         ;
 ;    |row_counter:row_cnter|                ; 5 (5)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|row_counter:row_cnter                                                         ; work         ;
 ;    |streaming_unit:streamer|              ; 33 (33)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|streaming_unit:streamer                                                       ; work         ;
-;    |time_step_counter:timer|              ; 6 (6)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|time_step_counter:timer                                                       ; work         ;
+;    |time_step_counter:timer|              ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|time_step_counter:timer                                                       ; work         ;
 ;    |wall_detector:wall_det|               ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LBM_DE2|wall_detector:wall_det                                                        ; work         ;
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -936,10 +936,10 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 2095  ;
+; Total registers                              ; 2092  ;
 ; Number of registers using Synchronous Clear  ; 144   ;
 ; Number of registers using Synchronous Load   ; 448   ;
-; Number of registers using Asynchronous Clear ; 802   ;
+; Number of registers using Asynchronous Clear ; 799   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 1655  ;
 ; Number of registers using Preset             ; 0     ;
@@ -1406,28 +1406,28 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LBM_DE2|row_counter:row_cnter|count[0]          ;
-; 3:1                ; 288 bits  ; 576 LEs       ; 576 LEs              ; 0 LEs                  ; Yes        ; |LBM_DE2|distribution_ram:fout_ram|data_out[263] ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_ux|q[1]                      ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_uy|q[4]                      ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|i[2]                      ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|i[5]                      ;
-; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|q1[15]                    ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LBM_DE2|row_counter:row_cnter|count[3]          ;
+; 3:1                ; 288 bits  ; 576 LEs       ; 576 LEs              ; 0 LEs                  ; Yes        ; |LBM_DE2|distribution_ram:fout_ram|data_out[264] ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_ux|q[2]                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |LBM_DE2|fp_div:div_uy|q[5]                      ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|i[5]                      ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|i[1]                      ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|q1[12]                    ;
 ; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|q1[31]                    ;
-; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|ac[28]                    ;
-; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|ac[29]                    ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_ux|ac[26]                    ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |LBM_DE2|fp_div:div_uy|ac[30]                    ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |LBM_DE2|controller:fsm|select_ux_reg[1]         ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |LBM_DE2|moment_ram:p_ram|Mux31                  ;
 ; 3:1                ; 64 bits   ; 128 LEs       ; 128 LEs              ; 0 LEs                  ; No         ; |LBM_DE2|moment_ram:ux_ram|Mux31                 ;
 ; 16:1               ; 32 bits   ; 320 LEs       ; 128 LEs              ; 192 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux274                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux248                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux215                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux169                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux151                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux120                ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux95                 ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux55                 ;
-; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux19                 ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux249                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux216                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux168                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux152                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux121                ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux86                 ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux53                 ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 96 LEs               ; 224 LEs                ; No         ; |LBM_DE2|mux11:fin_mem_mux|Mux20                 ;
 ; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |LBM_DE2|controller:fsm|Selector5                ;
 ; 19:1               ; 4 bits    ; 48 LEs        ; 12 LEs               ; 36 LEs                 ; No         ; |LBM_DE2|fin_addr_mux:mux_fin_addr|Mux4          ;
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |LBM_DE2|streaming_unit:streamer|Add5            ;
@@ -1478,8 +1478,8 @@ Encoding Type:  One-Hot
 ; Parameter Name   ; Value ; Type                                         ;
 +------------------+-------+----------------------------------------------+
 ; GRID_DIM         ; 256   ; Signed Integer                               ;
-; MAX_TIME         ; 8     ; Signed Integer                               ;
-; TIME_COUNT_WIDTH ; 3     ; Signed Integer                               ;
+; MAX_TIME         ; 1     ; Signed Integer                               ;
+; TIME_COUNT_WIDTH ; 0     ; Signed Integer                               ;
 ; DATA_WIDTH       ; 32    ; Signed Integer                               ;
 ; ADDRESS_WIDTH    ; 8     ; Signed Integer                               ;
 ; COUNT_WIDTH      ; 4     ; Signed Integer                               ;
@@ -1518,8 +1518,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------------+-------+-------------------------------------------+
 ; Parameter Name   ; Value ; Type                                      ;
 +------------------+-------+-------------------------------------------+
-; MAX_TIME         ; 8     ; Signed Integer                            ;
-; TIME_COUNT_WIDTH ; 3     ; Signed Integer                            ;
+; MAX_TIME         ; 1     ; Signed Integer                            ;
+; TIME_COUNT_WIDTH ; 0     ; Signed Integer                            ;
 +------------------+-------+-------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -1533,8 +1533,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; GRID_DIM         ; 256   ; Signed Integer                   ;
 ; ADDRESS_WIDTH    ; 8     ; Signed Integer                   ;
 ; ADDRESS_WIDTH2   ; 9     ; Signed Integer                   ;
-; MAX_TIME         ; 8     ; Signed Integer                   ;
-; TIME_COUNT_WIDTH ; 3     ; Signed Integer                   ;
+; MAX_TIME         ; 1     ; Signed Integer                   ;
+; TIME_COUNT_WIDTH ; 0     ; Signed Integer                   ;
 +------------------+-------+----------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -6389,7 +6389,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:26     ;
+; Top            ; 00:00:28     ;
 +----------------+--------------+
 
 
@@ -6399,7 +6399,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Nov 08 15:49:11 2021
+    Info: Processing started: Mon Nov 08 21:50:27 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LBM_DE2 -c LBM_DE2
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file lbm_de2.sv
@@ -6932,17 +6932,17 @@ Info (17049): 5 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/Users/arism/Desktop/LBM_DE2/output_files/LBM_DE2.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 10488 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 10478 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 384 output pins
-    Info (21061): Implemented 8974 logic cells
+    Info (21061): Implemented 8964 logic cells
     Info (21064): Implemented 672 RAM segments
     Info (21062): Implemented 456 DSP elements
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 19 warnings
-    Info: Peak virtual memory: 4862 megabytes
-    Info: Processing ended: Mon Nov 08 15:49:47 2021
-    Info: Elapsed time: 00:00:36
-    Info: Total CPU time (on all processors): 00:00:36
+    Info: Peak virtual memory: 4875 megabytes
+    Info: Processing ended: Mon Nov 08 21:51:09 2021
+    Info: Elapsed time: 00:00:42
+    Info: Total CPU time (on all processors): 00:00:38
 
 
 +------------------------------------------+

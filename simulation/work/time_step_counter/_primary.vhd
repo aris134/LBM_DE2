@@ -2,7 +2,7 @@ library verilog;
 use verilog.vl_types.all;
 entity time_step_counter is
     generic(
-        MAX_TIME        : integer := 8;
+        MAX_TIME        : integer := 100;
         TIME_COUNT_WIDTH: vl_notype
     );
     port(

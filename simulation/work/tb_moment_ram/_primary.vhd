@@ -4,7 +4,7 @@ entity tb_moment_ram is
     generic(
         DEPTH           : integer := 256;
         ADDRESS_WIDTH   : vl_notype;
-        DATA_WIDTH      : integer := 32;
+        DATA_WIDTH      : integer := 64;
         CLK_PERIOD      : integer := 20
     );
     attribute mti_svvh_generic_type : integer;

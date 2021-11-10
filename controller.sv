@@ -1,5 +1,5 @@
-module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_DIM),
-						  ADDRESS_WIDTH2=$clog2(GRID_DIM)+1, MAX_TIME=8, TIME_COUNT_WIDTH=$clog2(MAX_TIME)) 
+module controller #(DATA_WIDTH=64, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_DIM),
+						  ADDRESS_WIDTH2=$clog2(GRID_DIM)+1, MAX_TIME=100, TIME_COUNT_WIDTH=$clog2(MAX_TIME)) 
 						 (input Clk, Reset,
 						 input logic [ADDRESS_WIDTH-1:0] count_init,
 						 input logic [TIME_COUNT_WIDTH:0] time_count,
@@ -14,9 +14,9 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 input logic [ADDRESS_WIDTH2-1:0] stream_addr6,
 						 input logic [ADDRESS_WIDTH2-1:0] stream_addr7,
 						 input logic [ADDRESS_WIDTH2-1:0] stream_addr8,
-						 input logic [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0],
-						 input logic [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0],
-						 input logic [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0],
+						 input logic signed [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0],
+						 input logic signed [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0],
+						 input logic signed [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0],
 						 output logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem,
 						 output logic select_p_mem, select_ux_mem, select_uy_mem,
 						 output logic [3:0] select_fin_mem,
@@ -33,7 +33,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 
 	enum logic [4:0] {START, CALC_MOMENT_1, CALC_MOMENT_2, CALC_MOMENT_3,
 							CALC_MOMENT_4, CALC_MOMENT_5, CALC_MOMENT_6, CALC_EQUIL_1,
-							CALC_EQUIL_2, CALC_COLL_1, CALC_COLL_2, STREAM_0, STREAM_1, STREAM_2,
+							CALC_EQUIL_2, CALC_EQUIL_3, CALC_COLL_1, CALC_COLL_2, CALC_COLL_3, STREAM_0, STREAM_1, STREAM_2,
 							STREAM_3, STREAM_4, STREAM_5, STREAM_6, STREAM_7, STREAM_8, INCREMENT_POS,
 							INCREMENT_TIME, STOP} State, Next_state;
 	
@@ -72,10 +72,18 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 		CALC_EQUIL_1:
 				Next_state <= CALC_EQUIL_2;
 		CALC_EQUIL_2:
+			if (LID | BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
+				Next_state <= CALC_EQUIL_3;
+			end else begin
+				Next_state <= CALC_COLL_1;
+			end
+		CALC_EQUIL_3:
 				Next_state <= CALC_COLL_1;
 		CALC_COLL_1:
 				Next_state <= CALC_COLL_2;
 		CALC_COLL_2:
+				Next_state <= CALC_COLL_3;
+		CALC_COLL_3:
 				Next_state <= STREAM_0;
 		STREAM_0:
 				Next_state <= STREAM_1;
@@ -108,7 +116,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 					Next_state <= STOP;
 				end
 		STOP:
-				;
+				Next_state <= STOP;
 		endcase
 	end
 	
@@ -225,12 +233,17 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 			begin
 				WE_feq_mem = 1'b1;
 				if (LID | BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
-					select_fin_mem = 4'b0001;
-					WE_fin_mem = 1'b1;
+					select_fin_mem = 4'b0001; // select signal changing at same time as WE - avoid
 				end
 			end
-	CALC_COLL_1:
+	CALC_EQUIL_3:
 			begin
+				select_fin_mem = 4'b0001;
+				WE_fin_mem = 1'b1;
+			end
+	CALC_COLL_1:
+			begin // select_fin_mem goes back to 4'b0000;
+				select_fin_mem = 4'b0001;
 				LD_EN_FOUT0 = 1'b1;
 				LD_EN_FOUT1 = 1'b1;
 				LD_EN_FOUT2 = 1'b1;
@@ -244,6 +257,9 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	CALC_COLL_2:
 			begin
 				WE_fout_mem = 1'b1;
+			end
+	CALC_COLL_3:	//stall to let write to fout complete before using it
+			begin
 			end
 	STREAM_0: // stream address 0
 			begin

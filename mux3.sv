@@ -1,4 +1,4 @@
-module mux3 #(DATA_WIDTH=32)(input logic signed [DATA_WIDTH-1:0] Din0,
+module mux3 #(DATA_WIDTH=64)(input logic signed [DATA_WIDTH-1:0] Din0,
 									  input logic signed [DATA_WIDTH-1:0] Din1,
 									  input logic signed [DATA_WIDTH-1:0] Din2,
 									  input [1:0] select,

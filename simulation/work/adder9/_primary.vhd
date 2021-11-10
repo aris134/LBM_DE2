@@ -2,7 +2,7 @@ library verilog;
 use verilog.vl_types.all;
 entity adder9 is
     generic(
-        DATA_WIDTH      : integer := 32
+        DATA_WIDTH      : integer := 64
     );
     port(
         Din0            : in     vl_logic_vector;

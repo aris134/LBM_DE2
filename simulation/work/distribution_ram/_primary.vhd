@@ -4,7 +4,7 @@ entity distribution_ram is
     generic(
         DEPTH           : integer := 256;
         ADDRESS_WIDTH   : vl_notype;
-        DATA_WIDTH      : integer := 288
+        DATA_WIDTH      : integer := 576
     );
     port(
         address         : in     vl_logic_vector;
