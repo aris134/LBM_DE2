@@ -1,4 +1,11 @@
-C:/Users/arism/Desktop/LBM_DE2/controller.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/controller.sv
+C:/Users/arism/Desktop/LBM_DE2/mux2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/mux2.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module mux2
+
+Top level modules:
+	mux2
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/controller.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/controller.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module controller
 
@@ -18,13 +25,6 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 
 Top level modules:
 	mux11
-
-} {} {}} C:/Users/arism/Desktop/LBM_DE2/mux2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/mux2.sv
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module mux2
-
-Top level modules:
-	mux2
 
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/LBM_DE2.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -82,6 +82,20 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	fin_addr_mux
 
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/adder9.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/adder9.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module adder9
+
+Top level modules:
+	adder9
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module cy_reg
+
+Top level modules:
+	cy_reg
+
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/tb_controller.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/tb_controller.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module tb_controller
@@ -95,20 +109,6 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 
 Top level modules:
 	tb_mux2
-
-} {} {}} C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/cy_reg.sv
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module cy_reg
-
-Top level modules:
-	cy_reg
-
-} {} {}} C:/Users/arism/Desktop/LBM_DE2/adder9.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/adder9.sv
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module adder9
-
-Top level modules:
-	adder9
 
 } {} {}} C:/Users/arism/Desktop/LBM_DE2/adder2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2/adder2.sv
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012

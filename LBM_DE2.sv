@@ -2,11 +2,11 @@ module LBM_DE2	#(GRID_DIM=16*16, MAX_TIME=100, TIME_COUNT_WIDTH=$clog2(MAX_TIME)
 		DATA_WIDTH=64, ADDRESS_WIDTH=$clog2(GRID_DIM), COUNT_WIDTH=$clog2(GRID_DIM/16),
 		DATA_WIDTH_F=9*DATA_WIDTH, FRACTIONAL_BITS=56, INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS)
 		(input logic CLOCK_50,
-		input logic RESET,
-		output logic signed [DATA_WIDTH-1:0] p_mem_data_out,
-		output logic signed [DATA_WIDTH-1:0] ux_mem_data_out,
-		output logic signed [DATA_WIDTH-1:0] uy_mem_data_out,
-		output logic signed [DATA_WIDTH_F-1:0] fin_mem_data_out);
+		input logic RESET);
+		//output logic signed [DATA_WIDTH-1:0] p_mem_data_out,
+		//output logic signed [DATA_WIDTH-1:0] ux_mem_data_out,
+		//output logic signed [DATA_WIDTH-1:0] uy_mem_data_out,
+		//output logic signed [DATA_WIDTH_F-1:0] fin_mem_data_out);
 
 /***** PORT DESCRIPTION *****/
 /*
@@ -43,6 +43,10 @@ module LBM_DE2	#(GRID_DIM=16*16, MAX_TIME=100, TIME_COUNT_WIDTH=$clog2(MAX_TIME)
 	
 /** SIGNAL DECLARATIONS/ASSIGNMENTS **/
 // test bench specific memory arrays
+logic signed [DATA_WIDTH-1:0] p_mem_data_out;
+logic signed [DATA_WIDTH-1:0] ux_mem_data_out;
+logic signed [DATA_WIDTH-1:0] uy_mem_data_out;
+
 logic signed [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0];
 logic signed [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0];
 logic signed [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0];

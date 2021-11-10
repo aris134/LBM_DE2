@@ -18,10 +18,10 @@ module tb_LBM_DE2();
 	// inputs and outputs
 	logic CLOCK_50;
 	logic RESET;
-	logic signed [DATA_WIDTH-1:0] p_mem_data_out;
-	logic signed [DATA_WIDTH-1:0] ux_mem_data_out;
-	logic signed [DATA_WIDTH-1:0] uy_mem_data_out;
-	logic signed [DATA_WIDTH_F-1:0] fin_mem_data_out;
+	//logic signed [DATA_WIDTH-1:0] p_mem_data_out;
+	//logic signed [DATA_WIDTH-1:0] ux_mem_data_out;
+	//logic signed [DATA_WIDTH-1:0] uy_mem_data_out;
+	//logic signed [DATA_WIDTH_F-1:0] fin_mem_data_out;
 	
 	
 	LBM_DE2 #(.GRID_DIM(GRID_DIM), .MAX_TIME(MAX_TIME), .TIME_COUNT_WIDTH(TIME_COUNT_WIDTH), .DATA_WIDTH(DATA_WIDTH), .ADDRESS_WIDTH(ADDRESS_WIDTH),
