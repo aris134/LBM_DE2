@@ -13,7 +13,7 @@ module tb_moment_ram();
 	logic WE;
 	logic signed [DATA_WIDTH-1:0] data_in;
 	logic signed [DATA_WIDTH-1:0] data_out;
-	logic [DATA_WIDTH-1:0] mem_array [DEPTH-1:0];
+	logic signed [DATA_WIDTH-1:0] mem_array [DEPTH-1:0];
 	
 	moment_ram #(.DEPTH(DEPTH), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) ram0 (.*);
 	

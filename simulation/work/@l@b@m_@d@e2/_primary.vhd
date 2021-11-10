@@ -14,11 +14,7 @@ entity LBM_DE2 is
     );
     port(
         CLOCK_50        : in     vl_logic;
-        RESET           : in     vl_logic;
-        p_mem_data_out  : out    vl_logic_vector;
-        ux_mem_data_out : out    vl_logic_vector;
-        uy_mem_data_out : out    vl_logic_vector;
-        fin_mem_data_out: out    vl_logic_vector
+        RESET           : in     vl_logic
     );
     attribute mti_svvh_generic_type : integer;
     attribute mti_svvh_generic_type of GRID_DIM : constant is 1;
