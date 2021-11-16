@@ -36,17 +36,17 @@ module lfsr_56_gaus		// hard-coded to 56 here just to make it simple (would want
 
 	 lfsr_56 (.Clk(Clk),
 		 		.Reset(Reset),
-				.seed(seed),
+				.seed(seed+1), # need different intial seeds for each LFSR
 				.pseudo_rand(interm_out2));
 
 	 lfsr_56 (.Clk(Clk),
 		 		.Reset(Reset),
-				.seed(seed),
+				.seed(seed+3),
 				.pseudo_rand(interm_out3));
 
 	 lfsr_56 (.Clk(Clk),
 		 		.Reset(Reset),
-				.seed(seed),
+				.seed(seed+5),
 				.pseudo_rand(interm_out4));
 
 	 assign interm_out1s = interm_out1 >> 1;
