@@ -4,6 +4,7 @@ module tb_streaming_unit();
 	timeprecision 1ns;
 	
 	parameter GRID_DIM=16*16;
+	parameter SIDE_LENGTH=GRID_DIM/16;
 	parameter ADDRESS_WIDTH=$clog2(GRID_DIM)+1;
 	
 	logic signed [ADDRESS_WIDTH-1:0] x; // reminder: width = address_width + 1 

@@ -4,7 +4,7 @@ entity moment_ram is
     generic(
         DEPTH           : integer := 256;
         ADDRESS_WIDTH   : vl_notype;
-        DATA_WIDTH      : integer := 64
+        DATA_WIDTH      : integer := 32
     );
     port(
         address         : in     vl_logic_vector;

@@ -1,0 +1,23 @@
+module bc_addr_iter #(DATA_WIDTH=32, GRID_DIM=16*16, ADDRESS_WIDTH=$clog2(GRID_DIM))
+					(input logic Clk, EN, Reset,
+					output logic [ADDRESS_WIDTH] address);
+					
+
+always_ff @ (posedge Clk or negedge Reset)
+begin
+if (~Reset)
+	address <= 0;
+else if (EN) begin
+		if (address > 0 && address < 240 && address % 16 == 0) begin
+			address <= address + 15;
+		end
+		address <= address + 1'b1;
+	end
+end
+
+endmodule
+
+					
+					
+					
+					

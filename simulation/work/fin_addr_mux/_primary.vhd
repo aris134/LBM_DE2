@@ -15,6 +15,7 @@ entity fin_addr_mux is
         Din7            : in     vl_logic_vector;
         Din8            : in     vl_logic_vector;
         Din9            : in     vl_logic_vector;
+        Din10           : in     vl_logic_vector;
         \select\        : in     vl_logic_vector(3 downto 0);
         Dout            : out    vl_logic_vector
     );

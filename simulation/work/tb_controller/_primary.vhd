@@ -2,7 +2,7 @@ library verilog;
 use verilog.vl_types.all;
 entity tb_controller is
     generic(
-        DATA_WIDTH      : integer := 64;
+        DATA_WIDTH      : integer := 32;
         GRID_DIM        : integer := 256;
         ADDRESS_WIDTH   : vl_notype;
         ADDRESS_WIDTH2  : vl_notype;

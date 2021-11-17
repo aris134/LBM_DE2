@@ -2,7 +2,7 @@ library verilog;
 use verilog.vl_types.all;
 entity controller is
     generic(
-        DATA_WIDTH      : integer := 64;
+        DATA_WIDTH      : integer := 32;
         GRID_DIM        : integer := 256;
         ADDRESS_WIDTH   : vl_notype;
         ADDRESS_WIDTH2  : vl_notype;
@@ -14,6 +14,7 @@ entity controller is
         Reset           : in     vl_logic;
         count_init      : in     vl_logic_vector;
         time_count      : in     vl_logic_vector;
+        wall_address    : in     vl_logic_vector;
         div_valid       : in     vl_logic;
         LID             : in     vl_logic;
         BOTTOM_WALL     : in     vl_logic;
@@ -37,17 +38,21 @@ entity controller is
         WE_fin_mem      : out    vl_logic;
         WE_fout_mem     : out    vl_logic;
         WE_feq_mem      : out    vl_logic;
+        WE_f_streamed   : out    vl_logic;
         select_p_mem    : out    vl_logic;
-        select_ux_mem   : out    vl_logic;
         select_uy_mem   : out    vl_logic;
-        select_fin_mem  : out    vl_logic_vector(3 downto 0);
+        select_ux_mem   : out    vl_logic_vector(1 downto 0);
+        select_fin_mem  : out    vl_logic_vector(1 downto 0);
+        select_f_streamed: out    vl_logic_vector(3 downto 0);
         select_p_reg    : out    vl_logic;
         select_uy_reg   : out    vl_logic;
         select_ux_reg   : out    vl_logic_vector(1 downto 0);
         select_fin_addr : out    vl_logic_vector(3 downto 0);
+        select_moment_addr: out    vl_logic;
         count_init_en   : out    vl_logic;
         row_count_en    : out    vl_logic;
         time_count_en   : out    vl_logic;
+        bc_addr_iter_en : out    vl_logic;
         div_start       : out    vl_logic;
         LD_EN_P         : out    vl_logic;
         LD_EN_PUX       : out    vl_logic;
@@ -71,7 +76,17 @@ entity controller is
         LD_EN_FOUT5     : out    vl_logic;
         LD_EN_FOUT6     : out    vl_logic;
         LD_EN_FOUT7     : out    vl_logic;
-        LD_EN_FOUT8     : out    vl_logic
+        LD_EN_FOUT8     : out    vl_logic;
+        LD_EN_f_streamed_REG_0: out    vl_logic;
+        LD_EN_f_streamed_REG_1: out    vl_logic;
+        LD_EN_f_streamed_REG_2: out    vl_logic;
+        LD_EN_f_streamed_REG_3: out    vl_logic;
+        LD_EN_f_streamed_REG_4: out    vl_logic;
+        LD_EN_f_streamed_REG_5: out    vl_logic;
+        LD_EN_f_streamed_REG_6: out    vl_logic;
+        LD_EN_f_streamed_REG_7: out    vl_logic;
+        LD_EN_f_streamed_REG_8: out    vl_logic;
+        FINISH          : out    vl_logic
     );
     attribute mti_svvh_generic_type : integer;
     attribute mti_svvh_generic_type of DATA_WIDTH : constant is 1;

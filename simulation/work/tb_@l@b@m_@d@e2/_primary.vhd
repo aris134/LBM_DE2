@@ -5,11 +5,11 @@ entity tb_LBM_DE2 is
         GRID_DIM        : integer := 256;
         MAX_TIME        : integer := 100;
         TIME_COUNT_WIDTH: vl_notype;
-        DATA_WIDTH      : integer := 64;
+        DATA_WIDTH      : integer := 32;
         ADDRESS_WIDTH   : vl_notype;
         COUNT_WIDTH     : vl_notype;
         DATA_WIDTH_F    : vl_notype;
-        FRACTIONAL_BITS : integer := 56;
+        FRACTIONAL_BITS : integer := 24;
         INTEGER_BITS    : vl_notype;
         CLK_PERIOD      : integer := 20
     );

@@ -2,7 +2,7 @@ library verilog;
 use verilog.vl_types.all;
 entity cx_reg is
     generic(
-        WIDTH           : integer := 576
+        WIDTH           : integer := 288
     );
     port(
         Reset           : in     vl_logic;

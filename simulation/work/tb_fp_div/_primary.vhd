@@ -3,8 +3,8 @@ use verilog.vl_types.all;
 entity tb_fp_div is
     generic(
         CLK_PERIOD      : integer := 20;
-        WIDTH           : integer := 64;
-        FBITS           : integer := 56
+        WIDTH           : integer := 32;
+        FBITS           : integer := 24
     );
     attribute mti_svvh_generic_type : integer;
     attribute mti_svvh_generic_type of CLK_PERIOD : constant is 1;

@@ -5,7 +5,7 @@ module tb_distribution_ram();
 	
 	parameter DEPTH = 16*16;
 	parameter ADDRESS_WIDTH = $clog2(DEPTH);
-	parameter DATA_WIDTH = 64*9;
+	parameter DATA_WIDTH = 32*9;
 	parameter CLK_PERIOD = 20; // 50 MHz clock
 	
 	logic [ADDRESS_WIDTH-1:0] address;

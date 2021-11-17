@@ -88,5 +88,11 @@ set_global_assignment -name SYSTEMVERILOG_FILE fin_addr_mux.sv
 set_global_assignment -name SYSTEMVERILOG_FILE mux11.sv
 set_global_assignment -name SYSTEMVERILOG_FILE time_step_counter.sv
 set_global_assignment -name SYSTEMVERILOG_FILE tb_time_step_counter.sv
-set_global_assignment -name SYSTEMVERILOG_FILE tb_display.sv
+set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
+set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name SYSTEMVERILOG_FILE bc_addr_iter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_bc_addr_iter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE mux12.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

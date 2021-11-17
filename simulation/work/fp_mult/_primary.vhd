@@ -2,8 +2,8 @@ library verilog;
 use verilog.vl_types.all;
 entity fp_mult is
     generic(
-        FRACTIONAL_BITS : integer := 56;
-        DATA_WIDTH      : integer := 64;
+        FRACTIONAL_BITS : integer := 24;
+        DATA_WIDTH      : integer := 32;
         INTEGER_BITS    : vl_notype
     );
     port(
