@@ -43,7 +43,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 output logic LD_EN_f_streamed_REG_5, LD_EN_f_streamed_REG_6, LD_EN_f_streamed_REG_7, LD_EN_f_streamed_REG_8, 
 						 output logic FINISH);
 						 
-	enum logic [5:0] {START, FLUFF_1, CALC_MOMENT_1, CALC_MOMENT_2, CALC_MOMENT_3,
+	enum logic [5:0] {START, FLUFF_1, BYPASS_1, BYPASS_2, CALC_MOMENT_1, CALC_MOMENT_2, CALC_MOMENT_3,
 							CALC_MOMENT_4, CALC_MOMENT_5, CALC_MOMENT_6, CALC_EQUIL_1,
 							CALC_EQUIL_2, FLUFF_2, CALC_EQUIL_3, FLUFF_3, FLUFF_4, CALC_COLL_1, CALC_COLL_2, CALC_COLL_3, STREAM_0,
 							STREAM_0B, STREAM_0C, STREAM_1, STREAM_1B, STREAM_1C, STREAM_2, STREAM_2B, STREAM_2C, STREAM_3, STREAM_3B, STREAM_3C, STREAM_4,
@@ -70,7 +70,15 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 			if (count_init == GRID_DIM - 1)
 				Next_state <= FLUFF_1;
 		FLUFF_1	:
-			Next_state <= CALC_MOMENT_1;
+			if (LID | BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
+				Next_state <= BYPASS_1;
+			end else begin
+				Next_state <= CALC_MOMENT_1;
+			end
+		BYPASS_1:
+			Next_state <= BYPASS_2;
+		BYPASS_2:
+			Next_state <= CALC_EQUIL_1;
 		CALC_MOMENT_1	:
 			Next_state <= CALC_MOMENT_2;
 		CALC_MOMENT_2	:
@@ -294,6 +302,28 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 			end
 	FLUFF_1:
 			;
+	BYPASS_1: // if wall detector goes off in FLUFF_1 then skip to bypass
+			begin
+				row_count_en = 1'b1; // need this since we are skipping CALC_MOMENT_1
+				select_p_reg = 1'b1;
+				select_uy_reg = 1'b1;
+				if (LID)
+					select_ux_reg = 2'b01;
+				else
+					select_ux_reg = 2'b10;
+				LD_EN_P = 1'b1;
+				LD_EN_UX = 1'b1;
+				LD_EN_UY = 1'b1;
+			end
+	BYPASS_2: // go from BYPASS_2 to CALC_EQUIL_1
+			begin
+				select_p_mem = 1'b1;
+				WE_p_mem = 1'b1;
+				select_ux_mem = 2'b01;
+				select_uy_mem = 1'b1;
+				WE_ux_mem = 1'b1;
+				WE_uy_mem = 1'b1;
+			end
 	CALC_MOMENT_1:
 			begin
 				row_count_en = 1'b1;
