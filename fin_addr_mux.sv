@@ -9,12 +9,13 @@ module fin_addr_mux #(ADDRESS_WIDTH=8)(
 									  input logic signed [ADDRESS_WIDTH-1:0] Din7,
 									  input logic signed [ADDRESS_WIDTH-1:0] Din8,
 									  input logic signed [ADDRESS_WIDTH-1:0] Din9,
+									  input logic signed [ADDRESS_WIDTH-1:0] Din10,
 									  input [3:0] select,
 									  output logic signed [ADDRESS_WIDTH-1:0] Dout);
 				 
 logic signed [ADDRESS_WIDTH-1:0] Dout_wire;
 assign Dout = Dout_wire;
-always @ (Din0 or Din1 or Din2 or Din3 or Din4 or Din5 or Din6 or Din7 or Din8 or Din9 or select)
+always @ (Din0 or Din1 or Din2 or Din3 or Din4 or Din5 or Din6 or Din7 or Din8 or Din9 or Din10 or select)
 begin
 	case(select)
 	4'b0000		   :Dout_wire = Din0; 
@@ -27,6 +28,7 @@ begin
 	4'b0111			:Dout_wire = Din7;
 	4'b1000			:Dout_wire = Din8;
 	4'b1001			:Dout_wire = Din9;
+	4'b1010			:Dout_wire = Din10;
 	default  		:Dout_wire = Din0; 
 	endcase
 end

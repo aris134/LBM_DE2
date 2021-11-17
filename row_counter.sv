@@ -8,12 +8,12 @@ assign Data_out = count;
 always_ff @ (posedge Clk or negedge Reset)
 begin
 if (~Reset)
-	count <= 0;
+	count <= GRID_DIM-1; // instead of 0
 else if (Enable)
-	if (count_init > 0 & count_init % 16 == 0) begin
-		count <= count + 1'b1;
+	if (count_init > 0 & (count_init % 16 == 0)) begin
+		count <= count - 1'b1; // instead of +
 	end else if (count_init == 0) begin
-		count <= 0;
+		count <= GRID_DIM-1;
 	end
 end
 

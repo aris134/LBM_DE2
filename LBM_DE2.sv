@@ -1,75 +1,107 @@
+/*
+
+Authors: Aristotle Martin, Adam Krekorian
+
+Description: This is a SystemVerilog implementation
+of a Lattice Boltzmann method (LBM) solver for a 2D cavity
+flow targeted at the Altera DE2-115 FPGA board. This system
+employs Q8.24 fixed-point arithmetic.
+
+This is the top-level
+module.
+
+LBM Details:
+
+Grid: D2Q9
+	-- 2 spatial dimensions (x,y)
+	-- 9 discrete velocities (c0,c1,..c8)
+	
+BGK single-relaxation model
+
+*/
+
+
 module LBM_DE2	#(GRID_DIM=16*16, MAX_TIME=100, TIME_COUNT_WIDTH=$clog2(MAX_TIME),
-		DATA_WIDTH=64, ADDRESS_WIDTH=$clog2(GRID_DIM), COUNT_WIDTH=$clog2(GRID_DIM/16),
-		DATA_WIDTH_F=9*DATA_WIDTH, FRACTIONAL_BITS=56, INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS)
+		DATA_WIDTH=32, ADDRESS_WIDTH=$clog2(GRID_DIM), COUNT_WIDTH=$clog2(GRID_DIM/16),
+		DATA_WIDTH_F=9*DATA_WIDTH, FRACTIONAL_BITS=24, INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS)
 		(input logic CLOCK_50,
-		input logic RESET);
-		//output logic signed [DATA_WIDTH-1:0] p_mem_data_out,
-		//output logic signed [DATA_WIDTH-1:0] ux_mem_data_out,
-		//output logic signed [DATA_WIDTH-1:0] uy_mem_data_out,
-		//output logic signed [DATA_WIDTH_F-1:0] fin_mem_data_out);
+		input logic RESET,
+		output logic FINISHED);
 
 /***** PORT DESCRIPTION *****/
 /*
-	// PARAMETERS
-	GRID_DIM	:	Lattice grid size
-	MAX_TIME	:	Number of iterations
-	TIME_COUNT_WIDTH	:	Number of bits to store the current time step
-	DATA_WIDTH	:	Number of bits to store fixed point values
-	ADDRESS_WIDTH	:	Number of bits to store RAM addresses
-	COUNT_WIDTH	:	Number of bits to store the row number from the row counter
-	DATA_WIDTH_F	:	Number of bits to store the distribution function values (each f(i) where i = 0, 1, .., 8 is concatenated into a large word of 9*DATA_WIDTH
-	FRACTIONAL_BITS	: Number of bits to store the fractional parts of fixed point values
-	INTEGER_BITS	:	Number of bits to store the integer parts of fixed point values
+	*** PARAMETERS ***
+	GRID_DIM				:	Lattice grid size
+	MAX_TIME				:	Number of iterations
+	TIME_COUNT_WIDTH	:	Time step counter word length
+	DATA_WIDTH			:	Moment variable word length
+	ADDRESS_WIDTH		:	RAM address word length
+	COUNT_WIDTH			:	y-coordinate word length
+	DATA_WIDTH_F		:	Distribution function word length
+	FRACTIONAL_BITS	:  Fixed point fractional part length
+	INTEGER_BITS		:	Fixed point integer part length
 	
-	PORTS:
-	CLOCK_50	:	50 MHz oscillator on the DE2 board
-	RESET	: Reset signal that is asserted at the initiation of the program
-	p_mem_data_out	:	data word for a stored density (p) value that is being read out of RAM
-	ux_mem_data_out	: data word for a stored velocity x-component (ux) value that is being read out of RAM
-	uy_mem_data_out	:	data word for a stored velocity y-component (uy) value that is being read out of RAM
-	fin_mem_data_out	:	data word for a stored distribution function (fin) value that is being read out of RAM
+	*** PORTS ***
+	// INPUTS
+	CLOCK_50				: 50 MHz oscillator on the DE2 board
+	RESET					: Reset signal that is asserted at the initiation of the program
 	
-	FIXED POINT FORMAT
-	Q8.24
-	
-	(DATA_WIDTH)h'XX_XXXXXX
-	Examples where DATA_WIDTH=64:
-	
-	1.0 = 64'01_000000;
-	-1.0 = 64'hFF_000000;
-	3.5 = 64'h03_800000;
-
+	// OUTPUTS
+	FINISHED 			: Signal asserted by the state machine when algorithm completes
 */
+
 	
 /** SIGNAL DECLARATIONS/ASSIGNMENTS **/
-// test bench specific memory arrays
-logic signed [DATA_WIDTH-1:0] p_mem_data_out;
-logic signed [DATA_WIDTH-1:0] ux_mem_data_out;
-logic signed [DATA_WIDTH-1:0] uy_mem_data_out;
 
+/* simulation signals
+
+	These memory variables are used to write
+	out the values of the moment variables
+	to a text file at the end of the simulation.
+	
+*/
 logic signed [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0];
 logic signed [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0];
 logic signed [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0];
 
 // controller signals
+/*
+	Write enables for
+	the various RAMs
+*/
 logic WE_p_mem;
 logic WE_ux_mem;
 logic WE_uy_mem;
 logic WE_fin_mem;
 logic WE_fout_mem;
 logic WE_feq_mem;
+logic WE_f_streamed;
+
+/*
+	multiplexer selects
+*/
 logic select_p_mem;
-logic select_ux_mem;
+logic [1:0] select_ux_mem;
 logic select_uy_mem;
 logic [1:0] select_ux_reg;
 logic select_uy_reg;
 logic select_p_reg;
-logic [3:0] select_fin_mem;
+logic [1:0] select_fin_mem;
+logic [3:0] select_f_streamed;
 logic [3:0] select_fin_addr;
+logic select_moment_addr;
+
+/*
+	counter enables
+*/
 logic count_init_en;
 logic row_count_en;
 logic time_count_en;
+logic bc_addr_iter_en;
 
+/*
+	register load enables
+*/
 logic LD_EN_P;
 logic LD_EN_PUX;
 logic LD_EN_PUY;
@@ -95,6 +127,25 @@ logic LD_EN_FOUT6;
 logic LD_EN_FOUT7;
 logic LD_EN_FOUT8;
 
+logic LD_EN_f_streamed_REG_0;
+logic LD_EN_f_streamed_REG_1;
+logic LD_EN_f_streamed_REG_2;
+logic LD_EN_f_streamed_REG_3;
+logic LD_EN_f_streamed_REG_4;
+logic LD_EN_f_streamed_REG_5;
+logic LD_EN_f_streamed_REG_6;
+logic LD_EN_f_streamed_REG_7;
+logic LD_EN_f_streamed_REG_8;
+
+logic FINISH;
+
+assign FINISHED = FINISH;
+
+// moment variable memory data buses
+logic signed [DATA_WIDTH-1:0] p_mem_data_out;
+logic signed [DATA_WIDTH-1:0] ux_mem_data_out;
+logic signed [DATA_WIDTH-1:0] uy_mem_data_out;
+
 // divider module signals
 logic div_start;
 logic div_busy0;
@@ -103,8 +154,12 @@ logic div_valid0;
 logic div_valid1;
 logic div_valid;
 
+/* this signal tells the controller when the quotient
+resulting from fixed point division has completed */
 assign div_valid = div_valid0 & div_valid1;
 
+/* divider module signals
+that check for overflow/divide by zero */
 logic dbz0;
 logic dbz1;
 logic ovf0;
@@ -112,16 +167,28 @@ logic ovf1;
 logic signed [DATA_WIDTH-1:0] remainder0;
 logic signed [DATA_WIDTH-1:0] remainder1;
 
-// counter values
+/* counter values
+	count_init : tracks memory traversal
+	time_count : tracks iterations
+	wall_address : tracks boundary nodes
+*/
 logic [ADDRESS_WIDTH-1:0] count_init;
 logic [TIME_COUNT_WIDTH:0] time_count;
+logic [ADDRESS_WIDTH-1:0] wall_address;
 
-// streaming unit output
-// if one of the streaming addresses is -1, then that
-// indicates the address is invalid (meaning we are
-// on a wall or in a corner
+/* streaming unit nets
+	stream_addresses: vector of addresses
+	pointing to locations in the streaming
+	memory where particle populations
+	will be dispersed
+*/
 logic [9*(ADDRESS_WIDTH+1)-1:0] stream_addresses;
 
+/*
+	signal break-outs for the stream_addresses vector
+	stream_addr(i): streaming memory destination
+	for post-collision population f*(i)
+*/
 logic [ADDRESS_WIDTH:0] stream_addr0;
 logic [ADDRESS_WIDTH:0] stream_addr1;
 logic [ADDRESS_WIDTH:0] stream_addr2;
@@ -142,20 +209,28 @@ assign stream_addr2 = stream_addresses[7*(ADDRESS_WIDTH+1)-1:6*(ADDRESS_WIDTH+1)
 assign stream_addr1 = stream_addresses[8*(ADDRESS_WIDTH+1)-1:7*(ADDRESS_WIDTH+1)];
 assign stream_addr0 = stream_addresses[9*(ADDRESS_WIDTH+1)-1:8*(ADDRESS_WIDTH+1)];
 
-// power and ground
+// power and ground (logic one and zero)
 logic signed [DATA_WIDTH-1:0] pwr;
 logic signed [DATA_WIDTH-1:0] gnd;
 
-assign pwr = 64'h01_0000000_0000000;
-assign gnd = 64'h00_0000000_0000000;
+assign pwr = 32'h01_000000;
+assign gnd = 32'h00_000000;
 
-// LBM parameters
+/* LBM parameters
+	cx: discrete velocity x-component
+	cy: discrete velocity y-component
+	weights: velocity weightings 
+*/
 logic signed [DATA_WIDTH_F-1:0] weights;
 logic signed [DATA_WIDTH_F-1:0] cx;
 logic signed [DATA_WIDTH_F-1:0] cy;
 
+/*
+	Tangential flow boundary condition
+	at the lid (top) of the cavity
+*/
 logic signed [DATA_WIDTH-1:0] uLid;
-assign uLid = 64'h00_0CCCCCCCCCCCCD; // 0.05
+assign uLid = 32'h00_0CCCCC; // ~0.05
 
 // discrete velocity x-components
 logic signed [DATA_WIDTH-1:0] cx_0;
@@ -167,6 +242,16 @@ logic signed [DATA_WIDTH-1:0] cx_5;
 logic signed [DATA_WIDTH-1:0] cx_6;
 logic signed [DATA_WIDTH-1:0] cx_7;
 logic signed [DATA_WIDTH-1:0] cx_8;
+
+assign cx_8 = cx[DATA_WIDTH-1:0];
+assign cx_7 = cx[2*DATA_WIDTH-1:DATA_WIDTH];
+assign cx_6 = cx[3*DATA_WIDTH-1:2*DATA_WIDTH];
+assign cx_5 = cx[4*DATA_WIDTH-1:3*DATA_WIDTH];
+assign cx_4 = cx[5*DATA_WIDTH-1:4*DATA_WIDTH];
+assign cx_3 = cx[6*DATA_WIDTH-1:5*DATA_WIDTH];
+assign cx_2 = cx[7*DATA_WIDTH-1:6*DATA_WIDTH];
+assign cx_1 = cx[8*DATA_WIDTH-1:7*DATA_WIDTH];
+assign cx_0 = cx[9*DATA_WIDTH-1:8*DATA_WIDTH];
 
 // intermediate products for moment calculation
 logic signed [DATA_WIDTH-1:0] cx0fin0;
@@ -190,6 +275,16 @@ logic signed [DATA_WIDTH-1:0] cy_6;
 logic signed [DATA_WIDTH-1:0] cy_7;
 logic signed [DATA_WIDTH-1:0] cy_8;
 
+assign cy_8 = cy[DATA_WIDTH-1:0];
+assign cy_7 = cy[2*DATA_WIDTH-1:DATA_WIDTH];
+assign cy_6 = cy[3*DATA_WIDTH-1:2*DATA_WIDTH];
+assign cy_5 = cy[4*DATA_WIDTH-1:3*DATA_WIDTH];
+assign cy_4 = cy[5*DATA_WIDTH-1:4*DATA_WIDTH];
+assign cy_3 = cy[6*DATA_WIDTH-1:5*DATA_WIDTH];
+assign cy_2 = cy[7*DATA_WIDTH-1:6*DATA_WIDTH];
+assign cy_1 = cy[8*DATA_WIDTH-1:7*DATA_WIDTH];
+assign cy_0 = cy[9*DATA_WIDTH-1:8*DATA_WIDTH];
+
 // intermediate products for moment calculation
 logic signed [DATA_WIDTH-1:0] cy0fin0;
 logic signed [DATA_WIDTH-1:0] cy1fin1;
@@ -201,7 +296,12 @@ logic signed [DATA_WIDTH-1:0] cy6fin6;
 logic signed [DATA_WIDTH-1:0] cy7fin7;
 logic signed [DATA_WIDTH-1:0] cy8fin8;
 
-// fin distribution values for each velocity component
+/* fin distribution values
+	fin_out: vector of particle populations
+	spanning the discrete velocity set
+	
+	fin_x: population x (0 <= x <= 8)
+*/
 logic signed [DATA_WIDTH_F-1:0] fin_out;
 logic signed [DATA_WIDTH-1:0] fin_0;
 logic signed [DATA_WIDTH-1:0] fin_1;
@@ -213,7 +313,51 @@ logic signed [DATA_WIDTH-1:0] fin_6;
 logic signed [DATA_WIDTH-1:0] fin_7;
 logic signed [DATA_WIDTH-1:0] fin_8;
 
-// incoming signals to multiplexers in front of moment registers
+/*
+	Streaming unit nets
+	f_streamed_in: streaming unit input bus
+	This will contain the streamed particle
+	populations
+*/
+logic signed [DATA_WIDTH_F-1:0] f_streamed_in;
+logic signed [DATA_WIDTH_F-1:0] f_streamed_out;
+logic signed [DATA_WIDTH-1:0] f_streamed_0;
+logic signed [DATA_WIDTH-1:0] f_streamed_1;
+logic signed [DATA_WIDTH-1:0] f_streamed_2;
+logic signed [DATA_WIDTH-1:0] f_streamed_3;
+logic signed [DATA_WIDTH-1:0] f_streamed_4;
+logic signed [DATA_WIDTH-1:0] f_streamed_5;
+logic signed [DATA_WIDTH-1:0] f_streamed_6;
+logic signed [DATA_WIDTH-1:0] f_streamed_7;
+logic signed [DATA_WIDTH-1:0] f_streamed_8;
+
+assign f_streamed_8 = f_streamed_out[DATA_WIDTH-1:0];
+assign f_streamed_7 = f_streamed_out[2*DATA_WIDTH-1:DATA_WIDTH];
+assign f_streamed_6 = f_streamed_out[3*DATA_WIDTH-1:2*DATA_WIDTH];
+assign f_streamed_5 = f_streamed_out[4*DATA_WIDTH-1:3*DATA_WIDTH];
+assign f_streamed_4 = f_streamed_out[5*DATA_WIDTH-1:4*DATA_WIDTH];
+assign f_streamed_3 = f_streamed_out[6*DATA_WIDTH-1:5*DATA_WIDTH];
+assign f_streamed_2 = f_streamed_out[7*DATA_WIDTH-1:6*DATA_WIDTH];
+assign f_streamed_1 = f_streamed_out[8*DATA_WIDTH-1:7*DATA_WIDTH];
+assign f_streamed_0 = f_streamed_out[9*DATA_WIDTH-1:8*DATA_WIDTH];
+
+/*
+	Registers for latching the streaming unit
+	data bus values. These are modified by the 
+	streaming operation and fed back into the
+	streaming unit.
+*/
+logic signed [DATA_WIDTH-1:0] f_streamed0_reg_out;
+logic signed [DATA_WIDTH-1:0] f_streamed1_reg_out;
+logic signed [DATA_WIDTH-1:0] f_streamed2_reg_out;
+logic signed [DATA_WIDTH-1:0] f_streamed3_reg_out;
+logic signed [DATA_WIDTH-1:0] f_streamed4_reg_out;
+logic signed [DATA_WIDTH-1:0] f_streamed5_reg_out;
+logic signed [DATA_WIDTH-1:0] f_streamed6_reg_out;
+logic signed [DATA_WIDTH-1:0] f_streamed7_reg_out;
+logic signed [DATA_WIDTH-1:0] f_streamed8_reg_out;
+
+// moment variable register input multiplexers
 logic signed [DATA_WIDTH-1:0] pmux_in;
 logic signed [DATA_WIDTH-1:0] uxmux_in;
 logic signed [DATA_WIDTH-1:0] uymux_in;
@@ -230,19 +374,21 @@ logic signed [DATA_WIDTH-1:0] ux_out;
 logic signed [DATA_WIDTH-1:0] uy_in;
 logic signed [DATA_WIDTH-1:0] uy_out;
 
-// nets to store intermediate values
-// that are repeatedly used for equilibrium calculations
+// moment variable RAM input bus
+logic [ADDRESS_WIDTH-1:0] moment_ram_in;
+
+// constant nets for equilibrium step
 logic signed [DATA_WIDTH-1:0] p_product0; // stores p * 2/9
 logic signed [DATA_WIDTH-1:0] p_product1; // stores p * 1/18
 logic signed [DATA_WIDTH-1:0] p_product2; // stores p * 1/36
 
-logic signed [DATA_WIDTH-1:0] const0; // see above
+logic signed [DATA_WIDTH-1:0] const0;
 logic signed [DATA_WIDTH-1:0] const1;
 logic signed [DATA_WIDTH-1:0] const2;
 
-assign const0 = 64'h00_38E38E38E38E38; // 2/9
-assign const1 = 64'h00_0E38E38E38E38E; // 1/18
-assign const2 = 64'h00_071C71C71C71C7; // 1/36
+assign const0 = 32'h00_38E38E; // 2/9
+assign const1 = 32'h00_0E38E3; // 1/18
+assign const2 = 32'h00_071C71; // 1/36
 
 // moment RAM input buses
 logic signed [DATA_WIDTH-1:0] p_mem_data_in;
@@ -250,7 +396,6 @@ logic signed [DATA_WIDTH-1:0] ux_mem_data_in;
 logic signed [DATA_WIDTH-1:0] uy_mem_data_in;
 
 // distribution function (fin) read values
-assign fin_mem_data_out = fin_out;
 assign fin_8 = fin_out[DATA_WIDTH-1:0];
 assign fin_7 = fin_out[2*DATA_WIDTH-1:DATA_WIDTH];
 assign fin_6 = fin_out[3*DATA_WIDTH-1:2*DATA_WIDTH];
@@ -273,36 +418,12 @@ logic signed [DATA_WIDTH_F-1:0] fout_mem_out;
 logic signed [DATA_WIDTH_F-1:0] fin_mem_in;
 logic [ADDRESS_WIDTH-1:0] fin_addr_in;
 
-// breaking up the cx bus into individual buses for each
-// cx component
-assign cx_8 = cx[DATA_WIDTH-1:0];
-assign cx_7 = cx[2*DATA_WIDTH-1:DATA_WIDTH];
-assign cx_6 = cx[3*DATA_WIDTH-1:2*DATA_WIDTH];
-assign cx_5 = cx[4*DATA_WIDTH-1:3*DATA_WIDTH];
-assign cx_4 = cx[5*DATA_WIDTH-1:4*DATA_WIDTH];
-assign cx_3 = cx[6*DATA_WIDTH-1:5*DATA_WIDTH];
-assign cx_2 = cx[7*DATA_WIDTH-1:6*DATA_WIDTH];
-assign cx_1 = cx[8*DATA_WIDTH-1:7*DATA_WIDTH];
-assign cx_0 = cx[9*DATA_WIDTH-1:8*DATA_WIDTH];
-
-// breaking up the cy bus into individual buses for each
-// cy component
-assign cy_8 = cy[DATA_WIDTH-1:0];
-assign cy_7 = cy[2*DATA_WIDTH-1:DATA_WIDTH];
-assign cy_6 = cy[3*DATA_WIDTH-1:2*DATA_WIDTH];
-assign cy_5 = cy[4*DATA_WIDTH-1:3*DATA_WIDTH];
-assign cy_4 = cy[5*DATA_WIDTH-1:4*DATA_WIDTH];
-assign cy_3 = cy[6*DATA_WIDTH-1:5*DATA_WIDTH];
-assign cy_2 = cy[7*DATA_WIDTH-1:6*DATA_WIDTH];
-assign cy_1 = cy[8*DATA_WIDTH-1:7*DATA_WIDTH];
-assign cy_0 = cy[9*DATA_WIDTH-1:8*DATA_WIDTH];
-
-// integer parts of discrete velocities to go into the streaming unit
+// discrete velocity integer portion vectors for streaming unit
 logic signed [9*(ADDRESS_WIDTH+1)-1:0] cx_int_concat;
 logic signed [9*(ADDRESS_WIDTH+1)-1:0] cy_int_concat;
 
-assign cx_int_concat = {9'b0_0000_0000, 9'b0_0000_0001, 9'b0_0000_0000, 9'b1_1111_1111, 9'b0_0000_0000, 9'b0_0000_0001, 9'b1_1111_1111, 9'b1_1111_1111, 9'b0_0000_0001};								
-assign cy_int_concat = {9'b0_0000_0000, 9'b0_0000_0000, 9'b1_1111_1111, 9'b0_0000_0000, 9'b0_0000_0001, 9'b1_1111_1111, 9'b1_1111_1111, 9'b0_0000_0001, 9'b0_0000_0001};
+assign cx_int_concat = {9'b0_0000_0000, 9'b0_0000_0001, 9'b0_0000_0000, 9'b1_1111_1111, 9'b0_0000_0000, 9'b0_0000_0001, 9'b1_1111_1111, 9'b1_1111_1111, 9'b0_0000_0001};
+assign cy_int_concat = {9'b0_0000_0000, 9'b0_0000_0000, 9'b0_0000_0001, 9'b0_0000_0000, 9'b1_1111_1111, 9'b0_0000_0001, 9'b0_0000_0001, 9'b1_1111_1111, 9'b1_1111_1111};
 
 // intermediate values for equlibrium calculation
 logic signed [DATA_WIDTH-1:0] ux2;
@@ -326,7 +447,7 @@ logic signed [DATA_WIDTH-1:0] ux_minus_uy_neg3;
 logic signed [DATA_WIDTH-1:0] ux_plus_uy_3;
 logic signed [DATA_WIDTH-1:0] ux_plus_uy_neg3;
 
-// bunch of nets for adders
+// adder nets for intermediate values
 logic signed [DATA_WIDTH-1:0] add0_out;
 logic signed [DATA_WIDTH-1:0] add1_out;
 logic signed [DATA_WIDTH-1:0] add2_out;
@@ -353,34 +474,34 @@ logic signed [DATA_WIDTH-1:0] add22_out;
 logic signed [DATA_WIDTH-1:0] add23_out;
 logic signed [DATA_WIDTH-1:0] add24_out;
 
-// values used frequently in intermediate
-// calculations for equilibrium distribution
+// fixed point constants used frequently in
+// intermediate calculations for equilibrium distribution
 logic signed [DATA_WIDTH-1:0] one;
-assign one = 64'h01_00000000000000;
+assign one = 32'h01_000000;
 
 logic signed [DATA_WIDTH-1:0] six;
-assign six = 64'h06_00000000000000;
+assign six = 32'h06_000000;
 
 logic signed [DATA_WIDTH-1:0] neg_six;
-assign neg_six = 64'hFA_00000000000000; //////
+assign neg_six = 32'hFA_000000;
 
 logic signed [DATA_WIDTH-1:0] three;
-assign three = 64'h03_00000000000000;
+assign three = 32'h03_000000;
 
 logic signed [DATA_WIDTH-1:0] neg_three;
-assign neg_three = 64'hFD_00000000000000; ///////
+assign neg_three = 32'hFD_000000;
 
 logic signed [DATA_WIDTH-1:0] two;
-assign two = 64'h02_00000000000000;
+assign two = 32'h02_000000;
 
 logic signed [DATA_WIDTH-1:0] neg_uy;
 assign neg_uy = ~uy_out + 1;
 
 logic signed [DATA_WIDTH-1:0] nine;
-assign nine = 64'h09_00000000000000;
+assign nine = 32'h09_000000;
 
 logic signed [DATA_WIDTH-1:0] neg_nine;
-assign neg_nine = 64'hF7_00000000000000;
+assign neg_nine = 32'hF7_000000;
 
 // equilibrium distribution components
 // input buses
@@ -405,7 +526,7 @@ logic signed [DATA_WIDTH-1:0] feq6_out;
 logic signed [DATA_WIDTH-1:0] feq7_out;
 logic signed [DATA_WIDTH-1:0] feq8_out;
 
-// values from collision step
+// intermediate calculation nets for collision step
 logic signed [DATA_WIDTH-1:0] coll_prod_feq0;
 logic signed [DATA_WIDTH-1:0] coll_prod_feq1;
 logic signed [DATA_WIDTH-1:0] coll_prod_feq2;
@@ -426,7 +547,7 @@ logic signed [DATA_WIDTH-1:0] coll_prod_fin6;
 logic signed [DATA_WIDTH-1:0] coll_prod_fin7;
 logic signed [DATA_WIDTH-1:0] coll_prod_fin8;
 
-// post collision distribution buses
+// post collision population register nets
 logic signed [DATA_WIDTH-1:0] fout0_in;
 logic signed [DATA_WIDTH-1:0] fout1_in;
 logic signed [DATA_WIDTH-1:0] fout2_in;
@@ -447,12 +568,14 @@ logic signed [DATA_WIDTH-1:0] fout6_out;
 logic signed [DATA_WIDTH-1:0] fout7_out;
 logic signed [DATA_WIDTH-1:0] fout8_out;
 
-// input bus to post-collision distribution (fout) ram. Format: {fout_i, fout_i+1, ...}
+/* input bus to post-collision distribution (fout) ram.
+	Vector format: {fout_i, fout_i+1, ...}
+*/
 assign fout_mem_in = {fout0_out,fout1_out,fout2_out,fout3_out,fout4_out,fout5_out,fout6_out,fout7_out,fout8_out};
 
-// Grid values (x -> columns, y -> rows, with x increasing to the "right" and y increasing "down" the grid)
-logic [COUNT_WIDTH-1:0] y_pos; // rows
-logic [ADDRESS_WIDTH-1:0] x_pos; // columns
+// Grid values (x -> columns, y -> rows, with x increasing to the "right" and y increasing "up" the grid)
+logic [COUNT_WIDTH-1:0] y_pos;
+logic [ADDRESS_WIDTH-1:0] x_pos;
 // zero-extended x and y values
 logic signed [ADDRESS_WIDTH:0] x_pos_zext;
 logic signed [ADDRESS_WIDTH:0] y_pos_zext;
@@ -460,7 +583,7 @@ logic signed [ADDRESS_WIDTH:0] y_pos_zext;
 assign x_pos_zext = {1'b0,x_pos};
 assign y_pos_zext = {{ADDRESS_WIDTH+1-COUNT_WIDTH{1'b0}}, y_pos};
 
-// walls (1 = on given wall, 0 means not on the particular wall)
+// wall detection signals
 logic LID;
 logic BOTTOM_WALL;
 logic LEFT_WALL;
@@ -470,8 +593,8 @@ logic RIGHT_WALL;
 logic signed [DATA_WIDTH-1:0] omega; // delta(t)/tau
 logic signed [DATA_WIDTH-1:0] omega_prime; // 1-delta(t)/tau
 
-assign omega = 64'h01_E88CB3C92909C6; // w = 250/131 (relaxation parameter) VERY IMPORTANT: THIS IS A FUNCTION OF THE GRID SIZE!!!
-assign omega_prime = 64'hFF_17734C36D6F63B; // 1 - w
+assign omega = 32'h01_E88CB3;//C92909C6; // w = 250/131 (relaxation parameter) VERY IMPORTANT: THIS IS A FUNCTION OF THE GRID SIZE!!!
+assign omega_prime = 32'hFF_17734C;//36D6F63B; // 1 - w
 
 // calculating the row from the grid counter
 // the counter name has the "init" part in it
@@ -498,7 +621,6 @@ counter_init #(.GRID_DIM(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH)) init_counter 
 
 																									 
 // row counter
-
 row_counter #(.GRID_DIM(GRID_DIM), .INIT_COUNT_WIDTH(ADDRESS_WIDTH), .COUNT_WIDTH(COUNT_WIDTH)) row_cnter (.Clk(CLOCK_50),
 																										  .Reset(RESET),
 																										  .Enable(row_count_en), 
@@ -506,14 +628,22 @@ row_counter #(.GRID_DIM(GRID_DIM), .INIT_COUNT_WIDTH(ADDRESS_WIDTH), .COUNT_WIDT
 																										  .Data_out(y_pos));																									  
 
 // time step counter
-
 time_step_counter #(.MAX_TIME(MAX_TIME), .TIME_COUNT_WIDTH(TIME_COUNT_WIDTH)) timer (.Clk(CLOCK_50), .Reset(RESET), .Enable(time_count_en), .Data_out(time_count));
-																									  
-// controller
+
+
+// boundary conditon counter
+bc_addr_iter #(.GRID_DIM(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH)) bc_addr
+				  (.Clk(CLOCK_50),
+				   .Reset(RESET),
+					.Enable(bc_addr_iter_en),
+					.address(wall_address));
+
+// controller instantiation
 controller fsm (.Clk(CLOCK_50),
 					  .Reset(RESET),
 					  .count_init(count_init),
 					  .time_count(time_count),
+					  .wall_address(wall_address),
 					  .div_valid(div_valid),
 					  .LID(LID),
 					  .BOTTOM_WALL(BOTTOM_WALL),
@@ -537,6 +667,7 @@ controller fsm (.Clk(CLOCK_50),
 					  .WE_fin_mem(WE_fin_mem),
 					  .WE_fout_mem(WE_fout_mem),
 					  .WE_feq_mem(WE_feq_mem),
+					  .WE_f_streamed(WE_f_streamed),
 					  .select_p_mem(select_p_mem),
 					  .select_ux_mem(select_ux_mem),
 					  .select_uy_mem(select_uy_mem),
@@ -545,9 +676,12 @@ controller fsm (.Clk(CLOCK_50),
 					  .select_uy_reg(select_uy_reg),
 					  .select_p_reg(select_p_reg),
 					  .select_fin_mem(select_fin_mem),
+					  .select_f_streamed(select_f_streamed),
+					  .select_moment_addr(select_moment_addr),
 					  .count_init_en(count_init_en),
 					  .row_count_en(row_count_en),
 					  .time_count_en(time_count_en),
+					  .bc_addr_iter_en(bc_addr_iter_en),
 					  .div_start(div_start),
 					  .LD_EN_P(LD_EN_P),
 					  .LD_EN_PUX(LD_EN_PUX),
@@ -571,7 +705,17 @@ controller fsm (.Clk(CLOCK_50),
 					  .LD_EN_FOUT5(LD_EN_FOUT5),
 					  .LD_EN_FOUT6(LD_EN_FOUT6),
 					  .LD_EN_FOUT7(LD_EN_FOUT7),
-					  .LD_EN_FOUT8(LD_EN_FOUT8));
+					  .LD_EN_FOUT8(LD_EN_FOUT8),
+					  .LD_EN_f_streamed_REG_0(LD_EN_f_streamed_REG_0),
+					  .LD_EN_f_streamed_REG_1(LD_EN_f_streamed_REG_1),
+					  .LD_EN_f_streamed_REG_2(LD_EN_f_streamed_REG_2),
+					  .LD_EN_f_streamed_REG_3(LD_EN_f_streamed_REG_3),
+					  .LD_EN_f_streamed_REG_4(LD_EN_f_streamed_REG_4),
+					  .LD_EN_f_streamed_REG_5(LD_EN_f_streamed_REG_5),
+					  .LD_EN_f_streamed_REG_6(LD_EN_f_streamed_REG_6),
+					  .LD_EN_f_streamed_REG_7(LD_EN_f_streamed_REG_7),
+					  .LD_EN_f_streamed_REG_8(LD_EN_f_streamed_REG_8),
+					  .FINISH(FINISH));
 
 
 // wall detector
@@ -588,21 +732,21 @@ weights_reg #(.WIDTH(DATA_WIDTH_F)) w_reg (.Reset(RESET),
 
 
 // memories	
-moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) p_ram (.address(count_init),
+moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) p_ram (.address(moment_ram_in),
 																															 .Clk(CLOCK_50),
 																															 .WE(WE_p_mem),
 																															 .data_in(p_mem_data_in),
 																															 .data_out(p_mem_data_out),
 																															 .mem_array(p_mem_array));
 																															 
-moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) ux_ram (.address(count_init),
+moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) ux_ram (.address(moment_ram_in),
 																															  .Clk(CLOCK_50),
 																															  .WE(WE_ux_mem),
 																															  .data_in(ux_mem_data_in),
 																															  .data_out(ux_mem_data_out),
 																															  .mem_array(ux_mem_array));
 																															  
-moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) uy_ram (.address(count_init),
+moment_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) uy_ram (.address(moment_ram_in),
 																															  .Clk(CLOCK_50),
 																															  .WE(WE_uy_mem),
 																															  .data_in(uy_mem_data_in),
@@ -615,7 +759,7 @@ distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(
 																																		  .data_in(fin_mem_in),
 																																		  .data_out(fin_out));
 
-distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) feq_ram (.address(count_init),
+distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) feq_ram (.address(moment_ram_in),
                                                                                                         .Clk(CLOCK_50),
 																																		  .WE(WE_feq_mem),
 																																		  .data_in(feq_in),
@@ -626,8 +770,20 @@ distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(
 																																		  .WE(WE_fout_mem),
 																																		  .data_in(fout_mem_in),
 																																		  .data_out(fout_mem_out));
-											  
 																																		  
+											  
+distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) f_streamed (.address(fin_addr_in),
+                                                                                                        .Clk(CLOCK_50),
+																																		  .WE(WE_f_streamed),
+																																		  .data_in(f_streamed_in),
+																																		  .data_out(f_streamed_out));
+																																		  
+										  
+
+mux2 #(.DATA_WIDTH(ADDRESS_WIDTH)) moment_addr_mux (.Din0(count_init),
+																 .Din1(wall_address),
+																 .select(select_moment_addr),
+																 .Dout(moment_ram_in));
 // moment reg multiplexers
 
 mux2 #(.DATA_WIDTH(DATA_WIDTH)) p_in_mux (.Din0(pmux_in),
@@ -651,32 +807,42 @@ mux2 #(.DATA_WIDTH(DATA_WIDTH)) p_mem_mux (.Din0(pwr),
 														 .Din1(p_out),
 														 .select(select_p_mem),
 														 .Dout(p_mem_data_in));
-														 
-mux2 #(.DATA_WIDTH(DATA_WIDTH)) ux_mem_mux (.Din0(gnd),
+													 
+mux3 #(.DATA_WIDTH(DATA_WIDTH)) ux_mem_mux (.Din0(gnd), ////////////
 														 .Din1(ux_out),
+														 .Din2(uLid),
 														 .select(select_ux_mem),
 														 .Dout(ux_mem_data_in));
 
 mux2 #(.DATA_WIDTH(DATA_WIDTH)) uy_mem_mux (.Din0(gnd),
 														 .Din1(uy_out),
 														 .select(select_uy_mem),
-														 .Dout(uy_mem_data_in));	
+														 .Dout(uy_mem_data_in));
+														 
 	
 // fin_mem multiplexer
 // **********************************												
-mux11 #(.DATA_WIDTH(DATA_WIDTH_F)) fin_mem_mux (.Din0(weights),
-															   .Din1(feq_in),
-																.Din2({fout_mem_out[9*DATA_WIDTH-1:8*DATA_WIDTH], fin_1, fin_2, fin_3, fin_4, fin_5, fin_6, fin_7, fin_8}), // actually fin with fin0 replaced with fout0
-																.Din3({fin_0, fout_mem_out[8*DATA_WIDTH-1:7*DATA_WIDTH], fin_2, fin_3, fin_4, fin_5, fin_6, fin_7, fin_8}), // fin with f1 replaced with fout1
-																.Din4({fin_0, fin_1, fout_mem_out[7*DATA_WIDTH-1:6*DATA_WIDTH], fin_3, fin_4, fin_5, fin_6, fin_7, fin_8}), // etc.
-																.Din5({fin_0, fin_1, fin_2, fout_mem_out[6*DATA_WIDTH-1:5*DATA_WIDTH], fin_4, fin_5, fin_6, fin_7, fin_8}),
-																.Din6({fin_0, fin_1, fin_2, fin_3, fout_mem_out[5*DATA_WIDTH-1:4*DATA_WIDTH], fin_5, fin_6, fin_7, fin_8}),
-																.Din7({fin_0, fin_1, fin_2, fin_3, fin_4, fout_mem_out[4*DATA_WIDTH-1:3*DATA_WIDTH], fin_6, fin_7, fin_8}),
-																.Din8({fin_0, fin_1, fin_2, fin_3, fin_4, fin_5, fout_mem_out[3*DATA_WIDTH-1:2*DATA_WIDTH], fin_7, fin_8}),
-																.Din9({fin_0, fin_1, fin_2, fin_3, fin_4, fin_5, fin_6, fout_mem_out[2*DATA_WIDTH-1:DATA_WIDTH], fin_8}),
-																.Din10({fin_0, fin_1, fin_2, fin_3, fin_4, fin_5, fin_6, fin_7, fout_mem_out[DATA_WIDTH-1:0]}),
+mux3 #(.DATA_WIDTH(DATA_WIDTH_F)) fin_mem_mux (.Din0(weights),
+															   .Din1(feq_out),
+																.Din2(f_streamed_out),
 																.select(select_fin_mem),
-																.Dout(fin_mem_in));		
+																.Dout(fin_mem_in));	
+															
+// f_streamed multiplexer
+mux12 #(.DATA_WIDTH(DATA_WIDTH_F)) f_streamed_mux (.Din0(weights),
+															   .Din1(weights),
+																.Din2({fout_mem_out[9*DATA_WIDTH-1:8*DATA_WIDTH], f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}), // actually f_streamed with f_streamed0 replaced with fout0
+																.Din3({f_streamed0_reg_out, fout_mem_out[8*DATA_WIDTH-1:7*DATA_WIDTH], f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}), // f_streamed with f1 replaced with fout1
+																.Din4({f_streamed0_reg_out, f_streamed1_reg_out, fout_mem_out[7*DATA_WIDTH-1:6*DATA_WIDTH], f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}), // etc.
+																.Din5({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, fout_mem_out[6*DATA_WIDTH-1:5*DATA_WIDTH], f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}),
+																.Din6({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, fout_mem_out[5*DATA_WIDTH-1:4*DATA_WIDTH], f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}),
+																.Din7({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, fout_mem_out[4*DATA_WIDTH-1:3*DATA_WIDTH], f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}),
+																.Din8({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, fout_mem_out[3*DATA_WIDTH-1:2*DATA_WIDTH], f_streamed7_reg_out, f_streamed8_reg_out}),
+																.Din9({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, fout_mem_out[2*DATA_WIDTH-1:DATA_WIDTH], f_streamed8_reg_out}),
+																.Din10({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, fout_mem_out[DATA_WIDTH-1:0]}),
+																.Din11(feq_out),
+																.select(select_f_streamed),
+																.Dout(f_streamed_in));	
 
 // moment calculation hardware
 adder9 #(.DATA_WIDTH(DATA_WIDTH)) fin_sum (.Din0(fin_0),
@@ -879,7 +1045,7 @@ adder2 #(.DATA_WIDTH(DATA_WIDTH)) sum_ux_uy (.Din0(ux_out),
 											  
 adder2 #(.DATA_WIDTH(DATA_WIDTH)) diff_ux_uy (.Din0(ux_out),
 											  .Din1(neg_uy),
-											  .Dout(ux_minus_uy));	
+											  .Dout(ux_minus_uy));	///////////////////////////////////////
 
 fp_mult #(.FRACTIONAL_BITS(FRACTIONAL_BITS), .DATA_WIDTH(DATA_WIDTH), .INTEGER_BITS(INTEGER_BITS)) prod_3_ux_minus_uy (.Din0(ux_minus_uy),
 																																				 .Din1(three),
@@ -1239,7 +1405,7 @@ adder2 #(.DATA_WIDTH(DATA_WIDTH)) add31 (.Din0(coll_prod_feq6),
                                          .Din1(coll_prod_fin6),
 													  .Dout(fout6_in));
 
-adder2 #(.DATA_WIDTH(DATA_WIDTH)) add64 (.Din0(coll_prod_feq7),
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add32 (.Din0(coll_prod_feq7), ////////////////// changed add64 to add32
                                          .Din1(coll_prod_fin7),
 													  .Dout(fout7_in));
 
@@ -1305,7 +1471,61 @@ reg32 #(.WIDTH(DATA_WIDTH)) fout8_reg (.Clk(CLOCK_50),
 
 // Streaming
 
-streaming_unit #(.GRID_DIM(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH+1)) streamer (.x(x_pos_zext),
+reg32 #(.WIDTH(DATA_WIDTH)) f_streamed0_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_f_streamed_REG_0),
+													 .Data_In(f_streamed_0),
+													 .Data_Out(f_streamed0_reg_out));	
+
+reg32 #(.WIDTH(DATA_WIDTH)) f_streamed1_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_f_streamed_REG_1),
+													 .Data_In(f_streamed_1),
+													 .Data_Out(f_streamed1_reg_out));
+
+reg32 #(.WIDTH(DATA_WIDTH)) f_streamed2_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_f_streamed_REG_2),
+													 .Data_In(f_streamed_2),
+													 .Data_Out(f_streamed2_reg_out));
+
+reg32 #(.WIDTH(DATA_WIDTH)) f_streamed3_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_f_streamed_REG_3),
+													 .Data_In(f_streamed_3),
+													 .Data_Out(f_streamed3_reg_out));	
+	
+reg32 #(.WIDTH(DATA_WIDTH)) f_streamed4_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_f_streamed_REG_4),
+													 .Data_In(f_streamed_4),
+													 .Data_Out(f_streamed4_reg_out));
+													
+reg32 #(.WIDTH(DATA_WIDTH)) f_streamed5_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_f_streamed_REG_5),
+													 .Data_In(f_streamed_5),
+													 .Data_Out(f_streamed5_reg_out));
+
+reg32 #(.WIDTH(DATA_WIDTH)) f_streamed6_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_f_streamed_REG_6),
+													 .Data_In(f_streamed_6),
+													 .Data_Out(f_streamed6_reg_out));
+													
+reg32 #(.WIDTH(DATA_WIDTH)) f_streamed7_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_f_streamed_REG_7),
+													 .Data_In(f_streamed_7),
+													 .Data_Out(f_streamed7_reg_out));
+	
+reg32 #(.WIDTH(DATA_WIDTH)) f_streamed8_reg (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_f_streamed_REG_8),
+													 .Data_In(f_streamed_8),
+													 .Data_Out(f_streamed8_reg_out));	
+
+streaming_unit #(.GRID_DIM(GRID_DIM), .SIDE_LENGTH(GRID_DIM/16), .ADDRESS_WIDTH(ADDRESS_WIDTH+1)) streamer (.x(x_pos_zext),
 																								.y(y_pos_zext),
 																								.cx(cx_int_concat),
 																								.cy(cy_int_concat),
@@ -1322,6 +1542,7 @@ fin_addr_mux #(.ADDRESS_WIDTH(ADDRESS_WIDTH)) mux_fin_addr
 				  .Din7(stream_addr6[ADDRESS_WIDTH-1:0]),
 				  .Din8(stream_addr7[ADDRESS_WIDTH-1:0]),
 				  .Din9(stream_addr8[ADDRESS_WIDTH-1:0]),
+				  .Din10(wall_address),
 				  .select(select_fin_addr),
 				  .Dout(fin_addr_in));
 endmodule

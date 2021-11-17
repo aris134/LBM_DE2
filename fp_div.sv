@@ -1,6 +1,17 @@
+/*
+	This module represents a
+	fixed point divider. This is derived
+	from the Project F Library by Will Green
+	
+	https://github.com/projf/projf-explore/blob/master/lib/maths/div_int.sv
+	
+	This module was modified to accomodate signed division.
+	
+*/
+
 module fp_div #(
-    parameter WIDTH=64,  // width of numbers in bits
-    parameter FBITS=56   // fractional bits (for fixed point)
+    parameter WIDTH=32,  // width of numbers in bits
+    parameter FBITS=24   // fractional bits (for fixed point)
     ) (
     input wire logic clk,
     input wire logic start,          // start signal

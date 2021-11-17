@@ -1,4 +1,4 @@
-module reg32 #(WIDTH=64) (input logic Clk, Reset, LD_EN,
+module reg32 #(WIDTH=32) (input logic Clk, Reset, LD_EN,
 								  input logic signed [WIDTH-1:0] Data_In,
 								  output logic signed [WIDTH-1:0] Data_Out);	
 

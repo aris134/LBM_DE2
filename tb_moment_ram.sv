@@ -5,7 +5,7 @@ module tb_moment_ram();
 	
 	parameter DEPTH = 16*16;
 	parameter ADDRESS_WIDTH = $clog2(DEPTH);
-	parameter DATA_WIDTH = 64;
+	parameter DATA_WIDTH = 32;
 	parameter CLK_PERIOD = 20; // 50 MHz clock
 	
 	logic [ADDRESS_WIDTH-1:0] address;
@@ -23,7 +23,7 @@ module tb_moment_ram();
 		Clk = 0;
 		WE = 1;
 		address = 8'h00;
-		data_in = 64'h01_00000000000000;
+		data_in = 32'h01_000000;//00000000;
 		#10 $finish;
 	end
 

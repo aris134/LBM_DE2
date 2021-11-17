@@ -1,4 +1,4 @@
-module mux11 #(DATA_WIDTH=9*16*16)(
+module mux11 #(DATA_WIDTH=32*9)( // was 9*16*16 for some reason?
 									  input logic signed [DATA_WIDTH-1:0] Din0,
 									  input logic signed [DATA_WIDTH-1:0] Din1,
 									  input logic signed [DATA_WIDTH-1:0] Din2,

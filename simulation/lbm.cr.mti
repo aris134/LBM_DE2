@@ -1,0 +1,57 @@
+C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/tb_LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/tb_LBM_DE2.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_LBM_DE2
+
+Top level modules:
+	tb_LBM_DE2
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/tb_time_step_counter.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/tb_time_step_counter.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_time_step_counter
+
+Top level modules:
+	tb_time_step_counter
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/controller.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/controller.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module controller
+
+Top level modules:
+	controller
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/time_step_counter.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/time_step_counter.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module time_step_counter
+
+Top level modules:
+	time_step_counter
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/tb_controller.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/tb_controller.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_controller
+
+Top level modules:
+	tb_controller
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/LBM_DE2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/LBM_DE2.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module LBM_DE2
+
+Top level modules:
+	LBM_DE2
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/tb_mux2.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/tb_mux2.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_mux2
+
+Top level modules:
+	tb_mux2
+
+} {} {}} C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/streaming_unit.sv {1 {vlog -work work -sv C:/Users/arism/Desktop/LBM_DE2_Backup1/LBM_DE2/streaming_unit.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module streaming_unit
+
+Top level modules:
+	streaming_unit
+
+} {} {}}

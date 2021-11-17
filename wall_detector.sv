@@ -7,7 +7,7 @@ module wall_detector #(GRID_DIM = 16*16, INIT_COUNT_WIDTH = $clog2(GRID_DIM), CO
 
 always_comb
     begin
-		 if (y >= 1 & y <= 14 & x == 15) begin
+		 if (x >= 1 & x <= 14 & y == 15) begin
 			  LID = 1'b1;
 			  BOTTOM_WALL = 1'b0;
 			  LEFT_WALL = 1'b0;
@@ -22,7 +22,7 @@ always_comb
 			  LID = 1'b0;
 			  BOTTOM_WALL = 1'b0;
 			  RIGHT_WALL = 1'b0;
-		 end else if (y == 15) begin
+		 end else if (x == 15) begin
 			  RIGHT_WALL = 1'b1;
 			  LID = 1'b0;
 			  LEFT_WALL = 1'b0;
