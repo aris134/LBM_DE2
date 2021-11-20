@@ -23,7 +23,8 @@ BGK single-relaxation model
 
 module LBM_DE2	#(GRID_DIM=16*16, MAX_TIME=100, TIME_COUNT_WIDTH=$clog2(MAX_TIME),
 		DATA_WIDTH=32, ADDRESS_WIDTH=$clog2(GRID_DIM), COUNT_WIDTH=$clog2(GRID_DIM/16),
-		DATA_WIDTH_F=9*DATA_WIDTH, FRACTIONAL_BITS=24, INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS)
+		DATA_WIDTH_F=9*DATA_WIDTH, FRACTIONAL_BITS=24, INTEGER_BITS=DATA_WIDTH-FRACTIONAL_BITS,
+		OFFSET_UX=32'hFF_FC28F6, OFFSET_UY=32'hFF_FDF3B7, SHIFTAMT_UX=6, SHIFTAMT_UY=7)
 		(input logic CLOCK_50,
 		input logic RESET,
 		output logic FINISHED);
@@ -73,8 +74,6 @@ logic WE_p_mem;
 logic WE_ux_mem;
 logic WE_uy_mem;
 logic WE_fin_mem;
-logic WE_fout_mem;
-logic WE_feq_mem;
 logic WE_f_streamed;
 
 /*
@@ -84,7 +83,7 @@ logic select_p_mem;
 logic [1:0] select_ux_mem;
 logic select_uy_mem;
 logic [1:0] select_ux_reg;
-logic select_uy_reg;
+logic [1:0] select_uy_reg;
 logic select_p_reg;
 logic [1:0] select_fin_mem;
 logic [3:0] select_f_streamed;
@@ -137,6 +136,9 @@ logic LD_EN_f_streamed_REG_6;
 logic LD_EN_f_streamed_REG_7;
 logic LD_EN_f_streamed_REG_8;
 
+logic LD_EN_UX_PRED;
+logic LD_EN_UY_PRED;
+logic rand_en;
 logic FINISH;
 
 assign FINISHED = FINISH;
@@ -406,10 +408,6 @@ assign fin_2 = fin_out[7*DATA_WIDTH-1:6*DATA_WIDTH];
 assign fin_1 = fin_out[8*DATA_WIDTH-1:7*DATA_WIDTH];
 assign fin_0 = fin_out[9*DATA_WIDTH-1:8*DATA_WIDTH];
 
-// equilibrium distribution (feq) input and output buses
-logic signed [DATA_WIDTH_F-1:0] feq_in;
-logic signed [DATA_WIDTH_F-1:0] feq_out;
-
 // post-collision distribution (fout) input and output buses
 logic signed [DATA_WIDTH_F-1:0] fout_mem_in;
 logic signed [DATA_WIDTH_F-1:0] fout_mem_out;
@@ -526,6 +524,12 @@ logic signed [DATA_WIDTH-1:0] feq6_out;
 logic signed [DATA_WIDTH-1:0] feq7_out;
 logic signed [DATA_WIDTH-1:0] feq8_out;
 
+// equilibrium distribution (feq) input and output buses
+logic signed [DATA_WIDTH_F-1:0] feq_out;
+
+assign feq_out = {feq0_out,feq1_out,feq2_out,feq3_out,feq4_out,feq5_out,feq6_out,feq7_out,feq8_out};
+
+
 // intermediate calculation nets for collision step
 logic signed [DATA_WIDTH-1:0] coll_prod_feq0;
 logic signed [DATA_WIDTH-1:0] coll_prod_feq1;
@@ -602,10 +606,26 @@ assign omega_prime = 32'hFF_17734C;//36D6F63B; // 1 - w
 // at the beginning
 assign x_pos = count_init % 16;
 
+// gaussian distributed random number predictions
+logic signed [DATA_WIDTH-1:0] ux_pred;
+logic signed [DATA_WIDTH-1:0] uy_pred;
 
-// feq input bus
-assign feq_in = {feq0_out,feq1_out,feq2_out,feq3_out,feq4_out,feq5_out,feq6_out,feq7_out,feq8_out};
+logic signed [DATA_WIDTH-1:0] ux_pred_buff_out;
+logic signed [DATA_WIDTH-1:0] uy_pred_buff_out;
 
+
+logic signed [DATA_WIDTH-1:0] ux_pred_out;
+logic signed [DATA_WIDTH-1:0] uy_pred_out;
+
+// seed for random number generation
+logic signed [FRACTIONAL_BITS:0] seed;
+assign seed = 25'b1110111001011000000000000;
+
+// prediction constraint
+logic signed [DATA_WIDTH-1:0] epsilon;
+assign epsilon = 32'h00_004189; // ~0.0001
+logic can_pred;
+logic tog;
 
 //***** MODULE INSTANTIATIONS *****//
 // Everything past this point represents the actual digital hardware that are all connected together
@@ -661,12 +681,13 @@ controller fsm (.Clk(CLOCK_50),
 					  .p_mem_array(p_mem_array),
 					  .ux_mem_array(ux_mem_array),
 					  .uy_mem_array(uy_mem_array),
+					  .epsilon(epsilon),
+					  .can_pred(can_pred),
+					  .toggle_out(toggle_out),
 					  .WE_p_mem(WE_p_mem),
 					  .WE_ux_mem(WE_ux_mem),
 					  .WE_uy_mem(WE_uy_mem),
 					  .WE_fin_mem(WE_fin_mem),
-					  .WE_fout_mem(WE_fout_mem),
-					  .WE_feq_mem(WE_feq_mem),
 					  .WE_f_streamed(WE_f_streamed),
 					  .select_p_mem(select_p_mem),
 					  .select_ux_mem(select_ux_mem),
@@ -706,6 +727,8 @@ controller fsm (.Clk(CLOCK_50),
 					  .LD_EN_FOUT6(LD_EN_FOUT6),
 					  .LD_EN_FOUT7(LD_EN_FOUT7),
 					  .LD_EN_FOUT8(LD_EN_FOUT8),
+					  .LD_EN_UX_PRED(LD_EN_UX_PRED),
+					  .LD_EN_UY_PRED(LD_EN_UY_PRED),
 					  .LD_EN_f_streamed_REG_0(LD_EN_f_streamed_REG_0),
 					  .LD_EN_f_streamed_REG_1(LD_EN_f_streamed_REG_1),
 					  .LD_EN_f_streamed_REG_2(LD_EN_f_streamed_REG_2),
@@ -715,6 +738,8 @@ controller fsm (.Clk(CLOCK_50),
 					  .LD_EN_f_streamed_REG_6(LD_EN_f_streamed_REG_6),
 					  .LD_EN_f_streamed_REG_7(LD_EN_f_streamed_REG_7),
 					  .LD_EN_f_streamed_REG_8(LD_EN_f_streamed_REG_8),
+					  .rand_en(rand_en),
+					  .tog(tog),
 					  .FINISH(FINISH));
 
 
@@ -758,19 +783,6 @@ distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(
 																																		  .WE(WE_fin_mem),
 																																		  .data_in(fin_mem_in),
 																																		  .data_out(fin_out));
-
-distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) feq_ram (.address(moment_ram_in),
-                                                                                                        .Clk(CLOCK_50),
-																																		  .WE(WE_feq_mem),
-																																		  .data_in(feq_in),
-																																		  .data_out(feq_out));
-																																		  
-distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) fout_ram (.address(count_init),
-                                                                                                        .Clk(CLOCK_50),
-																																		  .WE(WE_fout_mem),
-																																		  .data_in(fout_mem_in),
-																																		  .data_out(fout_mem_out));
-																																		  
 											  
 distribution_ram #(.DEPTH(GRID_DIM), .ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH_F)) f_streamed (.address(fin_addr_in),
                                                                                                         .Clk(CLOCK_50),
@@ -791,14 +803,16 @@ mux2 #(.DATA_WIDTH(DATA_WIDTH)) p_in_mux (.Din0(pmux_in),
 														.select(select_p_reg),
 														.Dout(p_in));
 
-mux3 #(.DATA_WIDTH(DATA_WIDTH)) ux_in_mux (.Din0(uxmux_in),
+mux4 #(.DATA_WIDTH(DATA_WIDTH)) ux_in_mux (.Din0(uxmux_in),
 														 .Din1(uLid),
 														 .Din2(gnd),
+														 .Din3(ux_pred_buff_out),
 														 .select(select_ux_reg),
 														 .Dout(ux_in));
 
-mux2 #(.DATA_WIDTH(DATA_WIDTH)) uy_in_mux (.Din0(uymux_in),
+mux3 #(.DATA_WIDTH(DATA_WIDTH)) uy_in_mux (.Din0(uymux_in),
 														 .Din1(gnd),
+														 .Din2(uy_pred_buff_out),
 														 .select(select_uy_reg),
 														 .Dout(uy_in));																																		  																																  
 // memory data bus multiplexers
@@ -830,17 +844,17 @@ mux3 #(.DATA_WIDTH(DATA_WIDTH_F)) fin_mem_mux (.Din0(weights),
 															
 // f_streamed multiplexer
 mux12 #(.DATA_WIDTH(DATA_WIDTH_F)) f_streamed_mux (.Din0(weights),
-															   .Din1(weights),
-																.Din2({fout_mem_out[9*DATA_WIDTH-1:8*DATA_WIDTH], f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}), // actually f_streamed with f_streamed0 replaced with fout0
-																.Din3({f_streamed0_reg_out, fout_mem_out[8*DATA_WIDTH-1:7*DATA_WIDTH], f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}), // f_streamed with f1 replaced with fout1
-																.Din4({f_streamed0_reg_out, f_streamed1_reg_out, fout_mem_out[7*DATA_WIDTH-1:6*DATA_WIDTH], f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}), // etc.
-																.Din5({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, fout_mem_out[6*DATA_WIDTH-1:5*DATA_WIDTH], f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}),
-																.Din6({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, fout_mem_out[5*DATA_WIDTH-1:4*DATA_WIDTH], f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}),
-																.Din7({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, fout_mem_out[4*DATA_WIDTH-1:3*DATA_WIDTH], f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}),
-																.Din8({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, fout_mem_out[3*DATA_WIDTH-1:2*DATA_WIDTH], f_streamed7_reg_out, f_streamed8_reg_out}),
-																.Din9({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, fout_mem_out[2*DATA_WIDTH-1:DATA_WIDTH], f_streamed8_reg_out}),
-																.Din10({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, fout_mem_out[DATA_WIDTH-1:0]}),
-																.Din11(feq_out),
+															   .Din1(weights), // replace fout_mem_out with fout reg's
+																.Din2({fout0_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}), // actually f_streamed with f_streamed0 replaced with fout0
+																.Din3({f_streamed0_reg_out, fout1_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}), // f_streamed with f1 replaced with fout1
+																.Din4({f_streamed0_reg_out, f_streamed1_reg_out, fout2_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}), // etc.
+																.Din5({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, fout3_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}),
+																.Din6({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, fout4_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}),
+																.Din7({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, fout5_out, f_streamed6_reg_out, f_streamed7_reg_out, f_streamed8_reg_out}),
+																.Din8({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, fout6_out, f_streamed7_reg_out, f_streamed8_reg_out}),
+																.Din9({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, fout7_out, f_streamed8_reg_out}),
+																.Din10({f_streamed0_reg_out, f_streamed1_reg_out, f_streamed2_reg_out, f_streamed3_reg_out, f_streamed4_reg_out, f_streamed5_reg_out, f_streamed6_reg_out, f_streamed7_reg_out, fout8_out}),
+																.Din11(feq_out), // don't need this anymore
 																.select(select_f_streamed),
 																.Dout(f_streamed_in));	
 
@@ -884,7 +898,7 @@ reg32 #(.WIDTH(DATA_WIDTH)) uy_reg (.Clk(CLOCK_50),
 													 .Reset(RESET),
 													 .LD_EN(LD_EN_UY),
 													 .Data_In(uy_in),
-													 .Data_Out(uy_out));
+													 .Data_Out(uy_out));													 
 													 
 cx_reg #(.WIDTH(DATA_WIDTH_F)) reg_cx (.Reset(RESET),
 											  .Data_Out(cx));
@@ -1407,7 +1421,7 @@ adder2 #(.DATA_WIDTH(DATA_WIDTH)) add31 (.Din0(coll_prod_feq6),
                                          .Din1(coll_prod_fin6),
 													  .Dout(fout6_in));
 
-adder2 #(.DATA_WIDTH(DATA_WIDTH)) add32 (.Din0(coll_prod_feq7), ////////////////// changed add64 to add32
+adder2 #(.DATA_WIDTH(DATA_WIDTH)) add32 (.Din0(coll_prod_feq7), 
                                          .Din1(coll_prod_fin7),
 													  .Dout(fout7_in));
 
@@ -1547,4 +1561,57 @@ fin_addr_mux #(.ADDRESS_WIDTH(ADDRESS_WIDTH)) mux_fin_addr
 				  .Din10(wall_address),
 				  .select(select_fin_addr),
 				  .Dout(fin_addr_in));
+				  
+// PREDICTORS
+
+// random number generators (gaussian distribution)
+gaussian #(.DATA_WIDTH(DATA_WIDTH), .FRACTIONAL_BITS(FRACTIONAL_BITS),
+		     .OFFSET(OFFSET_UX), .SHIFTAMT(SHIFTAMT_UX)) ux_predictor
+			(.Clk(CLOCK_50),
+			 .Enable(rand_en),
+			 .Reset(RESET),
+			 .seed(seed),
+			 .randnum(ux_pred));
+
+ gaussian #(.DATA_WIDTH(DATA_WIDTH), .FRACTIONAL_BITS(FRACTIONAL_BITS),
+  .OFFSET(OFFSET_UY), .SHIFTAMT(SHIFTAMT_UY)) uy_predictor
+			(.Clk(CLOCK_50),
+			 .Enable(rand_en),
+			 .Reset(RESET),
+			 .seed(seed),
+			 .randnum(uy_pred));
+			 
+det_pred #(.DATA_WIDTH(DATA_WIDTH)) pred_constrainer 
+(.epsilon(epsilon),
+ .ux(ux_out),
+ .uy(uy_out),
+ .ux_pred(ux_pred_out),
+ .uy_pred(uy_pred_out),
+ .can_pred(can_pred));
+ 
+
+ mux2 #(.DATA_WIDTH(DATA_WIDTH)) pred_mux_x (.Din0(ux_pred),
+																 .Din1(ux_pred_buff_out),
+																 .select(toggle_out),
+																 .Dout(ux_pred_out));
+																 
+ mux2 #(.DATA_WIDTH(DATA_WIDTH)) pred_mux_y (.Din0(uy_pred),
+																 .Din1(uy_pred_buff_out),
+																 .select(toggle_out),
+																 .Dout(uy_pred_out));																 
+ 
+reg32 #(.WIDTH(DATA_WIDTH)) ux_pred_buff (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_UX_PRED),
+													 .Data_In(ux_pred),
+													 .Data_Out(ux_pred_buff_out));
+
+reg32 #(.WIDTH(DATA_WIDTH)) uy_pred_buff (.Clk(CLOCK_50),
+													 .Reset(RESET),
+													 .LD_EN(LD_EN_UY_PRED),
+													 .Data_In(uy_pred),
+													 .Data_Out(uy_pred_buff_out));	
+
+tflipflop toggle (.Clk(CLOCK_50), .Reset(RESET), .T(tog), .Dout(toggle_out));															 
+
 endmodule

@@ -23,12 +23,16 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 input logic signed [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0],
 						 input logic signed [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0],
 						 input logic signed [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0],
-						 output logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_fout_mem, WE_feq_mem, WE_f_streamed,
+						 input logic signed [DATA_WIDTH-1:0] epsilon,
+						 input logic can_pred,
+						 input logic toggle_out,
+						 output logic WE_p_mem, WE_ux_mem, WE_uy_mem, WE_fin_mem, WE_f_streamed,
 						 output logic select_p_mem, select_uy_mem,
 						 output logic [1:0] select_ux_mem,
 						 output logic [1:0] select_fin_mem,
 						 output logic [3:0] select_f_streamed,
-						 output logic select_p_reg, select_uy_reg,
+						 output logic select_p_reg,
+						 output logic [1:0] select_uy_reg,
 						 output logic [1:0] select_ux_reg,
 						 output logic [3:0] select_fin_addr,
 						 output logic select_moment_addr,
@@ -40,12 +44,15 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 						 output logic LD_EN_FOUT0, LD_EN_FOUT1, LD_EN_FOUT2, LD_EN_FOUT3, LD_EN_FOUT4,
 						 output logic LD_EN_FOUT5, LD_EN_FOUT6, LD_EN_FOUT7, LD_EN_FOUT8,
 						 output logic LD_EN_f_streamed_REG_0, LD_EN_f_streamed_REG_1, LD_EN_f_streamed_REG_2, LD_EN_f_streamed_REG_3, LD_EN_f_streamed_REG_4, 
-						 output logic LD_EN_f_streamed_REG_5, LD_EN_f_streamed_REG_6, LD_EN_f_streamed_REG_7, LD_EN_f_streamed_REG_8, 
+						 output logic LD_EN_f_streamed_REG_5, LD_EN_f_streamed_REG_6, LD_EN_f_streamed_REG_7, LD_EN_f_streamed_REG_8,
+						 output logic LD_EN_UX_PRED, LD_EN_UY_PRED,
+						 output logic rand_en,
+						 output logic tog,
 						 output logic FINISH);
 						 
-	enum logic [5:0] {START, FLUFF_1, BYPASS_1, BYPASS_2, CALC_MOMENT_1, CALC_MOMENT_2, CALC_MOMENT_3,
+	enum logic [5:0] {START, CHECK_WALL, BYPASS_1, BYPASS_2, PRED_QUOT_1, PRED_QUOT_2, CALC_MOMENT_1, CALC_MOMENT_2, CALC_MOMENT_3,
 							CALC_MOMENT_4, CALC_MOMENT_5, CALC_MOMENT_6, CALC_EQUIL_1,
-							CALC_EQUIL_2, FLUFF_2, CALC_EQUIL_3, FLUFF_3, FLUFF_4, CALC_COLL_1, CALC_COLL_2, CALC_COLL_3, STREAM_0,
+							CALC_EQUIL_3, FLUFF_3, CALC_COLL_1, STREAM_0,
 							STREAM_0B, STREAM_0C, STREAM_1, STREAM_1B, STREAM_1C, STREAM_2, STREAM_2B, STREAM_2C, STREAM_3, STREAM_3B, STREAM_3C, STREAM_4,
 							STREAM_4B, STREAM_4C, STREAM_5, STREAM_5B, STREAM_5C, STREAM_6, STREAM_6B, STREAM_6C, STREAM_7, STREAM_7B, STREAM_7C,
 							STREAM_8, STREAM_8B, STREAM_8C, INCREMENT_POS, SWAP_0, SWAP_1,
@@ -68,16 +75,22 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	unique case (State)
 		START		:
 			if (count_init == GRID_DIM - 1)
-				Next_state <= FLUFF_1;
-		FLUFF_1	:
+				Next_state <= CHECK_WALL;
+		CHECK_WALL	:
 			if (LID | BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
 				Next_state <= BYPASS_1;
+			end else if (can_pred) begin
+				Next_state <= PRED_QUOT_1;
 			end else begin
 				Next_state <= CALC_MOMENT_1;
 			end
 		BYPASS_1:
 			Next_state <= BYPASS_2;
 		BYPASS_2:
+			Next_state <= CALC_EQUIL_1;
+		PRED_QUOT_1:
+			Next_state <= PRED_QUOT_2;
+		PRED_QUOT_2:
 			Next_state <= CALC_EQUIL_1;
 		CALC_MOMENT_1	:
 			Next_state <= CALC_MOMENT_2;
@@ -93,26 +106,16 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 		CALC_MOMENT_6	:
 				Next_state <= CALC_EQUIL_1;
 		CALC_EQUIL_1:
-				Next_state <= CALC_EQUIL_2;
-		CALC_EQUIL_2:
 			if (LID | BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
-				Next_state <= FLUFF_4;
-			end else begin
-				Next_state <= FLUFF_2;
-			end
-		FLUFF_4:
 				Next_state <= CALC_EQUIL_3;
-		FLUFF_2:
+			end else begin
 				Next_state <= CALC_COLL_1;
+			end
 		CALC_EQUIL_3:
 				Next_state <= FLUFF_3;
 		FLUFF_3:
 				Next_state <= CALC_COLL_1;
 		CALC_COLL_1:
-				Next_state <= CALC_COLL_2;
-		CALC_COLL_2:
-				Next_state <= CALC_COLL_3;
-		CALC_COLL_3:
 				Next_state <= STREAM_0;
 		STREAM_0:
 			if (stream_addr0[ADDRESS_WIDTH2-1] != 1'b1) begin
@@ -206,7 +209,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				Next_state <= INCREMENT_POS;
 		INCREMENT_POS:
 				if (count_init < GRID_DIM - 1) begin
-					Next_state <= FLUFF_1;
+					Next_state <= CHECK_WALL;
 				end else begin
 					Next_state <= SWAP_0;
 				end
@@ -219,7 +222,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				Next_state <= SWAP_0;
 		INCREMENT_TIME:
 				if (time_count < MAX_TIME) begin
-					Next_state <= FLUFF_1;
+					Next_state <= CHECK_WALL;
 				end else begin
 					Next_state <= STOP;
 				end
@@ -236,15 +239,13 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	WE_ux_mem = 1'b0;
 	WE_uy_mem = 1'b0;
 	WE_fin_mem = 1'b0;
-	WE_fout_mem = 1'b0;
-	WE_feq_mem = 1'b0;
 	WE_f_streamed = 1'b0;
 	select_p_mem = 1'b0;
 	select_ux_mem = 2'b00;
 	select_uy_mem = 1'b0;
 	select_p_reg = 1'b0;
 	select_ux_reg = 2'b00;
-	select_uy_reg = 1'b0;
+	select_uy_reg = 2'b00;
 	select_fin_mem = 2'b00;
 	select_f_streamed = 4'b0000;
 	select_fin_addr = 4'b0000;
@@ -286,6 +287,10 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	LD_EN_f_streamed_REG_6 = 1'b0;
 	LD_EN_f_streamed_REG_7 = 1'b0;
 	LD_EN_f_streamed_REG_8 = 1'b0;
+	LD_EN_UX_PRED = 1'b0;
+	LD_EN_UY_PRED = 1'b0;
+	tog = 1'b0;
+	rand_en = 1'b0;
 	FINISH = 1'b0;
 	
 	case (State)
@@ -295,18 +300,20 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				WE_ux_mem = 1'b1;
 				WE_uy_mem = 1'b1;
 				WE_fin_mem = 1'b1;
-				WE_feq_mem = 1'b1; //
-				WE_fout_mem = 1'b1; //
-				WE_f_streamed = 1'b1; //
+				WE_f_streamed = 1'b1;
 				count_init_en = 1'b1;
 			end
-	FLUFF_1:
-			;
-	BYPASS_1: // if wall detector goes off in FLUFF_1 then skip to bypass
+	CHECK_WALL:
+			if (can_pred && ~toggle_out) begin
+				tog = 1'b1;
+				LD_EN_UX_PRED = 1'b1;
+				LD_EN_UY_PRED = 1'b1;
+			end
+	BYPASS_1: // if wall detector goes off in CHECK_WALL then skip to bypass
 			begin
 				row_count_en = 1'b1; // need this since we are skipping CALC_MOMENT_1
 				select_p_reg = 1'b1;
-				select_uy_reg = 1'b1;
+				select_uy_reg = 2'b01;
 				if (LID)
 					select_ux_reg = 2'b01;
 				else
@@ -324,12 +331,35 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				WE_ux_mem = 1'b1;
 				WE_uy_mem = 1'b1;
 			end
-	CALC_MOMENT_1:
+	PRED_QUOT_1:
 			begin
 				row_count_en = 1'b1;
-				if (LID | BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
-					select_p_reg = 1'b1;
+				select_p_reg = 1'b1;
+				select_ux_reg = 2'b11;
+				select_uy_reg = 2'b10;
+				LD_EN_P = 1'b1;
+				LD_EN_PUX = 1'b1;
+				LD_EN_PUY = 1'b1;
+				LD_EN_UX = 1'b1;
+				LD_EN_UY = 1'b1;
+				LD_EN_UX_PRED = 1'b1;
+				LD_EN_UY_PRED = 1'b1;
+			end
+	PRED_QUOT_2:
+			begin
+				select_p_mem = 1'b1;
+				WE_p_mem = 1'b1;
+				select_ux_mem = 2'b01;
+				select_uy_mem = 1'b1;
+				WE_ux_mem = 1'b1;
+				WE_uy_mem = 1'b1;
+			end
+	CALC_MOMENT_1:
+			begin
+				if (toggle_out) begin
+					tog = 1'b1;
 				end
+				row_count_en = 1'b1;
 				LD_EN_P = 1'b1;
 				LD_EN_PUX = 1'b1;
 				LD_EN_PUY = 1'b1;
@@ -349,13 +379,6 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 			end
 	CALC_MOMENT_5:
 			begin
-				if (LID) begin
-					select_ux_reg = 2'b01;
-					select_uy_reg = 1'b1;
-				end else if (BOTTOM_WALL | LEFT_WALL | RIGHT_WALL) begin
-					select_ux_reg = 2'b10;
-					select_uy_reg = 1'b1;
-				end
 				LD_EN_UX = 1'b1;
 				LD_EN_UY = 1'b1;
 			end
@@ -378,14 +401,6 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				LD_EN_FEQ7 = 1'b1;
 				LD_EN_FEQ8 = 1'b1;
 			end
-	CALC_EQUIL_2:
-			begin
-				WE_feq_mem = 1'b1;
-			end
-	FLUFF_2:
-			;
-	FLUFF_4:
-			;
 	CALC_EQUIL_3:
 			begin
 				select_fin_mem = 2'b01;
@@ -404,13 +419,6 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 				LD_EN_FOUT6 = 1'b1;
 				LD_EN_FOUT7 = 1'b1;
 				LD_EN_FOUT8 = 1'b1;
-			end
-	CALC_COLL_2:
-			begin
-				WE_fout_mem = 1'b1;
-			end
-	CALC_COLL_3:
-			begin
 			end
 	STREAM_0: // stream address 0
 			begin
@@ -632,6 +640,7 @@ module controller #(DATA_WIDTH=32, GRID_DIM = 16*16, ADDRESS_WIDTH=$clog2(GRID_D
 	INCREMENT_POS:
 			begin
 				count_init_en = 1'b1; // increment the grid position counter
+				rand_en = 1'b1;
 			end		
 	SWAP_0:
 			begin // read f_streamed

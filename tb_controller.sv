@@ -45,6 +45,9 @@ module tb_controller();
 	logic signed [DATA_WIDTH-1:0] p_mem_array [GRID_DIM-1:0];
 	logic signed [DATA_WIDTH-1:0] ux_mem_array [GRID_DIM-1:0];
 	logic signed [DATA_WIDTH-1:0] uy_mem_array [GRID_DIM-1:0];
+	logic signed [DATA_WIDTH-1:0] epsilon;
+	logic can_pred;
+	logic toggle_out;
 	logic LD_EN_P;
 	logic LD_EN_PUX;
 	logic LD_EN_PUY;
@@ -77,6 +80,10 @@ module tb_controller();
 	logic LD_EN_f_streamed_REG_6;
 	logic LD_EN_f_streamed_REG_7;
 	logic LD_EN_f_streamed_REG_8;
+	logic LD_EN_UX_PRED;
+	logic LD_EN_UY_PRED;
+	logic rand_en;
+	logic tog;
 	logic FINISH;
 	
 	controller #(.GRID_DIM(GRID_DIM), .DATA_WIDTH(DATA_WIDTH), .ADDRESS_WIDTH(ADDRESS_WIDTH), .ADDRESS_WIDTH2(ADDRESS_WIDTH2),
