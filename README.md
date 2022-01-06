@@ -3,7 +3,7 @@
 Authors: Aristotle Martin, Adam Krekorian
 
 Description: This is a SystemVerilog implementation
-of a Lattice Boltzmann method (LBM) solver for a 2D cavity
+of a Lattice Boltzmann method (LBM) solver for a 2D lid-driven cavity
 flow targeted at the Altera DE2-115 FPGA board. This system
 employs Q8.24 fixed-point arithmetic.
 
